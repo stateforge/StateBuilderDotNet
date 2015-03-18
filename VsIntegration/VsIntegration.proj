@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{48F23580-1647-42AA-8CEA-E165B2294327}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VsIntegration</RootNamespace>
+    <AssemblyName>VsIntegration</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!--<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />-->
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+
+  -->
+  <Target Name="ReBuild" DependsOnTargets="Clean;Build">
+  </Target>
+  <Target Name="Build" DependsOnTargets="VsStateMachineCsItemTemplate;VsStateMachineStarterKitCsProjectTemplate;VsStateMachineTestCsProjectTemplate;VsStateMachineAsyncStarterKitCsProjectTemplate">
+  </Target>
+  <Target Name="Clean" DependsOnTargets="VsStateMachineCsItemTemplateClean;VsStateMachineStarterKitCsProjectTemplateClean;VsStateMachineTestCsProjectTemplateClean;VsStateMachineAsyncStarterKitCsProjectTemplateClean">
+  </Target>
+  <!-- StateMachineCsItemTemplate -->
+  <!-- Output Zip file -->
+  <PropertyGroup>
+    <StateMachineCsItemTemplateZip>StateMachineCsItemTemplate.zip</StateMachineCsItemTemplateZip>
+  </PropertyGroup>
+  <!-- Input files -->
+  <ItemGroup>
+    <StateMachineCsItemTemplate Include="StateMachineCsItemTemplate\**\*.*" />
+  </ItemGroup>
+  <!-- Target to build the zip -->
+  <Target Name="VsStateMachineCsItemTemplate" Inputs="@(StateMachineCsItemTemplate)" Outputs="$(StateMachineCsItemTemplateZip)">
+    <Zip Files="@(StateMachineCsItemTemplate)" ZipFileName="$(StateMachineCsItemTemplateZip)" WorkingDirectory="StateMachineCsItemTemplate" />
+  </Target>
+  <!-- Target to delete the zip -->
+  <Target Name="VsStateMachineCsItemTemplateClean">
+    <Message Text="VsStateMachineCsItemTemplateClean" />
+    <Delete Files="$(StateMachineCsItemTemplateZip)" />
+  </Target>
+  <!-- StateMachineStarterKitCsProjectTemplate -->
+  <!-- Output Zip file -->
+  <PropertyGroup>
+    <StateMachineStarterKitCsProjectTemplateZip>StateMachineStarterKitCsProjectTemplate.zip</StateMachineStarterKitCsProjectTemplateZip>
+  </PropertyGroup>
+  <!-- Input files -->
+  <ItemGroup>
+    <StateMachineStarterKitCsProjectTemplate Include="StateMachineStarterKitCsProjectTemplate\MyObject.cs" />
+    <StateMachineStarterKitCsProjectTemplate Include="StateMachineStarterKitCsProjectTemplate\MyObject.csproj">
+      <SubType>Designer</SubType>
+    </StateMachineStarterKitCsProjectTemplate>
+    <StateMachineStarterKitCsProjectTemplate Include="StateMachineStarterKitCsProjectTemplate\MyObject.fsmcs" />
+    <StateMachineStarterKitCsProjectTemplate Include="StateMachineStarterKitCsProjectTemplate\Properties\AssemblyInfo.cs" />
+    <StateMachineStarterKitCsProjectTemplate Include="StateMachineStarterKitCsProjectTemplate\StateMachineCsStarterKit.vstemplate">
+      <SubType>Designer</SubType>
+    </StateMachineStarterKitCsProjectTemplate>
+    <StateMachineStarterKitCsProjectTemplate Include="StateMachineStarterKitCsProjectTemplate\__TemplateIcon.ico" />
+  </ItemGroup>
+  <!-- Target to build the zip -->
+  <Target Name="VsStateMachineStarterKitCsProjectTemplate" Inputs="@(StateMachineStarterKitCsProjectTemplate)" Outputs="$(StateMachineStarterKitCsProjectTemplateZip)">
+    <Zip Files="@(StateMachineStarterKitCsProjectTemplate)" ZipFileName="$(StateMachineStarterKitCsProjectTemplateZip)" WorkingDirectory="StateMachineStarterKitCsProjectTemplate" />
+  </Target>
+  <!-- Target to delete the zip -->
+  <Target Name="VsStateMachineStarterKitCsProjectTemplateClean">
+    <Message Text="VsStateMachineStarterKitCsProjectTemplateClean" />
+    <Delete Files="$(StateMachineStarterKitCsProjectTemplateZip)" />
+  </Target>
+  
+  <!-- StateMachineTestCsProjectTemplate -->
+  <!-- Output Zip file -->
+  <PropertyGroup>
+    <StateMachineTestCsProjectTemplateZip>StateMachineTestCsProjectTemplate.zip</StateMachineTestCsProjectTemplateZip>
+  </PropertyGroup>
+  <!-- Input files -->
+  <ItemGroup>
+    <StateMachineTestCsProjectTemplate Include="StateMachineTestCsProjectTemplate\MyObjectTest.cs" />
+    <StateMachineTestCsProjectTemplate Include="StateMachineTestCsProjectTemplate\MyObjectTest.csproj">
+      <SubType>Designer</SubType>
+    </StateMachineTestCsProjectTemplate>
+    <StateMachineTestCsProjectTemplate Include="StateMachineTestCsProjectTemplate\Properties\AssemblyInfo.cs" />
+    <StateMachineTestCsProjectTemplate Include="StateMachineTestCsProjectTemplate\StateMachineTestCsProjectTemplate.vstemplate">
+      <SubType>Designer</SubType>
+    </StateMachineTestCsProjectTemplate>
+    <StateMachineTestCsProjectTemplate Include="StateMachineTestCsProjectTemplate\__TemplateIcon.ico" />
+  </ItemGroup>
+  <!-- Target to build the zip -->
+  <Target Name="VsStateMachineTestCsProjectTemplate" Inputs="@(StateMachineTestCsProjectTemplate)" Outputs="$(StateMachineTestCsProjectTemplateZip)">
+    <Zip Files="@(StateMachineTestCsProjectTemplate)" ZipFileName="$(StateMachineTestCsProjectTemplateZip)" WorkingDirectory="StateMachineTestCsProjectTemplate" />
+  </Target>
+  <!-- Target to delete the zip -->
+  <Target Name="VsStateMachineTestCsProjectTemplateClean">
+    <Message Text="VsStateMachineTestCsProjectTemplateClean" />
+    <Delete Files="$(StateMachineTestCsProjectTemplateZip)" />
+  </Target>
+  
+  
+    <!-- StateMachineAsyncStarterKitCsProjectTemplate -->
+  <!-- Output Zip file -->
+  <PropertyGroup>
+    <StateMachineAsyncStarterKitCsProjectTemplateZip>StateMachineAsyncStarterKitCsProjectTemplate.zip</StateMachineAsyncStarterKitCsProjectTemplateZip>
+  </PropertyGroup>
+  <!-- Input files -->
+  <ItemGroup>
+    <StateMachineAsyncStarterKitCsProjectTemplate Include="StateMachineAsyncStarterKitCsProjectTemplate\MyObject.cs" />
+    <StateMachineAsyncStarterKitCsProjectTemplate Include="StateMachineAsyncStarterKitCsProjectTemplate\MyObject.csproj">
+      <SubType>Designer</SubType>
+    </StateMachineAsyncStarterKitCsProjectTemplate>
+    <StateMachineAsyncStarterKitCsProjectTemplate Include="StateMachineAsyncStarterKitCsProjectTemplate\MyObject.fsmcs" />
+    <StateMachineAsyncStarterKitCsProjectTemplate Include="StateMachineAsyncStarterKitCsProjectTemplate\Properties\AssemblyInfo.cs" />
+    <StateMachineAsyncStarterKitCsProjectTemplate Include="StateMachineAsyncStarterKitCsProjectTemplate\MyObject.exe.config" />
+    <StateMachineAsyncStarterKitCsProjectTemplate Include="StateMachineAsyncStarterKitCsProjectTemplate\StateMachineAsyncCsStarterKit.vstemplate">
+      <SubType>Designer</SubType>
+    </StateMachineAsyncStarterKitCsProjectTemplate>
+    <StateMachineAsyncStarterKitCsProjectTemplate Include="StateMachineAsyncStarterKitCsProjectTemplate\__TemplateIcon.ico" />
+  </ItemGroup>
+  <!-- Target to build the zip -->
+  <Target Name="VsStateMachineAsyncStarterKitCsProjectTemplate" Inputs="@(StateMachineAsyncStarterKitCsProjectTemplate)" Outputs="$(StateMachineAsyncStarterKitCsProjectTemplateZip)">
+    <Zip Files="@(StateMachineAsyncStarterKitCsProjectTemplate)" ZipFileName="$(StateMachineAsyncStarterKitCsProjectTemplateZip)" WorkingDirectory="StateMachineAsyncStarterKitCsProjectTemplate" />
+  </Target>
+  <!-- Target to delete the zip -->
+  <Target Name="VsStateMachineAsyncStarterKitCsProjectTemplateClean">
+    <Message Text="VsStateMachineAsyncStarterKitCsProjectTemplateClean" />
+    <Delete Files="$(StateMachineAsyncStarterKitCsProjectTemplateZip)" />
+  </Target>
+  
+</Project>

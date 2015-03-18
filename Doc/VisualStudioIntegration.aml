@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="ef3b3e3e-e2b5-4461-bd74-10e2cc3b6187" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <autoOutline>1</autoOutline>
+      <para>This article describes how <application>StateBuilderDotNet</application> integrates with Visual Studio. First of all, we'll describe how to build the state machine by Visual Studio or MsBuild, then we'll document how to create new state machines from templates.</para>
+    </introduction>
+    <section address="VisualStudioBuildIntegration">
+      <title>Build state machines with Visual Studio and MsBuild</title>
+      <content>
+        <para>
+          Here are the steps to integrate state machine into the Visual Studio/MsBuild build system:
+        </para>
+        <list class="bullet">
+          <listItem>
+            <para>Close the current Visual studio Solution: File -> Close solution.</para>
+          </listItem>
+          <listItem>
+            <para>Open the project file (i.e Light.csproj): File -> Open File.</para>
+          </listItem>
+          <listItem>
+            <para>
+              Add the following lines as child of the <codeInline>&lt;project&gt;</codeInline> tag:
+              <code language="xml">
+                <![CDATA[
+          <PropertyGroup>
+            <StateBuilderDotNetTargets>$(Registry:HKEY_CURRENT_USER\Software\StateForge\StateBuilderDotNet@InstallDir)/MsBuild/StateBuilderDotNet.targets</StateBuilderDotNetTargets>
+          </PropertyGroup>
+          <Import Project="$(StateBuilderDotNetTargets)" />
+          ]]>
+              </code>
+            </para>
+          </listItem>
+          <listItem>
+            <para>Reopen the previously closed solution: File -> Recents projects and solutions.</para>
+          </listItem>
+        </list>
+        <para>
+          The target file <legacyBold>StateBuilderDotNet.targets</legacyBold> is responsible of finding the <legacyBold>StateBuilderDotNetCli</legacyBold> application and the <legacyBold>StateMachine</legacyBold> library.
+        </para>
+      </content>
+    </section>         
+    <section address="VisualStudioItemTemplate">
+      <title>Create new state machines with Visual Studio Item Templates</title>
+      <content>
+        <para>
+          Finite state machines files are in XML format 
+        </para>
+        <list class="bullet">
+          <listItem>
+            <para>In the solution explorer, right click on the project where the state machine has to be added, select Add -> New Item</para>
+          </listItem>
+          <listItem>
+            <para>Select the "C# State Machine" template.</para>
+          </listItem>
+          <listItem>
+            <para>Choose a name for the new state machine.</para>
+          </listItem>
+        </list>
+      </content>
+    </section>
+    <section address="VisualStudioProjectTemplate">
+      <title>Create a new state machine starter kit with Visual Studio Project Templates</title>
+      <content>
+        <para>This is the quickest way to create a new library which has a state machine and all the other files needed.</para>
+        <para></para>
+        <list class="bullet">
+          <listItem>
+            <para>In the solution explorer, right click on the solution, select Add -> New Project ...</para>
+          </listItem>
+          <listItem>
+            <para>Select the "C# State Machine Starter Kit" template.</para>
+          </listItem>
+          <listItem>
+            <para>Choose a name for the new project.</para>
+          </listItem>
+          <listItem>
+            <para>In the solution explorer, expand the newly created project and rename MyObject.cs and MyObject.fsmcs in whatever is appropriate for your project.</para>
+          </listItem>
+          <listItem>
+            <para>Hit F6 to build the project.</para>
+          </listItem>
+        </list>
+      </content>
+    </section>
+
+    <relatedTopics>
+      <link xlink:href="32b960d9-f56e-40d4-bfea-2366aa0eb50d">Getting Started</link>      
+      <link xlink:href="e255e8c9-98cd-4479-bb31-bb106056f709">List of examples</link>
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

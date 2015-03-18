@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.stateforge.com/StateMachineDotNet-v1
+                                     http://www.stateforge.com/xsd/StateMachineDotNet-v1.xsd" >
+
+    <!-- general settings -->
+    <settings asynchronous="false" namespace="StateForge.Examples.Persistence">
+        <object instance="myPeristence" class="IPeristenceActuator"/>
+        <context class="PersistenceContext"/>
+    </settings>
+    <!-- events -->
+    <events>
+        <eventSource name="Peristence">
+            <event id="EvOn"/>
+            <event id="EvOff"/>
+        </eventSource>
+    </events>
+
+    <!-- States -->
+    <state name="Root">
+        <state name="Off">
+            <onEntry action="myPeristence.DoOff()"/>
+            <transition event="EvOn" nextState="On"/>
+        </state>
+        <state name="On">
+            <onEntry action="myPeristence.DoOn()"/>
+            <transition event="EvOff" nextState="Off"/>
+        </state>
+    </state>
+</sm:StateMachine>

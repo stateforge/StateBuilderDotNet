@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1">
+
+    <!-- General settings -->
+    <settings asynchronous="true" namespace="StateForge.Examples.Door">
+        <description>Door</description>
+        <object instance="engine" class="IEngine"/>
+        <context class="DoorContext"/>
+    </settings>
+
+    <!-- Events -->
+    <events>
+        <eventSource name="Management" feeder="Door">
+            <event id="Start"/>
+            <event id="Quit"/>
+        </eventSource>
+        <eventSource name="RemoteControl" feeder="Door">
+            <event id="OpenRequest"/>
+            <event id="CloseRequest"/>
+        </eventSource>
+        <eventSource name="Sensors" feeder="Door">
+            <event id="SensorOpened"/>
+            <event id="SensorClosed"/>
+        </eventSource>
+    </events>
+
+    <!-- States -->
+    <state name="Root">
+        <transition event="Quit" nextState="End"/>
+        
+        <state name="Init">
+            <transition event="Start" nextState="Operating"/>
+        </state>
+        <state name="Operating">
+            <state name="Closed">
+                <transition event="OpenRequest" nextState="Opening"/>
+            </state>
+            <state name="Opening">
+                <onEntry action="engine.StartOpen()"/>
+                <onExit action="engine.Stop()"/>
+                <transition event="CloseRequest" nextState="Closing"/>
+                <transition event="SensorOpened" nextState="Opened"/>
+            </state>
+            <state name="Opened">
+                <transition event="CloseRequest" nextState="Closing"/>
+            </state>
+            <state name="Closing">
+                <onEntry action="engine.StartClose()"/>
+                <onExit action="engine.Stop()"/>
+                <transition event="OpenRequest" nextState="Opening"/>
+                <transition event="SensorClosed" nextState="Closed"/>
+            </state>
+        </state>
+        <state name="End" kind="final"/>
+    </state>
+</sm:StateMachine>
+

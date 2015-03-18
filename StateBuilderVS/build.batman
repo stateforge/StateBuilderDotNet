@@ -1,0 +1,10 @@
+gacutil /u StateBuilderVS
+
+
+
+msbuild /p:Configuration=Debug
+
+regasm.exe /codebase \bin\Bin\StateBuilderVS.dll /tlb:StateBuilderVS.tlb /verbose
+regedit /s Resources\StateBuilderVS.reg
+
+gacutil /i bin\Debug\StateBuilderVS.dll

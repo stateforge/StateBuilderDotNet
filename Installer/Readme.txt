@@ -1,0 +1,1 @@
+This is the StateBuilderDotNet, a finite state code machine generator for c# and vb.net

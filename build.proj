@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project InitialTargets="GetBuildNumber;SetEnvStateBuilderDotNetSrcDirectory"
+         DefaultTargets="Build"
+         ToolsVersion="4.0"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />
+    <Import Project="$(MSBuildExtensionsPath)\ExtensionPack\MSBuild.ExtensionPack.tasks" />
+
+    <PropertyGroup>
+        <Major>3</Major>
+        <Minor>2</Minor>
+        <Build>1</Build>
+        <Revision>0</Revision>
+        <Version>$(Major).$(Minor).$(Build).$(Revision)</Version>
+        <FileVersion>Properties\version.txt</FileVersion>
+        <SkipIncrementVersion>true</SkipIncrementVersion>
+    </PropertyGroup>
+
+    <!--<PropertyGroup>
+        <ftpHost>ftp.acme.com</ftpHost>
+        <ftpUser>myuser</ftpUser>
+        <ftpPass>mypassword</ftpPass>
+    </PropertyGroup>-->
+
+    <PropertyGroup>
+        <DisableStyleCop>true</DisableStyleCop>
+        <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
+        <StyleCopProperties Condition="'$(DisableStyleCop)' == 'false' and Exists('$(StyleCopTargetsFile)')">StyleCopTargetsFile=$(StyleCopTargetsFile)</StyleCopProperties>
+    </PropertyGroup>
+
+    <!-- Get build number from the file $(FileVersion) and eventually increment if $(SkipIncrementVersion) is false -->
+    <Target Name="SetBuildNumber">
+        <Attrib Files="$(FileVersion)" ReadOnly="false"/>
+
+        <Version Condition=" '$(SkipIncrementVersion)' == 'true' "
+                 VersionFile="$(FileVersion)"
+                 BuildType="None"
+                 RevisionType="None">
+            <Output TaskParameter="Major" PropertyName="Major" />
+            <Output TaskParameter="Minor" PropertyName="Minor" />
+            <Output TaskParameter="Build" PropertyName="Build" />
+            <Output TaskParameter="Revision" PropertyName="Revision" />
+        </Version>
+
+        <Version Condition=" '$(SkipIncrementVersion)' != 'true' "
+                 VersionFile="$(FileVersion)"
+                 BuildType="Increment"
+                 RevisionType="None">
+            <Output TaskParameter="Major" PropertyName="Major" />
+            <Output TaskParameter="Minor" PropertyName="Minor" />
+            <Output TaskParameter="Build" PropertyName="Build" />
+            <Output TaskParameter="Revision" PropertyName="Revision" />
+        </Version>
+
+        <PropertyGroup>
+            <Version>$(Major).$(Minor).$(Build)</Version>
+        </PropertyGroup>
+
+        <Message Text="SetBuildNumber = $(Version)" />
+
+
+    </Target>
+
+    <Target Name="GetBuildNumber">
+        <Attrib Files="$(FileVersion)" ReadOnly="false"/>
+
+        <Version VersionFile="$(FileVersion)"
+                 BuildType="None"
+                 RevisionType="None">
+            <Output TaskParameter="Major" PropertyName="Major" />
+            <Output TaskParameter="Minor" PropertyName="Minor" />
+            <Output TaskParameter="Build" PropertyName="Build" />
+            <Output TaskParameter="Revision" PropertyName="Revision" />
+        </Version>
+
+        <PropertyGroup>
+            <Version>$(Major).$(Minor).$(Build).$(Revision)</Version>
+        </PropertyGroup>
+
+        <ItemGroup>
+            <AssemblyInfoFiles Include="StateBuilderLib\Properties\AssemblyInfoGlobal.cs"/>
+        </ItemGroup>
+        
+        <MSBuild.ExtensionPack.Framework.AssemblyInfo
+          AssemblyInfoFiles="@(AssemblyInfoFiles)"
+          AssemblyVersion="$(version)"
+          AssemblyFileVersion="$(version)"/>
+        <Message Text="SetBuildNumber = $(Version)" />
+
+        <ItemGroup>
+            <Tokens Include="AssemblyVersion">
+                <ReplacementValue>$(Major).$(Minor).$(Build).$(Revision)</ReplacementValue>
+            </Tokens>
+
+        </ItemGroup>
+
+        <TemplateFile
+           Template="StateBuilderGui\StateBuilderGui.in.codefort"
+           OutputFilename="StateBuilderGui.codefort"
+           Tokens="@(Tokens)"/>        
+    </Target>
+
+    <Target Name="SetEnvStateBuilderDotNetSrcDirectory">
+        <RegistryWrite KeyName="HKEY_CURRENT_USER\Software\StateForge\StateBuilderDotNetSrc"
+                       ValueName="InstallDir"
+                       Value="$(MSBuildProjectDirectory)"/>
+        <Message Text="Setting registry key Software\StateForge\StateBuilderDotNetSrc@InstallDir to $(Registry:HKEY_CURRENT_USER\Software\StateForge\StateBuilderDotNetSrc@InstallDir)" />
+    </Target>
+
+    <PropertyGroup>
+        <!-- where to put the msi and the source zip-->
+        <ReleasesDir>Releases</ReleasesDir>
+        <!-- where to put unit test and cover result -->
+        <ReportDir>Report</ReportDir>
+    </PropertyGroup>
+
+
+    <!-- Release build by default-->
+    <PropertyGroup>
+        <Configuration>Release</Configuration>
+    </PropertyGroup>
+
+    <!-- PartCover parameters -->
+    <PropertyGroup>
+        <CoverReportFileName>PartCover.xml</CoverReportFileName>
+        <PartCoverExecutable>C:\Users\frederic\Software\PartCover4\PartCover.exe</PartCoverExecutable>
+        <PartCoverParameters>--include [*]* --exclude [Moq*]*  --exclude [Rhino*]*  --exclude [Gallio*]* --exclude [nunit*]* --exclude [MbUnit*]* --exclude [System*]*</PartCoverParameters>
+        <GallioExecutable>C:\Program Files\Gallio\bin\Gallio.Echo.exe</GallioExecutable>
+        <TestDlls>TestAll\bin\$(Configuration)\*Test*.dll</TestDlls>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <SolutionFile Include="*.sln" />
+    </ItemGroup>
+
+    <Target Name="Build" DependsOnTargets="Clean;CoreBuild;NUnitTests;Cover">
+    </Target>
+
+    <Target Name="CoreBuild">
+        <MSBuild Projects="@(SolutionFile)" ContinueOnError="false" Properties="Configuration=$(Configuration);$(StyleCopProperties)">
+            <Output ItemName="BuildOutput" TaskParameter="TargetOutputs"/>
+        </MSBuild>
+    </Target>
+
+    <Target Name="Clean" DependsOnTargets="VsIntegrationClean;WixClean">
+        <MSBuild Projects="@(SolutionFile)" ContinueOnError="false" Targets="Clean"
+                 Properties="Configuration=$(Configuration)" />
+    </Target>
+
+    <!-- Delete all files in bin and obj regardless of the configuration -->
+    <Target Name="CleanAll" DependsOnTargets="Clean;ReleaseClean;ReportClean">
+        <ItemGroup>
+            <BinFiles Include="**\bin\**"/>
+            <BinFiles Include="**\obj\**"/>
+            <BinFiles Include="**\*.user"/>
+            <BinFiles Include="**\*.bak"/>
+            <BinFiles Include="**\*.suo"/>
+            <BinFiles Include="**\*.*~"/>
+            <BinFiles Include="**\*.sln.cache"/>
+            <BinFiles Include="**\*Fsm.vb"/>
+        </ItemGroup>
+        <Delete Files="@(BinFiles)" ContinueOnError="true"/>
+    </Target>
+
+    <!-- Clean test and cover reports -->
+    <Target Name="ReportClean" DependsOnTargets="CoverClean;NUnitTestsClean">
+    </Target>
+
+    <PropertyGroup>
+        <NUnit-ToolPath>$(MSBuildProgramFiles32)\NUnit 2.5.10\bin\net-2.0</NUnit-ToolPath>
+    </PropertyGroup>
+
+    <!-- NUnit -->
+    <Target Name="NUnitTests" DependsOnTargets="NUnitTestsClean;CoreBuild">
+        <MakeDir Directories="$(ReportDir)" Condition="!Exists('$(ReportDir)')" />
+        <ItemGroup>
+            <TestAssemblies Include="**\bin\$(Configuration)\*Test*.dll;**\bin\$(Configuration)\*Test*.exe" Exclude="TestAll\**"/>
+        </ItemGroup>
+        <NUnit Assemblies="@(TestAssemblies)"
+              
+               ToolPath="$(NUnit-ToolPath)"
+               OutputXmlFile="$(ReportDir)\TestResult.xml"
+               DisableShadowCopy="true"
+               ExcludeCategory="VSErrorWindow"/>
+    </Target>
+
+    <Target Name="NUnitTestsClean">
+        <Delete Files="$(ReportDir)\TestResult.xml"/>
+    </Target>
+
+    <!-- Code Coverage -->
+    <Target Name="Cover" DependsOnTargets="CoverClean;CoreBuild">
+        <Exec Command="&quot;$(PartCoverExecutable)&quot; --target &quot;$(GallioExecutable)&quot; --target-args &quot; /runner:Local ..\$(TestDlls)  &quot;  $(PartCoverParameters) --output $(CoverReportFileName)"
+              WorkingDirectory="$(ReportDir)"
+              ContinueOnError="true" />
+    </Target>
+
+    <Target Name="CoverClean">
+        <Delete Files="$(ReportDir)\$(CoverReportFileName)"/>
+        <Delete Files="$(ReportDir)\partcover.driver.log"/>
+    </Target>
+
+    <!--<Target Name="Report" >
+    <FxCop ToolPath="Resource/Tool/FxCop" ProjectFile="$(ProjectName).FxCop" AnalysisReportFileName="$(ArtifactDirectory)/$(ProjectName).fxcop-result.xml"/>
+  </Target>-->
+
+    <!-- Subversion -->
+
+
+    <!-- Zip the source code -->
+    <!--<Target Name="Zip" DependsOnTargets="SvnCheckout">   
+    <CreateItem Include="$(ReleasesDir)\StateBuilderDotNetSource-$(Major).$(Minor).$(Build).$(Revision)\**\*.*">   
+      <Output TaskParameter="Include" ItemName="ZipFiles"/>   
+    </CreateItem>
+    <Zip Files="@(ZipFiles)"   
+         ZipFileName="$(ReleasesDir)\StateBuilderDotNetSource-$(Major).$(Minor).$(Build).$(Revision).zip"   
+         WorkingDirectory="$(ReleasesDir)"/>      
+  </Target>-->
+
+    <!-- Visual Studio integration -->
+    <Target Name="VsIntegration">
+        <MSBuild Projects="VsIntegration/VsIntegration.proj" ContinueOnError="false" Properties="Version=$(Version)"/>
+    </Target>
+
+    <Target Name="VsIntegrationClean">
+        <MSBuild Projects="VsIntegration/VsIntegration.proj" ContinueOnError="false" Properties="Version=$(Version)" Targets="Clean"/>
+    </Target>
+
+    <!-- Wix -->
+    <Target Name="Wix" DependsOnTargets="WixClean;SetBuildNumber;CoreBuild;VsIntegration">
+        <MSBuild Projects="Installer/StateBuilderDotNet.wixproj" ContinueOnError="false" Properties="Configuration=$(Configuration);Version=$(Version)">
+        </MSBuild>
+    </Target>
+
+    <Target Name="WixClean">
+        <MSBuild Projects="Installer/StateBuilderDotNet.wixproj" ContinueOnError="false" Properties="Configuration=$(Configuration);Version=$(Version)"  Targets="Clean">
+        </MSBuild>
+    </Target>
+
+    <Target Name="WixInstall" DependsOnTargets="Wix">
+        <MSBuild Projects="Installer/StateBuilderDotNet.wixproj" ContinueOnError="false" Properties="Configuration=$(Configuration);Version=$(Version)"  Targets="Install">
+        </MSBuild>
+    </Target>
+
+    <Target Name="WixUninstall">
+        <MSBuild Projects="Installer/StateBuilderDotNet.wixproj" ContinueOnError="false" Properties="Configuration=$(Configuration);Version=$(Version)"  Targets="Uninstall">
+        </MSBuild>
+    </Target>
+
+    <!-- Doc -->
+    <Target Name="Doc">
+        <MSBuild Projects="Doc/StateBuilderDotNet.shfbproj" ContinueOnError="false" Properties="Configuration=Release;Version=$(Version)">
+        </MSBuild>
+    </Target>
+
+    <!-- DocUpload -->
+    <!--<Target Name="DocUpload">
+        <ItemGroup>
+            <FilesToUpload Include="Doc\Help\**\*" />
+        </ItemGroup>
+        <MSBuild.ExtensionPack.Communication.Ftp
+            TaskAction="UploadFiles"
+            Host="$(ftpHost)"
+            UserName="$(ftpUser)"
+            UserPassword="$(ftpPass)"
+            RemoteDirectoryName="Doc/StateBuilderDotNet"
+            FileNames="@(FilesToUpload)"/>
+    </Target>-->
+
+    <!-- SetupUpload -->
+    <!--<Target Name="SetupUpload">
+        <ItemGroup>
+            <FilesToUpload Include="$(ReleasesDir)\**" />
+        </ItemGroup>
+        <MSBuild.ExtensionPack.Communication.Ftp
+           TaskAction="UploadFiles"
+           Host="$(ftpHost)"
+            Username="$(ftpUser)"
+            UserPassword="$(ftpPass)"
+            RemoteDirectoryName="Files"
+            FileNames="@(FilesToUpload)"
+       />
+    </Target>-->
+
+    <!--<Target Name="XsdUpload">
+        <ItemGroup>
+            <FilesToUpload Include="StateBuilderLib\Resources\StateMachineDotNet-v1.xsd" />
+        </ItemGroup>
+        <MSBuild.ExtensionPack.Communication.Ftp 
+            TaskAction="UploadFiles" 
+            Host="$(ftpHost)" 
+            UserName="$(ftpUser)"
+            UserPassword="$(ftpPass)"
+            RemoteDirectoryName="Xsd"
+            FileNames="@(FilesToUpload)"/>
+    </Target>-->
+
+    <Target Name="Deploy">
+    </Target>
+
+    <!-- Clean the Release dir-->
+    <Target Name="ReleaseClean" >
+        <RemoveDir Directories="$(ReleasesDir)" />
+    </Target>
+
+</Project>

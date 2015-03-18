@@ -1,0 +1,26 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>C# Asynchronous State Machine Starter Kit</Name>
+    <Description>A project that contains an asynchronous state machine and everything needed to build and run it</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>StateMachineExample</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="MyObject.csproj" File="MyObject.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="MyObject.cs">MyObject.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="MyObject.fsmcs">MyObject.fsmcs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="MyObject.exe.config">MyObject.exe.config</ProjectItem>
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      </Folder>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

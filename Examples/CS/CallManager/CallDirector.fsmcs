@@ -1,0 +1,47 @@
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xsi:schemaLocation="http://www.stateforge.com/StateMachineDotNet-v1
+                                         http://www.stateforge.com/xsd/StateMachineDotNet-v1.xsd" >
+
+    <!-- general settings -->
+    <settings asynchronous="true" namespace="StateForge.Examples.CallManager">
+        <object instance="callControl" class="CallControl"/>
+        <object instance="callScenario" class="CallScenario"/>
+    </settings>
+
+    <!-- events -->
+    <events>
+        <eventSource name="Execution" feeder="CallDirector">
+            <event id="StartExecution"/>
+            <event id="StopExecution"/>
+        </eventSource>
+        <eventSource name="CallControl">
+            <event id="CallControlStarted"/>
+            <event id="CallControlStopped"/>
+        </eventSource>
+        <eventSource name="CallScenario">
+            <event id="CallScenarioEnd"/>
+        </eventSource>
+    </events>
+
+    <!-- States -->
+    <state name="CallDirector">
+        <transition event="StopExecution" nextState="Stopping"/>
+        <state name="Idle">
+            <transition event="StartExecution" nextState="Starting"/>
+        </state>
+        <state name="Starting">
+            <onEntry action="callControl.Start()"/>
+            <transition event="CallControlStarted" nextState="Running"/>
+        </state>
+        <state name="Running">
+            <onEntry action="callScenario.Start()"/>
+            <transition event="CallScenarioEnd" nextState="Stopping"/>
+        </state>
+        <state name="Stopping">
+            <onEntry action="callControl.Stop()"/>
+            <transition event="CallControlStopped" nextState="End"/>
+        </state>
+        <state name="End" kind="final"/>
+    </state>
+</sm:StateMachine>

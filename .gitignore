@@ -1,0 +1,14 @@
+.hg
+.hgtags
+.hgignore
+.kbf
+_UpgradeReport_Files
+Releases
+Report
+**/bin
+**/obj
+*.gallio
+**/obj/
+**/*.suo
+**/*.codefortmap
+**/*.log

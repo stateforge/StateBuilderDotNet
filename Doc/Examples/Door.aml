@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="5a26797e-e46b-45ac-b48e-e0772ead3110" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <introduction>
+            <para>Here is the documentation for the Door example</para>
+            <autoOutline/>
+        </introduction>
+        <section address="Description">
+            <title>Description</title>
+            <content>
+                <para>
+                   The is an example about a remote controlled door than can be opened or closed.
+                   Sensors indicates whether the door is effectively closed or opended so that the door engine can be stopped.
+                </para>
+            </content>
+        </section>
+
+        <section address="DoorExampleFsm">
+            <title>Finite State Machine Markup Language</title>
+            <content>
+                <para>
+                    The following code represents the state machine in the FsmML format:
+                </para>
+                <code source="..\Examples\CS\Door\Door.fsmcs" language="xml"/>
+            </content>
+        </section>
+
+        <section address="DoorCode">
+            <title>C# Code</title>
+            <content>
+                <para>
+                    Here the Door C# code:
+                </para>
+                <code source="..\Examples\CS\Door\Door.cs" language="c#"/>
+            </content>
+        </section>
+        <relatedTopics>
+            <link xlink:href="e255e8c9-98cd-4479-bb31-bb106056f709">List of examples</link>
+        </relatedTopics>
+    </developerConceptualDocument>
+    
+</topic>

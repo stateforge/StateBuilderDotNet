@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+    <!--Shared between applications!-->
+    <?define ProductManufacturer = "StateForge"?>
+    <?define ARPHelpLink = "http://www.stateforge.com"?>
+    <?define CompanyRegistry="Software/StateForge"?>
+    <?define FolderForAppData="FolderForAppData"?>
+    <?define GuidForAppData="D8E3F7CF-C3C7-47C6-A5E0-971301496B0D"?>
+
+    <!-- Product-specific settings-->
+    <?define ProductRegistry = "Software\StateForge\StateBuilderDotNet" ?>
+    <?define ProductDescription = "Finite State Machine Source Code Generator for C# and VB.NET" ?>
+    <?define ProductName = "StateBuilderDotNet" ?>
+    <?define ProductExecutable = "StateBuilderDotNet.exe" ?>
+    <?define ProductCode="2615F8B6-7F95-4CB8-9B1A-BD89D2B0979D"?>
+    <?define ProductUpgradeCode = "6E40E1DF-1111-4D13-ACDC-5A7827D72722" ?>
+
+    <?define PackageDescription = "${ProductDescription}" ?>
+    <?define PackageComments = "Installs $(var.ProductName) $(var.Version) by ${ ProductManufacturer}." ?>
+    <?define ProductHomePage = "http://www.stateforge.com/Help/StateBuilderDotNet/statebuilderdotnet-state-machine-generator.aspx" ?>
+    <?define ExternalDlls = "..\ExternalDlls\" ?>
+    <?define MsBuild = "..\MsBuild\" ?>
+
+    <?define StateBuilderLib = "..\StateBuilderLib" ?>
+    <?define BaseDir = "..\" ?>
+    <?define VsIntegration = "..\VsIntegration" ?>
+    <?define helpUrlFile = "$(var.ProductName).url" ?>
+    <?define helpUrlFilePath = "..\Doc\$(var.helpUrlFile)" ?>
+
+    <?define StateEditorBin = "..\..\StateEditor\bin" ?>
+</Include>

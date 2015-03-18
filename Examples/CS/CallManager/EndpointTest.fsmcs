@@ -1,0 +1,47 @@
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xsi:schemaLocation="http://www.stateforge.com/StateMachineDotNet-v1
+                                         http://www.stateforge.com/xsd/StateMachineDotNet-v1.xsd" >
+
+    <!-- general settings -->
+    <settings asynchronous="true" namespace="StateForge.Examples.CallManager">
+        <object instance="endpoint" class="EndpointTest"/>
+        <object instance="config" class="EndpointTestConfig"/>
+    </settings>
+
+    <!-- events -->
+    <events>
+        <eventSource name="Management">
+            <event id="Open"/>
+            <event id="Close"/>
+        </eventSource>
+        <eventSource name="ICallAction" file="ICallAction.cs" feeder="EndpointTest"/>
+        <eventSource name="Timers">
+            <timer id="EvTimerOpen" name="TimerOpen"/>
+            <timer id="EvTimerClose" name="TimerClose"/>
+        </eventSource>
+    </events>
+
+    <!-- States -->
+    <state name="EndpointTest">
+        <transition event="Close" nextState="Closing"/>
+        <state name="Idle">
+            <transition event="Open" nextState="Opening"/>
+        </state>
+        <state name="Opening">
+            <onEntry>
+                <timerStart timer="TimerOpen" duration="config.DurationOpen"/>
+            </onEntry>
+            <transition event="EvTimerOpen" action="endpoint.Opened()" nextState="Running"/>
+        </state>
+        <state name="Running">
+        </state>
+        <state name="Closing">
+            <onEntry>
+                <timerStart timer="TimerClose" duration="config.DurationClose"/>
+            </onEntry>
+            <transition event="EvTimerClose" action="endpoint.Closed()" nextState="End"/>
+        </state>
+        <state name="End" kind="final"/>
+    </state>
+</sm:StateMachine>

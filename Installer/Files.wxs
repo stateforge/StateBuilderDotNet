@@ -1,0 +1,422 @@
+<?xml version="1.0"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <?include StateBuilderDotNet.wxi ?>
+
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Directory Id="ProgramFilesFolder" Name="PFiles">
+                <Directory Id='$(var.ProductManufacturer)' Name='$(var.ProductManufacturer)'>
+                    <Directory Id="INSTALLDIR" Name="$(var.ProductName)"/>
+                </Directory>
+            </Directory>
+            <Directory Id="ProgramMenuFolder">
+                <Directory Id="ApplicationProgramsFolder" Name="$(var.ProductName)"/>
+            </Directory>
+
+            <!-- VS 2008 -->
+            <Directory Id="VS2008" Name="VS2008">
+                <Directory Id="VS2008_ITEM_TEMPLATE_DIR">
+                    <Directory Id="Vs2008ItemTemplateCSharpDir" Name="Visual C#">
+                        <Component Id="VS2008StateMachineCsItemTemplate" Guid="6A956B9A-0C9D-43B1-8C86-3984055A8754">
+                            <Condition>VS2008_ITEM_TEMPLATE_DIR</Condition>
+                            <File Id="VS2008StateMachineCsItemTemplate.zip" Source="$(var.VsIntegration)\StateMachineCsItemTemplate.zip" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="VS2008_PROJECT_TEMPLATE_DIR">
+                    <Directory Id="Vs2008ProjectTemplateCSharpDir" Name="Visual C#">
+                        <Component Id="VS2008StateMachineStarterKitCsProjectTemplate" Guid="D66C0145-971D-489D-8031-CAE3298CF016">
+                            <Condition>VS2008_PROJECT_TEMPLATE_DIR</Condition>
+                            <File Id="VS2008StateMachineStarterKitCsProjectTemplate.zip" Source="$(var.VsIntegration)\StateMachineStarterKitCsProjectTemplate.zip" />
+                        </Component>
+                        <Component Id="VS2008StateMachineAsyncStarterKitCsProjectTemplate" Guid="C689E6DE-A3D2-4B64-96CA-6938947BCB4A">
+                            <Condition>VS2008_PROJECT_TEMPLATE_DIR</Condition>
+                            <File Id="VS2008StateMachineAsyncStarterKitCsProjectTemplate.zip" Source="$(var.VsIntegration)\StateMachineAsyncStarterKitCsProjectTemplate.zip" />
+                        </Component>
+                        <Component Id="VS2008StateMachineTestCsProjectTemplate" Guid="43D696AD-0A30-4EF9-BE31-1CD008198715">
+                            <Condition>VS2008_PROJECT_TEMPLATE_DIR</Condition>
+                            <File Id="VS2008StateMachineTestCsProjectTemplate.zip" Source="$(var.VsIntegration)\StateMachineTestCsProjectTemplate.zip" />
+                        </Component>
+                    </Directory>
+                </Directory>
+            </Directory>
+
+            <Directory Id="VS2008Express" Name="VS2008Express">
+                <Directory Id="VS2008EXPRESS_ITEM_TEMPLATE_DIR">
+                    <Directory Id="Vs2008ExpressItemTemplateCSharpDir" Name="Visual C#">
+                        <Component Id="VS2008ExpressStateMachineCsItemTemplate" Guid="4C76CAF2-F5D5-431E-80E5-BC39FDD07B29">
+                            <Condition>VS2008EXPRESS_ITEM_TEMPLATE_DIR</Condition>
+                            <File Id="VS2008ExpressStateMachineCsItemTemplate.zip" Source="$(var.VsIntegration)\StateMachineCsItemTemplate.zip" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="VS2008EXPRESS_PROJECT_TEMPLATE_DIR">
+                    <Directory Id="Vs2008ExpressProjectTemplateCSharpDir" Name="Visual C#">
+                        <Component Id="VS2008ExpressStateMachineStarterKitCsProjectTemplate" Guid="D7EC344F-23CF-47F4-A808-67623C292F43">
+                            <Condition>VS2008EXPRESS_PROJECT_TEMPLATE_DIR</Condition>
+                            <File Id="VS2008ExpressStateMachineStarterKitCsProjectTemplate.zip" Source="$(var.VsIntegration)\StateMachineStarterKitCsProjectTemplate.zip" />
+                        </Component>
+                        <Component Id="VS2008ExpressStateMachineAsyncStarterKitCsProjectTemplate" Guid="70EED430-B480-40FC-BCFA-899AA4A2B510">
+                            <Condition>VS2008EXPRESS_PROJECT_TEMPLATE_DIR</Condition>
+                            <File Id="VS2008ExpressStateMachineAsyncStarterKitCsProjectTemplate.zip" Source="$(var.VsIntegration)\StateMachineAsyncStarterKitCsProjectTemplate.zip" />
+                        </Component>
+                        <Component Id="VS2008ExpressStateMachineTestCsProjectTemplate" Guid="1BEF4A27-0E5B-49A7-9E96-884FDAC65FBE">
+                            <Condition>VS2008EXPRESS_PROJECT_TEMPLATE_DIR</Condition>
+                            <File Id="VS2008ExpressStateMachineTestCsProjectTemplate.zip" Source="$(var.VsIntegration)\StateMachineTestCsProjectTemplate.zip" />
+                        </Component>
+                    </Directory>
+                </Directory>
+            </Directory>
+
+            <!-- VS 2010 -->
+            <Directory Id="VS2010" Name="VS2010">
+                <Directory Id="VS2010_ITEM_TEMPLATE_DIR">
+                    <Directory Id="Vs2010ItemTemplateCSharpDir" Name="Visual C#">
+                        <Component Id="VS2010StateMachineCsItemTemplate" Guid="75CBE8DC-3796-4BCF-99B1-DD436DE416FD">
+                            <Condition>VS2010_ITEM_TEMPLATE_DIR</Condition>
+                            <File Id="VS2010StateMachineCsItemTemplate.zip" Source="$(var.VsIntegration)\StateMachineCsItemTemplate.zip" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="VS2010_PROJECT_TEMPLATE_DIR">
+                    <Directory Id="Vs2010ProjectTemplateCSharpDir" Name="Visual C#">
+                        <Component Id="VS2010StateMachineStarterKitCsProjectTemplate" Guid="F64CF4BE-AAB4-4787-9761-C3F47C8F2EC9">
+                            <Condition>VS2010_PROJECT_TEMPLATE_DIR</Condition>
+                            <File Id="VS2010StateMachineStarterKitCsProjectTemplate.zip" Source="$(var.VsIntegration)\StateMachineStarterKitCsProjectTemplate.zip" />
+                        </Component>
+                        <Component Id="VS2010StateMachineAsyncStarterKitCsProjectTemplate" Guid="E0E7D247-EC4E-468B-BD4E-DBAE62A4364C">
+                            <Condition>VS2010_PROJECT_TEMPLATE_DIR</Condition>
+                            <File Id="VS2010StateMachineAsyncStarterKitCsProjectTemplate.zip" Source="$(var.VsIntegration)\StateMachineAsyncStarterKitCsProjectTemplate.zip" />
+                        </Component>
+                        <Component Id="VS2010StateMachineTestCsProjectTemplate" Guid="CC8AA9E7-EF7C-47A7-8AAA-B9C606779732">
+                            <Condition>VS2010_PROJECT_TEMPLATE_DIR</Condition>
+                            <File Id="VS2010StateMachineTestCsProjectTemplate.zip" Source="$(var.VsIntegration)\StateMachineTestCsProjectTemplate.zip" />
+                        </Component>
+                    </Directory>
+                </Directory>
+            </Directory>
+
+            <Directory Id="VS2010Express" Name="VS2010Express">
+                <Directory Id="VS2010EXPRESS_ITEM_TEMPLATE_DIR">
+                    <Directory Id="Vs2010ExpressItemTemplateCSharpDir" Name="Visual C#">
+                        <Component Id="VS2010ExpressStateMachineCsItemTemplate" Guid="9E555F1E-856B-4357-A100-BE2B0B20EF68">
+                            <Condition>VS2010EXPRESS_ITEM_TEMPLATE_DIR</Condition>
+                            <File Id="VS2010ExpressStateMachineCsItemTemplate.zip" Source="$(var.VsIntegration)\StateMachineCsItemTemplate.zip" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="VS2010EXPRESS_PROJECT_TEMPLATE_DIR">
+                    <Directory Id="Vs2010ExpressProjectTemplateCSharpDir" Name="Visual C#">
+                        <Component Id="VS2010ExpressStateMachineStarterKitCsProjectTemplate" Guid="86D0D69F-83C7-440A-8A74-EFA2551760E0">
+                            <Condition>VS2010EXPRESS_PROJECT_TEMPLATE_DIR</Condition>
+                            <File Id="VS2010ExpressStateMachineStarterKitCsProjectTemplate.zip" Source="$(var.VsIntegration)\StateMachineStarterKitCsProjectTemplate.zip" />
+                        </Component>
+                        <Component Id="VS2010ExpressStateMachineAsyncStarterKitCsProjectTemplate" Guid="516D0357-23AE-416B-A262-CE97ECCFA4FB">
+                            <Condition>VS2010EXPRESS_PROJECT_TEMPLATE_DIR</Condition>
+                            <File Id="VS2010ExpressStateMachineAsyncStarterKitCsProjectTemplate.zip" Source="$(var.VsIntegration)\StateMachineAsyncStarterKitCsProjectTemplate.zip" />
+                        </Component>
+                        <Component Id="VS2010ExpressStateMachineTestCsProjectTemplate" Guid="C129DEFF-BF97-4572-AE78-F559DC8F76ED">
+                            <Condition>VS2010EXPRESS_PROJECT_TEMPLATE_DIR</Condition>
+                            <File Id="VS2010ExpressStateMachineTestCsProjectTemplate.zip" Source="$(var.VsIntegration)\StateMachineTestCsProjectTemplate.zip" />
+                        </Component>
+                    </Directory>
+                </Directory>
+            </Directory>
+
+            <!-- VS 2012 -->
+            <Directory Id="VS2012" Name="VS2012">
+                <Directory Id="VS2012_ITEM_TEMPLATE_DIR">
+                    <Directory Id="Vs2012ItemTemplateCSharpDir" Name="Visual C#">
+                        <Component Id="VS2012StateMachineCsItemTemplate" Guid="BEC0BCB6-626E-4400-9263-1FDD710329C0">
+                            <Condition>VS2012_ITEM_TEMPLATE_DIR</Condition>
+                            <File Id="VS2012StateMachineCsItemTemplate.zip" Source="$(var.VsIntegration)\StateMachineCsItemTemplate.zip" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="VS2012_PROJECT_TEMPLATE_DIR">
+                    <Directory Id="Vs2012ProjectTemplateCSharpDir" Name="Visual C#">
+                        <Component Id="VS2012StateMachineStarterKitCsProjectTemplate" Guid="20899B0A-A465-4748-8985-B27A32C01F1D">
+                            <Condition>VS2012_PROJECT_TEMPLATE_DIR</Condition>
+                            <File Id="VS2012StateMachineStarterKitCsProjectTemplate.zip" Source="$(var.VsIntegration)\StateMachineStarterKitCsProjectTemplate.zip" />
+                        </Component>
+                        <Component Id="VS2012StateMachineAsyncStarterKitCsProjectTemplate" Guid="B14C915A-6F85-4FBC-9036-F093F8E74262">
+                            <Condition>VS2012_PROJECT_TEMPLATE_DIR</Condition>
+                            <File Id="VS2012StateMachineAsyncStarterKitCsProjectTemplate.zip" Source="$(var.VsIntegration)\StateMachineAsyncStarterKitCsProjectTemplate.zip" />
+                        </Component>
+                        <Component Id="VS2012StateMachineTestCsProjectTemplate" Guid="98471209-366E-4179-B73A-B90A4FB1F520">
+                            <Condition>VS2012_PROJECT_TEMPLATE_DIR</Condition>
+                            <File Id="VS2012StateMachineTestCsProjectTemplate.zip" Source="$(var.VsIntegration)\StateMachineTestCsProjectTemplate.zip" />
+                        </Component>
+                    </Directory>
+                </Directory>
+            </Directory>
+            
+            <Component Id="Registry" Guid="*">
+                <RegistryKey Root="HKCU" Key="$(var.ProductRegistry)">
+                    <RegistryValue Name="InstallDir" Value="[INSTALLDIR]" Type="string"/>
+                    <RegistryValue Name="Version" Value="$(var.Version)" Type="string"/>
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+
+        <DirectoryRef Id="INSTALLDIR">
+            <Directory Id="DesktopFolder" Name="Desktop"/>
+            <Component Id="AppShortcutComponentId" Guid="9DF719ED-D3CF-4CEE-B36D-3536B0176504">
+                <RegistryKey Key="$(var.ProductRegistry)" Root="HKCU" Action="createAndRemoveOnUninstall">
+                    <RegistryValue Name="AppShortcut" Type="integer" Value="1" Action="write" KeyPath="yes" />
+                </RegistryKey>
+                <Shortcut Id="AppShortcutComponentId" Directory="DesktopFolder" Name="$(var.ProductName)" WorkingDirectory="INSTALLDIR"/>
+            </Component>
+            <Component Id="ProgramCommonData" Guid="AE5CCDFC-E6DE-4895-8A29-49BD05DC8D6F" DiskId="1">
+                <File Id="LicenseFile" Name="license.rtf" Source="license.rtf"/>
+                <File Id='Readme' Name='Readme.txt' DiskId='1' Source='readme.txt' />
+            </Component>
+            <!--Bin -->
+            <Directory Id="Bin" Name="Bin">
+
+                <!-- StateBuilderDotNet.exe -->
+                <Component Id="StateBuilderDotNet.exe" Guid="*">
+                    <File Id="StateBuilderDotNet.exe" Source="$(var.StateBuilderGui.TargetDir)\AllInOne\StateBuilderDotNet.exe" />
+                    <!-- C# -->
+                    <!--<ProgId Id='StateMachine.fsmcs'
+                            Icon='StateBuilderDotNet.exe'
+                            Description='State Machine for C#'>
+                        <Extension Id='fsmcs' ContentType='application/fsmcs'>
+                            <Verb Id='Generate' Command='Generate C# State Machine' TargetFile='StateBuilderDotNet.exe' Argument='"%1"' />
+                        </Extension>
+                    </ProgId>-->
+                    <!-- VB -->
+                    <!--<ProgId Id='StateMachine.fsmvb'
+                            Icon='StateBuilderDotNet.exe'
+                            Description='State Machine for VB.NET'>
+                        <Extension Id='fsmvb' ContentType='application/fsmvb'>
+                            <Verb Id='Generate' Command='Generate VB.NET State Machine' TargetFile='StateBuilderDotNet.exe' Argument='"%1"' />
+                        </Extension>
+                    </ProgId>-->
+                </Component>
+                <!-- Config file -->
+                <Component Id="StateBuilderDotNet.exe.config" Guid="*">
+                    <File Id="StateBuilderDotNet.exe.config" Source="$(var.StateBuilderGui.TargetDir)\StateBuilderDotNet.exe.config" />
+                </Component>
+
+                <!-- StateEditor.exe -->
+                <Component Id="StateEditor.exe" Guid="*">
+                    <File Id="StateEditor.exe" Source="$(var.StateEditorBin)\StateEditor.exe" />
+                    <!-- C# -->
+                    <ProgId Id='StateMachine.fsmcs'
+                            Icon='StateEditor.exe'
+                            Description='State Machine for C#'>
+                        <Extension Id='fsmcs' ContentType='application/fsmcs'>
+                            <Verb Id='Edit' Command='Edit C# State Machine' TargetFile='StateEditor.exe' Argument='"%1"' />
+                        </Extension>
+                    </ProgId>
+                    <!-- VB -->
+                    <ProgId Id='StateMachine.fsmvb'
+                            Icon='StateEditor.exe'
+                            Description='State Machine for VB.NET'>
+                        <Extension Id='fsmvb' ContentType='application/fsmvb'>
+                            <Verb Id='Edit' Command='Edit VB.NET State Machine' TargetFile='StateEditor.exe' Argument='"%1"' />
+                        </Extension>
+                    </ProgId>
+                </Component>
+
+                <Component Id="StateEditorLib" Guid="24F60419-1F43-4073-86A8-4E19D56D1DB1">
+                    <File Id="Qt5Core.dll" Source="$(var.StateEditorBin)\Qt5Core.dll" />
+                    <File Id="Qt5Gui.dll" Source="$(var.StateEditorBin)\Qt5Gui.dll" />
+                    <File Id="Qt5Widgets.dll" Source="$(var.StateEditorBin)\Qt5Widgets.dll" />
+                    <File Id="Qt5Network.dll" Source="$(var.StateEditorBin)\Qt5Network.dll" />
+                    <File Id="Qt5WebKit.dll" Source="$(var.StateEditorBin)\Qt5WebKit.dll" />
+                    <File Id="Qt5WebKitWidgets.dll" Source="$(var.StateEditorBin)\Qt5WebKitWidgets.dll" />
+                    <File Id="Qt5V8.dll" Source="$(var.StateEditorBin)\Qt5V8.dll" />
+                    <File Id="Qt5OpenGL.dll" Source="$(var.StateEditorBin)\Qt5OpenGL.dll" />
+                    <File Id="Qt5PrintSupport.dll" Source="$(var.StateEditorBin)\Qt5PrintSupport.dll" />
+                    <File Id="Qt5Qml.dll" Source="$(var.StateEditorBin)\Qt5Qml.dll" />
+                    <File Id="Qt5XmlPatterns.dll" Source="$(var.StateEditorBin)\Qt5XmlPatterns.dll" />
+                    <File Id="Qt5Quick.dll" Source="$(var.StateEditorBin)\Qt5Quick.dll" />
+                    <File Id="Qt5Sql.dll" Source="$(var.StateEditorBin)\Qt5Sql.dll" />
+                    <File Id="D3DCOMPILER_43.dll" Source="$(var.StateEditorBin)\D3DCOMPILER_43.dll" />
+                    <File Id="icudt49.dll" Source="$(var.StateEditorBin)\icudt49.dll" />
+                    <File Id="icuin49.dll" Source="$(var.StateEditorBin)\icuin49.dll" />
+                    <File Id="icuuc49.dll" Source="$(var.StateEditorBin)\icuuc49.dll" />
+                    <File Id="libEGL.dll" Source="$(var.StateEditorBin)\libEGL.dll" />
+                    <File Id="libGLESv2.dll" Source="$(var.StateEditorBin)\libGLESv2.dll" />
+                    <File Id="msvcp100.dll" Source="$(var.StateEditorBin)\msvcp100.dll" />
+                    <File Id="msvcr100.dll" Source="$(var.StateEditorBin)\msvcr100.dll" />
+                </Component>
+
+                <Directory Id="platforms" Name="platforms">
+                    <Component Id="Platforms" Guid="6B927E92-B042-4167-B0B8-9C1709FDA9DD">
+
+                        <File Id="qminimal.dll" Source="C:\Qt\Qt5.0.0\5.0.0\msvc2010\plugins\platforms\qminimal.dll" />
+                        <File Id="qwindows.dll" Source="C:\Qt\Qt5.0.0\5.0.0\msvc2010\plugins\platforms\qwindows.dll" />
+                    </Component>
+                </Directory>
+            </Directory>
+
+            <!--Doc -->
+            <Directory Id="Doc" Name="Doc">
+                <Component Id="Help" Guid="*">
+                    <File Id="$(var.helpUrlFile)" Source="$(var.helpUrlFilePath)" KeyPath='yes'>
+                    </File>
+                </Component>
+            </Directory>
+
+            <!--Lib -->
+            <Directory Id="Lib" Name="Lib">
+                <Component Id="StateForge.StateMachine.dll" Guid="361E325D-AC41-4C65-BA74-F9C02D81DC70">
+                    <File Id="StateForge.StateMachine.dll" Source="$(var.StateMachine.TargetDir)\StateForge.StateMachine.dll" />
+                </Component>
+            </Directory>
+
+            <!--ExternalDlls -->
+            <Directory Id="ExternalDlls" Name="ExternalDlls">
+                <Directory Id="RhinoMocks" Name="RhinoMocks">
+                    <Component Id="Rhino.Mocks.dll" Guid="*">
+                        <File Id="Rhino.Mocks.dll" Source="$(var.ExternalDlls)\RhinoMocks\Rhino.Mocks.dll" />
+                    </Component>
+                </Directory>
+                <Directory Id="NUnit" Name="NUnit">
+                    <Component Id="nunit.framework.dll" Guid="*">
+                        <File Id="nunit.framework.dll" Source="$(var.ExternalDlls)\NUnit\nunit.framework.dll" />
+                    </Component>
+                </Directory>
+            </Directory>
+
+            <!-- MsBuild -->
+            <Directory Id="MsBuild" Name="MsBuild">
+                <Component Id="StateBuilderDotNet.targets" Guid="*">
+                    <File Id="StateBuilderDotNet.targets" Source="$(var.MsBuild)\StateBuilderDotNet.targets" />
+                </Component>
+            </Directory>
+
+            <!-- Resources -->
+            <Directory Id="Resources" Name="Resources">
+                <Component Id="Resources" Guid="A879DDDB-B934-4CC1-B380-E205CEF1C7DD">
+                    <File Id="StateMachineDotNetV1.xsd" Source="$(var.StateBuilderLib)\Resources\StateMachineDotNet-v1.xsd" />
+                    <File Id="StateMachineCatalog.xml" Source="$(var.BaseDir)\Resources\StateMachineCatalog.xml" />
+                </Component>
+                <Component Id="Catalog.xml" Guid="*">
+                    <File Id="Catalog.xml" Source="$(var.BaseDir)\Resources\Catalog.xml" />
+                </Component>
+            </Directory>
+
+            <!--Examples -->
+            <Directory Id="Examples" Name="Examples">
+                <Component Id="ExamplesShortcutComponentId" Guid="90244760-DDBC-4227-91A9-CFC3FEA31623">
+                    <RegistryKey Key="$(var.ProductRegistry)" Root="HKCU" Action="createAndRemoveOnUninstall">
+                        <RegistryValue  Name="ExamplesShortcut" Type="integer" Value="1" Action="write" KeyPath="yes" />
+                    </RegistryKey>
+                    <Shortcut Id="ExamplesShortcutId" Directory="ApplicationProgramsFolder" Name="Examples" WorkingDirectory="INSTALLDIR"/>
+                </Component>
+            </Directory>
+        </DirectoryRef>
+
+        <DirectoryRef Id="ApplicationProgramsFolder">
+            <Component Id="ApplicationShortcut" Guid="*">
+                <Shortcut Id="StateEditorStartMenuShortcut"
+                          Name="StateEditor"
+                          Description="State Machine Editor"
+                          Target="[INSTALLDIR]\Bin\StateEditor.exe"
+                          WorkingDirectory="INSTALLDIR"/>
+                <!--<Shortcut Id="ApplicationStartMenuShortcut"
+                          Name="$(var.ProductName)"
+                          Description="$(var.ProductDescription)"
+                          Target="[INSTALLDIR]\Bin\$(var.ProductExecutable)"
+                          WorkingDirectory="INSTALLDIR"/>-->
+                <Shortcut Id="UninstallProduct"
+                            Name="Uninstall $(var.ProductName)"
+                            Target="[SystemFolder]msiexec.exe"
+                            Arguments="/x [ProductCode]"
+                            Description="Uninstalls $(var.ProductName)" />
+                <Shortcut Target='[HelpUrl]' Name='$(var.ProductName) online help' Id='Help_Shortcut' Icon='Help.ico' />
+                <Shortcut Target='[WebSiteUrl]' Name='$(var.ProductManufacturer) Website' Id='Website_Shortcut' Icon='Internet.ico' />
+                <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+                <RegistryValue Root="HKCU" Key="$(var.ProductRegistry)" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+            </Component>
+        </DirectoryRef>
+
+        <PropertyRef Id="VS90DEVENV" />
+        <PropertyRef Id="VCSHARP90EXPRESS_IDE" />
+        <PropertyRef Id="VS2010DEVENV" />
+        <PropertyRef Id="VCSHARP2010EXPRESS_IDE" />
+        <PropertyRef Id="VS2012DEVENV" />
+        
+        <Feature Id="Complete" Title='$(var.ProductName) $(var.Version)' Description='The complete $(var.ProductName) package.'
+          Display='expand' Level='1' ConfigurableDirectory='INSTALLDIR'>
+
+            <Feature Id='MainProgram' Title='Program' Description='The main executable.' Level='1'>
+                <ComponentRef Id="Registry"/>
+                <ComponentRef Id="AppShortcutComponentId"/>
+                <ComponentRef Id="ProgramCommonData"/>
+                <ComponentRef Id="StateBuilderDotNet.exe"/>
+                <ComponentRef Id="StateBuilderDotNet.exe.config"/>
+                <ComponentRef Id="StateEditor.exe"/>
+                <ComponentRef Id="StateEditorLib"/>
+                <ComponentRef Id="Platforms"/>
+                <ComponentRef Id="StateForge.StateMachine.dll"/>
+                <ComponentRef Id="Resources"/>
+                <ComponentRef Id="Catalog.xml"/>
+                <ComponentRef Id="StateBuilderDotNet.targets"/>
+                <ComponentRef Id="ApplicationShortcut"/>
+                <ComponentRef Id="Help"/>
+            </Feature>
+
+            <Feature Id="Feature_VCSHARP2008" Title="Visual C# 2008" Level="1">
+                <Condition Level="0">NOT VS90DEVENV</Condition>
+                <ComponentRef Id="VS2008StateMachineCsItemTemplate" />
+                <ComponentRef Id="VS2008StateMachineStarterKitCsProjectTemplate" />
+                <ComponentRef Id="VS2008StateMachineAsyncStarterKitCsProjectTemplate" />
+                <ComponentRef Id="VS2008StateMachineTestCsProjectTemplate" />
+            </Feature>
+
+            <Feature Id="Feature_VCSHARP2008Express" Title="Visual Express C# 2008" Level="1">
+                <Condition Level="0">NOT VCSHARP90EXPRESS_IDE</Condition>
+                <ComponentRef Id="VS2008ExpressStateMachineCsItemTemplate" />
+                <ComponentRef Id="VS2008ExpressStateMachineStarterKitCsProjectTemplate" />
+                <ComponentRef Id="VS2008ExpressStateMachineAsyncStarterKitCsProjectTemplate" />
+                <ComponentRef Id="VS2008ExpressStateMachineTestCsProjectTemplate" />
+            </Feature>
+
+            <Feature Id="Feature_VCSHARP2010" Title="Visual C# 2010" Level="1">
+                <Condition Level="0">NOT VS2010DEVENV</Condition>
+                <ComponentRef Id="VS2010StateMachineCsItemTemplate" />
+                <ComponentRef Id="VS2010StateMachineStarterKitCsProjectTemplate" />
+                <ComponentRef Id="VS2010StateMachineAsyncStarterKitCsProjectTemplate" />
+                <ComponentRef Id="VS2010StateMachineTestCsProjectTemplate" />
+            </Feature>
+            
+            <Feature Id="Feature_VCSHARP2010Express" Title="Visual Express C# 2010" Level="1">
+                <Condition Level="0">NOT VCSHARP2010EXPRESS_IDE</Condition>
+                <ComponentRef Id="VS2010ExpressStateMachineCsItemTemplate" />
+                <ComponentRef Id="VS2010ExpressStateMachineStarterKitCsProjectTemplate" />
+                <ComponentRef Id="VS2010ExpressStateMachineAsyncStarterKitCsProjectTemplate" />
+                <ComponentRef Id="VS2010ExpressStateMachineTestCsProjectTemplate" />
+            </Feature>
+
+            <Feature Id="Feature_VCSHARP2012" Title="Visual C# 2012" Level="1">
+                <Condition Level="0">NOT VS2012DEVENV</Condition>
+                <ComponentRef Id="VS2012StateMachineCsItemTemplate" />
+                <ComponentRef Id="VS2012StateMachineStarterKitCsProjectTemplate" />
+                <ComponentRef Id="VS2012StateMachineAsyncStarterKitCsProjectTemplate" />
+                <ComponentRef Id="VS2012StateMachineTestCsProjectTemplate" />
+            </Feature>
+
+            <!--<Feature Id="Feature_VCSHARP2012Express" Title="Visual Express C# 2012" Level="1">
+                <Condition Level="0">NOT VCSHARP2012EXPRESS_IDE</Condition>
+                <ComponentRef Id="VS2010ExpressStateMachineCsItemTemplate" />
+                <ComponentRef Id="VS2010ExpressStateMachineStarterKitCsProjectTemplate" />
+                <ComponentRef Id="VS2010ExpressStateMachineAsyncStarterKitCsProjectTemplate" />
+                <ComponentRef Id="VS2010ExpressStateMachineTestCsProjectTemplate" />
+            </Feature>-->
+            
+            <Feature Id='Examples' Title='Examples' Description='The examples.' Level='1'>
+                <ComponentRef Id="ExamplesShortcutComponentId"/>
+                <ComponentGroupRef Id="ExamplesGroup"/>
+
+                <!-- External Dlls -->
+                <ComponentRef Id="nunit.framework.dll"/>
+                <ComponentRef Id="Rhino.Mocks.dll"/>
+            </Feature>
+        </Feature>
+    </Fragment>
+</Wix>

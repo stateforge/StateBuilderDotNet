@@ -1,0 +1,963 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="Examples">
+            <Directory Id="dirA17D0E78D42C001DB4D5DECAF4C97CFA" Name="CS">
+                <Component Id="cmpC7F0D7DA82B8A553BCBAF4E5420A9EFA" Guid="*">
+                    <File Id="fil54B0CCF1C4B1559E2AFEA8AC2DB108C4" KeyPath="yes" Source="$(var.Examples)\CS\clean.bat" />
+                </Component>
+                <Component Id="cmpD20F9B225BDCB8109EF5A0AF52723993" Guid="*">
+                    <File Id="fil86DFB01A290A1399ACAA43D7D5DFEC67" KeyPath="yes" Source="$(var.Examples)\CS\runTestVs2008.bat" />
+                </Component>
+                <Component Id="cmp45D32B8BCCB5B8B428973F248309646C" Guid="*">
+                    <File Id="filFC76E22D448E897BC2D3F9E1CFDAEFEA" KeyPath="yes" Source="$(var.Examples)\CS\runTestVs2010.bat" />
+                </Component>
+                <Component Id="cmp6D04FDE771489C8F5E42C20BCC6CFB35" Guid="*">
+                    <File Id="filDE4AA1618238D9D483798BA206129DB5" KeyPath="yes" Source="$(var.Examples)\CS\StateBuilderDotNetExamples.proj" />
+                </Component>
+                <Component Id="cmp8E02E3B02946344AB74A91E084EF516E" Guid="*">
+                    <File Id="filD9E957DA7F2469DAAC7CD5935A4A22C7" KeyPath="yes" Source="$(var.Examples)\CS\StateBuilderDotNetExamplesVs2008.sln" />
+                </Component>
+                <Component Id="cmp7E5F8082DF997E5B33065FB1A3C11E7E" Guid="*">
+                    <File Id="filB35DB201FE426EA184B59D0E2961551A" KeyPath="yes" Source="$(var.Examples)\CS\StateBuilderDotNetExamplesVs2010.sln" />
+                </Component>
+                <Directory Id="dir4236EB7A3F7C267A6D96610E19C6ACAA" Name="CallManager">
+                    <Component Id="cmp86AD26564BD744177CE22A824858093F" Guid="*">
+                        <File Id="fil597582539FCD901EF85710DDD97061D3" KeyPath="yes" Source="$(var.Examples)\CS\CallManager\Call.cs" />
+                    </Component>
+                    <Component Id="cmp80AAE64BEF192A80BA808E98C7CD8E81" Guid="*">
+                        <File Id="fil99283E5350790527670935FD67450CDE" KeyPath="yes" Source="$(var.Examples)\CS\CallManager\CallBase01.fsmcs" />
+                    </Component>
+                    <Component Id="cmp966BB2FF29159E27F074D12D219C0520" Guid="*">
+                        <File Id="fil9E013EC2BC238E385C9D395088AE506E" KeyPath="yes" Source="$(var.Examples)\CS\CallManager\CallControl.cs" />
+                    </Component>
+                    <Component Id="cmp1E28D0A03E0A1694D8F93B62C74C3B48" Guid="*">
+                        <File Id="fil03F733C3B2E79FA2FD4B0997F4684C44" KeyPath="yes" Source="$(var.Examples)\CS\CallManager\CallControl.fsmcs" />
+                    </Component>
+                    <Component Id="cmpCBF8B332665DE33638FB11679B33D566" Guid="*">
+                        <File Id="fil9D9BD51319D7C74447C796DD2360EF57" KeyPath="yes" Source="$(var.Examples)\CS\CallManager\CallDirector.cs" />
+                    </Component>
+                    <Component Id="cmpF52041C19C62B25A327CFAB202BA9EA5" Guid="*">
+                        <File Id="fil864B0BCE648F6D9B816572EBC2596C09" KeyPath="yes" Source="$(var.Examples)\CS\CallManager\CallDirector.fsmcs" />
+                    </Component>
+                    <Component Id="cmpBB7F203986F5F493DFEF11618D7E0C62" Guid="*">
+                        <File Id="filC274EDDED11FE13BA63C3888ED429059" KeyPath="yes" Source="$(var.Examples)\CS\CallManager\CallManager.csproj" />
+                    </Component>
+                    <Component Id="cmpD0B81C26F9559297FC3F430B285756C5" Guid="*">
+                        <File Id="fil3A7A12F8B333861BF6EEEABFB0A28FA1" KeyPath="yes" Source="$(var.Examples)\CS\CallManager\CallManager.exe.config" />
+                    </Component>
+                    <Component Id="cmp039FB8FECA252C4D66AF7C7C4537407A" Guid="*">
+                        <File Id="fil70E9869C62ABF77BB391FC2E26A8DB01" KeyPath="yes" Source="$(var.Examples)\CS\CallManager\CallScenario.cs" />
+                    </Component>
+                    <Component Id="cmp5E9DC1AEC32FB155D9E4933BA6634AB6" Guid="*">
+                        <File Id="fil6CE05A2694B370CCA9A755280E3BB555" KeyPath="yes" Source="$(var.Examples)\CS\CallManager\Connection.cs" />
+                    </Component>
+                    <Component Id="cmpB17FD75B9F770E848E3E424E730F259A" Guid="*">
+                        <File Id="filF323989CE310EFE53747D159A6F18425" KeyPath="yes" Source="$(var.Examples)\CS\CallManager\ConnectionTest.cs" />
+                    </Component>
+                    <Component Id="cmp6E038AF4505275A9BBE3F67FDBDD310A" Guid="*">
+                        <File Id="fil366D58A4761E2B90D9E14C3B4D12B28D" KeyPath="yes" Source="$(var.Examples)\CS\CallManager\Endpoint.cs" />
+                    </Component>
+                    <Component Id="cmp746737B3A83645B8D1145CEB04345915" Guid="*">
+                        <File Id="filB14992878192B823BA116339DCA5F0CA" KeyPath="yes" Source="$(var.Examples)\CS\CallManager\EndpointTest.cs" />
+                    </Component>
+                    <Component Id="cmp31433B3374F0D5436D3D3082A69A893B" Guid="*">
+                        <File Id="filF197C7CBD839F479585F94686C5B5EDA" KeyPath="yes" Source="$(var.Examples)\CS\CallManager\EndpointTest.fsmcs" />
+                    </Component>
+                    <Component Id="cmp43250907837EB159DD44935219FBD881" Guid="*">
+                        <File Id="filABDBF30D6A4051F263CFE6ADAE4DFE1E" KeyPath="yes" Source="$(var.Examples)\CS\CallManager\ICallAction.cs" />
+                    </Component>
+                    <Component Id="cmp5FB8C8C005249B3D85505BD2E4BA08CD" Guid="*">
+                        <File Id="filE1D463714F71CEFA43DD4E84EE95D1BA" KeyPath="yes" Source="$(var.Examples)\CS\CallManager\ICallEvent.cs" />
+                    </Component>
+                    <Component Id="cmp0F88A6069139481C534E7C1926C8E2FF" Guid="*">
+                        <File Id="filFF332AB0048344CDE96FAEB796A65BC9" KeyPath="yes" Source="$(var.Examples)\CS\CallManager\IEndpointEvent.cs" />
+                    </Component>
+                    <Component Id="cmp4787D69C6C93644FB0DD1E7D3B91AD09" Guid="*">
+                        <File Id="filB0E5F37A86EDB22AEE6567D4979EDF05" KeyPath="yes" Source="$(var.Examples)\CS\CallManager\IManagement.cs" />
+                    </Component>
+                    <Directory Id="dir4A9208F908C705405A9FFC24BA01BCDE" Name="Properties">
+                        <Component Id="cmp688567B2FD366EE00F5538D948FA3456" Guid="*">
+                            <File Id="fil17C113F7BABF3F8C4D2FFC8DD75CAEF2" KeyPath="yes" Source="$(var.Examples)\CS\CallManager\Properties\AssemblyInfo.cs" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir36C7E3DADEAB7AFDC2040F4C4168BA5B" Name="Door">
+                    <Component Id="cmpD56ED54310DCA1A4A37D75FA056E0EE1" Guid="*">
+                        <File Id="fil5D956B3D311EFD9D0BEE82F77C399790" KeyPath="yes" Source="$(var.Examples)\CS\Door\Door.cs" />
+                    </Component>
+                    <Component Id="cmp859E305D2DC1356A0D7A4918A1E7C397" Guid="*">
+                        <File Id="fil1C1CF6C27E3414BE22C6D26EA73E4731" KeyPath="yes" Source="$(var.Examples)\CS\Door\Door.csproj" />
+                    </Component>
+                    <Component Id="cmpADAE12A794D9DC9520CBF081E6F876C1" Guid="*">
+                        <File Id="filE8545219354B5A591B427B577C2E65BF" KeyPath="yes" Source="$(var.Examples)\CS\Door\Door.exe.config" />
+                    </Component>
+                    <Component Id="cmp8D12E468B9FB8FB4C2152EDE5E064FAA" Guid="*">
+                        <File Id="filCF20D5BA5141945F67E307F4C48D916A" KeyPath="yes" Source="$(var.Examples)\CS\Door\Door.fsmcs" />
+                    </Component>
+                    <Component Id="cmp4143FD8100334530ACD7B491C0C3657E" Guid="*">
+                        <File Id="fil3EFD549B0C87B89DDA206142579CBC3F" KeyPath="yes" Source="$(var.Examples)\CS\Door\Doxyfile" />
+                    </Component>
+                    <Directory Id="dirD9B1EDB8DA2F9B02207881E67AF70BAB" Name="Properties">
+                        <Component Id="cmpC858EC6568C5B38E5DAEA2CA099F8C1D" Guid="*">
+                            <File Id="filEBD2237A3A32F3931D265A7BB148142D" KeyPath="yes" Source="$(var.Examples)\CS\Door\Properties\AssemblyInfo.cs" />
+                        </Component>
+                    </Directory>
+                    <Directory Id="dirCF17A18627F1DDBFE147B9B086ACD789" Name="Test">
+                        <Directory Id="dir3F5184EFBF6331FC783D439BD7637D0B" Name="DoorTest">
+                            <Component Id="cmp0C4623231E07D77CAB0F7B7D002F63EE" Guid="*">
+                                <File Id="filC76C0A6813D8E0BABCCBD3678F70602F" KeyPath="yes" Source="$(var.Examples)\CS\Door\Test\DoorTest\DoorTest.cs" />
+                            </Component>
+                            <Component Id="cmpC02DD8C0C3007C1A1DEE960F72E76BF7" Guid="*">
+                                <File Id="fil96EB9BAD81A7CDB066EDE0A1F1421961" KeyPath="yes" Source="$(var.Examples)\CS\Door\Test\DoorTest\DoorTest.csproj" />
+                            </Component>
+                            <Component Id="cmp287DBBB015794DBAFE454697C8FD1462" Guid="*">
+                                <File Id="fil436D9BDA7AE1C4053BCC70C8AEA52DF4" KeyPath="yes" Source="$(var.Examples)\CS\Door\Test\DoorTest\DoorTest.exe.config" />
+                            </Component>
+                            <Component Id="cmp882DCF7FBDB6561B38AB7FACDC84A510" Guid="*">
+                                <File Id="fil05559117465BF784A129FDB916E1EB74" KeyPath="yes" Source="$(var.Examples)\CS\Door\Test\DoorTest\DoorTest01.fsmcs" />
+                            </Component>
+                            <Component Id="cmpFCEA8178D3B2D03F9BB8BB09B0A19B46" Guid="*">
+                                <File Id="filDF34D1F1FF455DBCF4D3AC49B11C37E7" KeyPath="yes" Source="$(var.Examples)\CS\Door\Test\DoorTest\DoorTest02.fsmcs" />
+                            </Component>
+                            <Directory Id="dirDB45AFBD9DEFC89D3AE39AF6B740EB9C" Name="Properties">
+                                <Component Id="cmp6A68746362AD196BCB71688867E239F9" Guid="*">
+                                    <File Id="filF3E51DCD540E3EC92F925DA594DDD335" KeyPath="yes" Source="$(var.Examples)\CS\Door\Test\DoorTest\Properties\AssemblyInfo.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir1258DA88652C55CBF93DE696E8CF0780" Name="FixMachine">
+                    <Component Id="cmp33B759FC2A32EA85D02C567B9DFCD285" Guid="*">
+                        <File Id="fil6315672BC418CCEFB94F5DD4A51A201D" KeyPath="yes" Source="$(var.Examples)\CS\FixMachine\executor.cfg" />
+                    </Component>
+                    <Component Id="cmp13E7AA777C466ED971D150D02785547B" Guid="*">
+                        <File Id="fil563F9EBB26DEDC4F443424DFFD195B73" KeyPath="yes" Source="$(var.Examples)\CS\FixMachine\Executor.cs" />
+                    </Component>
+                    <Component Id="cmp085304D37B70E67DAA76E8FC5A3D9381" Guid="*">
+                        <File Id="filC97B4E8CE52A6254F872632052862637" KeyPath="yes" Source="$(var.Examples)\CS\FixMachine\Executor.fsmcs" />
+                    </Component>
+                    <Component Id="cmp9B74F3D808340996D6178580C6B68FB7" Guid="*">
+                        <File Id="fil715287D9380B97F435EBDF589B0B3893" KeyPath="yes" Source="$(var.Examples)\CS\FixMachine\FixMachine.cs" />
+                    </Component>
+                    <Component Id="cmp3FC0AB808DB9837FBE87219312B1195B" Guid="*">
+                        <File Id="fil37F8160657463CE9C6D3D60BB74E17C1" KeyPath="yes" Source="$(var.Examples)\CS\FixMachine\FixMachine.csproj" />
+                    </Component>
+                    <Component Id="cmpF2F79C5FAEF48327665EEFB2E6353EA6" Guid="*">
+                        <File Id="fil000D79E55E56575ED9E1F661B8005E91" KeyPath="yes" Source="$(var.Examples)\CS\FixMachine\FixMachine.exe.config" />
+                    </Component>
+                    <Component Id="cmpD981F3E19B8FA6A528A5708F71CBDF1E" Guid="*">
+                        <File Id="fil81C04FA29CAD1AEB40F1160FF46553BC" KeyPath="yes" Source="$(var.Examples)\CS\FixMachine\tradeclient.cfg" />
+                    </Component>
+                    <Component Id="cmp50E541068093CE5812ADDCAEC5F01357" Guid="*">
+                        <File Id="filA78353FB1738A9AE248E4052125D47EA" KeyPath="yes" Source="$(var.Examples)\CS\FixMachine\Trader.cs" />
+                    </Component>
+                    <Component Id="cmp149E2E286BF8D54F6E21A9BBF62817F1" Guid="*">
+                        <File Id="fil820DB054926E0B215387678713226CC5" KeyPath="yes" Source="$(var.Examples)\CS\FixMachine\Trader.fsmcs" />
+                    </Component>
+                    <Directory Id="dir8406A216C9ED754CED9A4A28E5664126" Name="Properties">
+                        <Component Id="cmp5D004B22A504D3A3BA2FAA5CB5622DD9" Guid="*">
+                            <File Id="fil45B17E261D0FE3171726B3A4C047CFA4" KeyPath="yes" Source="$(var.Examples)\CS\FixMachine\Properties\AssemblyInfo.cs" />
+                        </Component>
+                    </Directory>
+                    <Directory Id="dir5765B21141B5D06A26D07AE673EA6DDE" Name="spec">
+                        <Component Id="cmp5838057E8DA5AA46CE5FAC6F8F208440" Guid="*">
+                            <File Id="fil420B9FBF39407576A5C8FCB24CE5A01D" KeyPath="yes" Source="$(var.Examples)\CS\FixMachine\spec\FIX40.xml" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dirFBC4B38C4B39A4887D918C92E388B426" Name="HelloWorld">
+                    <Component Id="cmpDF7EF411F9C9D05B54B70121A4BC4133" Guid="*">
+                        <File Id="filFB4F537B24D0CB4F12E68C02E1FAE916" KeyPath="yes" Source="$(var.Examples)\CS\HelloWorld\Doxyfile" />
+                    </Component>
+                    <Component Id="cmpD289265E41812A6918F7A6F670D68016" Guid="*">
+                        <File Id="filE7386A0D4EE52854753F3BAD1E72FCAB" KeyPath="yes" Source="$(var.Examples)\CS\HelloWorld\HelloWorld.cs" />
+                    </Component>
+                    <Component Id="cmpC81094CCFE29BD8EED4C3114C13C04BD" Guid="*">
+                        <File Id="fil4DE29083D54AB79C49BE9433D5EC18AD" KeyPath="yes" Source="$(var.Examples)\CS\HelloWorld\HelloWorld.csproj" />
+                    </Component>
+                    <Component Id="cmp7C32989023E4A33683F6E204CF7F78AB" Guid="*">
+                        <File Id="filBD1D7471F468463D778A1DFE026125B1" KeyPath="yes" Source="$(var.Examples)\CS\HelloWorld\HelloWorld.fsmcs" />
+                    </Component>
+                    <Directory Id="dirF02540B4B1384D4ECD33731FB887058E" Name="Properties">
+                        <Component Id="cmpC6D6A6AF1AB017B6251BE7895EFD4403" Guid="*">
+                            <File Id="fil2285CC103EC4A5CB8C235B85131CF9A0" KeyPath="yes" Source="$(var.Examples)\CS\HelloWorld\Properties\AssemblyInfo.cs" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir2C3163E6BAA988968288A0C27BB53524" Name="Led">
+                    <Component Id="cmp7DC44D6D7810BFBFB682AB0799125F72" Guid="*">
+                        <File Id="fil5DFBD2AB9BCB4F14C44C8F2795645B9C" KeyPath="yes" Source="$(var.Examples)\CS\Led\Doxyfile" />
+                    </Component>
+                    <Component Id="cmpDCE6E9CA9F13EA54713D86B746761CF9" Guid="*">
+                        <File Id="fil02D0C8F1DC666DEF8E7A9F425F9B5F49" KeyPath="yes" Source="$(var.Examples)\CS\Led\Led.cs" />
+                    </Component>
+                    <Component Id="cmpD9475082507ABAA3835F5AA3A9CC9911" Guid="*">
+                        <File Id="filD1314C6DA113097627E8281A4C7098F3" KeyPath="yes" Source="$(var.Examples)\CS\Led\Led.csproj" />
+                    </Component>
+                    <Component Id="cmp892E95F19FC4E17FBCEA5EBE61C63E16" Guid="*">
+                        <File Id="fil687CCC76BCD6E161781F373228400FAC" KeyPath="yes" Source="$(var.Examples)\CS\Led\Led.fsmcs" />
+                    </Component>
+                    <Directory Id="dirEC09FE377332C66052D047D083925A9E" Name="Properties">
+                        <Component Id="cmp3B9E49CD3921D7BDCFA9F9DE53C387A3" Guid="*">
+                            <File Id="filB5000FEE8ABA4B593D14C27E68F9FF5A" KeyPath="yes" Source="$(var.Examples)\CS\Led\Properties\AssemblyInfo.cs" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir69850CA151BF9445A866CA193E315316" Name="Light">
+                    <Component Id="cmp29B3864341C8D60A00923229C61F4FAB" Guid="*">
+                        <File Id="filC097655B606DE0BF4C18586A14ADFCD9" KeyPath="yes" Source="$(var.Examples)\CS\Light\Doxyfile" />
+                    </Component>
+                    <Component Id="cmpFCF1478B75D915F7389A6227BEB5D05A" Guid="*">
+                        <File Id="fil671400E499A5C5A24CA87EFE2ABB5A93" KeyPath="yes" Source="$(var.Examples)\CS\Light\Light.cs" />
+                    </Component>
+                    <Component Id="cmpC64F8079AEC68BC51F2EFCCC4A05F13A" Guid="*">
+                        <File Id="fil1BDFC6928C20FCA7D8E934184FAA5498" KeyPath="yes" Source="$(var.Examples)\CS\Light\Light.csproj" />
+                    </Component>
+                    <Component Id="cmp2CC17C34C8AEB487F299423029F57A0C" Guid="*">
+                        <File Id="fil79381F38E9A1C092F9E03FFCB3584409" KeyPath="yes" Source="$(var.Examples)\CS\Light\Light.fsmcs" />
+                    </Component>
+                    <Directory Id="dir042DF02EF09415B3B346C2EF20ACF44A" Name="Properties">
+                        <Component Id="cmp8D63FE683E6FE236B171D15EAF7041BA" Guid="*">
+                            <File Id="fil39808CDCE14AB0C31D7AD9F9EBA46C57" KeyPath="yes" Source="$(var.Examples)\CS\Light\Properties\AssemblyInfo.cs" />
+                        </Component>
+                    </Directory>
+                    <Directory Id="dir4722046CBBC3CAA2FB8C8FBDCBED43F6" Name="Test">
+                        <Directory Id="dirFE2D611DDDC6F01754DF1EC714BDD216" Name="LightTestMoq">
+                            <Component Id="cmpAF205D1A124D7FFE1D0680C22B8F53D7" Guid="*">
+                                <File Id="filB6BF0D225881665FDD1A4973E254B9CA" KeyPath="yes" Source="$(var.Examples)\CS\Light\Test\LightTestMoq\LightTestMoq.cs" />
+                            </Component>
+                            <Component Id="cmp7AB7D90B8F36E2A5177DC2FBA39E0FC0" Guid="*">
+                                <File Id="fil797D49CCDDF0EAEC819AF5CB966885A7" KeyPath="yes" Source="$(var.Examples)\CS\Light\Test\LightTestMoq\LightTestMoq.csproj" />
+                            </Component>
+                            <Directory Id="dirD242D674A8588D3A15F651A54C4603AA" Name="Properties">
+                                <Component Id="cmpF068C8652FB85523D56B68D4D009A853" Guid="*">
+                                    <File Id="fil85AA2265C9A2E56B912EF98D99BB5131" KeyPath="yes" Source="$(var.Examples)\CS\Light\Test\LightTestMoq\Properties\AssemblyInfo.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dir84381D833ACFB0162895C17245E85EB3" Name="LightTestRhino">
+                            <Component Id="cmpD55EF2C40BE1AAB370A9E3609F1D56C2" Guid="*">
+                                <File Id="fil3AB4366549ADBAB6D8D2897E407A0911" KeyPath="yes" Source="$(var.Examples)\CS\Light\Test\LightTestRhino\LightTestRhino.cs" />
+                            </Component>
+                            <Component Id="cmp8812611133A15C4F2E74B460DCF6845E" Guid="*">
+                                <File Id="filD78E42B4A267E5D00277EC942AFD905E" KeyPath="yes" Source="$(var.Examples)\CS\Light\Test\LightTestRhino\LightTestRhino.csproj" />
+                            </Component>
+                            <Directory Id="dirF5828BC0A862B86D94A2BD409764CF8D" Name="Properties">
+                                <Component Id="cmp8997AA6E012C8A6C8070B237618E97F0" Guid="*">
+                                    <File Id="filE295EDD3F49F9177AC44A850670B7E67" KeyPath="yes" Source="$(var.Examples)\CS\Light\Test\LightTestRhino\Properties\AssemblyInfo.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir6C4C5FD8E17860F0C341B85FA7089A53" Name="Microwave">
+                    <Component Id="cmpC008A0B7A49BB748CB563777CCA29699" Guid="*">
+                        <File Id="filC24121E7942A71FA466E2B99B84652D2" KeyPath="yes" Source="$(var.Examples)\CS\Microwave\Doxyfile" />
+                    </Component>
+                    <Component Id="cmp2C03807D9AD60FC589478708D6BAB1CA" Guid="*">
+                        <File Id="fil7F9FF2A3194CA00D810D7E6FC089B7C8" KeyPath="yes" Source="$(var.Examples)\CS\Microwave\Microwave.cs" />
+                    </Component>
+                    <Component Id="cmp3839F00EC5B7E34D2A313CBF496F9FA9" Guid="*">
+                        <File Id="filE569D694F80711DCF08C4424B4D72993" KeyPath="yes" Source="$(var.Examples)\CS\Microwave\Microwave.csproj" />
+                    </Component>
+                    <Component Id="cmp2CF58CE622C852032E0D10ED37A3EE47" Guid="*">
+                        <File Id="fil33DCF21FEFB2071C5281FD91E332AF7B" KeyPath="yes" Source="$(var.Examples)\CS\Microwave\Microwave.fsmcs" />
+                    </Component>
+                    <Directory Id="dirCA56CD80D472DC1790D15F686BF3F84F" Name="Properties">
+                        <Component Id="cmp17E5CC423636CC727493E888A18A94C7" Guid="*">
+                            <File Id="filD2E53233DEC6F0A1F5CC338BE8725740" KeyPath="yes" Source="$(var.Examples)\CS\Microwave\Properties\AssemblyInfo.cs" />
+                        </Component>
+                    </Directory>
+                    <Directory Id="dir4957576192AA901C021F164ACF96A336" Name="Test">
+                        <Directory Id="dir6EC795EAA8C6ADA2B0C46198EB42CDCA" Name="MicrowaveTest">
+                            <Component Id="cmpC993908FDC55F29B2F2F2200BD42BA35" Guid="*">
+                                <File Id="fil17DAF9A67006214D32008B83440609FC" KeyPath="yes" Source="$(var.Examples)\CS\Microwave\Test\MicrowaveTest\MicrowaveTest.cs" />
+                            </Component>
+                            <Component Id="cmp3FC828A113F69A0711B633D2330D9E70" Guid="*">
+                                <File Id="fil3AC5C6E61A6B8220BFDF1980A4EF46B1" KeyPath="yes" Source="$(var.Examples)\CS\Microwave\Test\MicrowaveTest\MicrowaveTest.csproj" />
+                            </Component>
+                            <Directory Id="dir37B5FA65737F93B8B11A776352A82D5D" Name="Properties">
+                                <Component Id="cmpDE013EEEE09F9E2A7EEE745EB9DB5EF4" Guid="*">
+                                    <File Id="fil263B2AF45C4C5BB5F62B7DE77842E358" KeyPath="yes" Source="$(var.Examples)\CS\Microwave\Test\MicrowaveTest\Properties\AssemblyInfo.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir6DC4C9D5FAE72CA9BCDC818A3FA6DC77" Name="Peristence">
+                    <Component Id="cmp94AF76298A665983A74723E22FE377DB" Guid="*">
+                        <File Id="fil26EADF3ED085A4AEFEA9F6E2941E52D4" KeyPath="yes" Source="$(var.Examples)\CS\Peristence\Peristence.csproj" />
+                    </Component>
+                    <Component Id="cmpDCC82E8306749E486BCE4C8AC7A3905C" Guid="*">
+                        <File Id="fil1E5B70901910CFB0F79F0487F412FEF6" KeyPath="yes" Source="$(var.Examples)\CS\Peristence\Persistence.cs" />
+                    </Component>
+                    <Component Id="cmpDE611A6CE7D8DDE7855ED3FE3A42D2A9" Guid="*">
+                        <File Id="filEB0D43B1DAC8E63065D86532824B99F3" KeyPath="yes" Source="$(var.Examples)\CS\Peristence\Persistence.fsmcs" />
+                    </Component>
+                    <Component Id="cmpD6980477EFA9727418E10CC367AF05E8" Guid="*">
+                        <File Id="filE923330746A158EDAB02C6CD76D23A13" KeyPath="yes" Source="$(var.Examples)\CS\Peristence\PersistenceParallel.fsmcs" />
+                    </Component>
+                    <Directory Id="dir9409783857EA1AF272B7E6C58B11402E" Name="Properties">
+                        <Component Id="cmp91B73E3CB71D3CFE475306FB237836F6" Guid="*">
+                            <File Id="filD5ADD644D23480506D365ECBD8ADAB77" KeyPath="yes" Source="$(var.Examples)\CS\Peristence\Properties\AssemblyInfo.cs" />
+                        </Component>
+                    </Directory>
+                    <Directory Id="dir83754E7AEE96DBAF38822E64B35EFBBF" Name="Test">
+                        <Directory Id="dir66E2A44D692F0CFC52FF948E78163C73" Name="PersistenceTest">
+                            <Component Id="cmp358EF0F3E92907B51B1BAFACCD2892FF" Guid="*">
+                                <File Id="fil15DA6DD85BED6BBDFBC3A37C407C3F41" KeyPath="yes" Source="$(var.Examples)\CS\Peristence\Test\PersistenceTest\PersistenceTest.cs" />
+                            </Component>
+                            <Component Id="cmp3B63E35053378D6880E1D1559FFE257F" Guid="*">
+                                <File Id="fil41E2C8C54D7F088B8733A962FC0BCCA5" KeyPath="yes" Source="$(var.Examples)\CS\Peristence\Test\PersistenceTest\PersistenceTest.csproj" />
+                            </Component>
+                            <Directory Id="dir60C432AB9C4C58DF1EE16EF5D72B5394" Name="Properties">
+                                <Component Id="cmp33006BC6247B1E0BC612B454505D052B" Guid="*">
+                                    <File Id="fil1EFD49A154CBCB6AEBF22E37AED341E8" KeyPath="yes" Source="$(var.Examples)\CS\Peristence\Test\PersistenceTest\Properties\AssemblyInfo.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir9442BC2197913F2905F2054E95AE354C" Name="Ping">
+                    <Component Id="cmp9BBF6BAFDE2F69B9666BAE8A75852C00" Guid="*">
+                        <File Id="filB20945D7C11A8DFA6DB9444D3D96C6F7" KeyPath="yes" Source="$(var.Examples)\CS\Ping\Doxyfile" />
+                    </Component>
+                    <Component Id="cmp50FAFB78FE17E6ADC57CE3E8AC799059" Guid="*">
+                        <File Id="fil476C8F8E689223A8124595050C4E2DBA" KeyPath="yes" Source="$(var.Examples)\CS\Ping\Ping.cs" />
+                    </Component>
+                    <Component Id="cmp769ED9D2EE62CC3A9A05A3D290BF99B4" Guid="*">
+                        <File Id="filD4B69ACAD796632F971D15720C9D31A0" KeyPath="yes" Source="$(var.Examples)\CS\Ping\Ping.csproj" />
+                    </Component>
+                    <Component Id="cmp0220757E7BC40083B98901C656DBB55A" Guid="*">
+                        <File Id="filE6435B0C34C4BF14F59475874DA790AD" KeyPath="yes" Source="$(var.Examples)\CS\Ping\Ping.exe.config" />
+                    </Component>
+                    <Component Id="cmpE53AAD460AE22AAEF6AE8FA40382BC4E" Guid="*">
+                        <File Id="fil354D4B838CE4210C8F8376907907293F" KeyPath="yes" Source="$(var.Examples)\CS\Ping\Ping.fsmcs" />
+                    </Component>
+                    <Directory Id="dirC5E311674ACA5E30AE63A9F623CB5A8B" Name="Properties">
+                        <Component Id="cmpF5E0FC0DB2D106E3900C7C5514A3A51C" Guid="*">
+                            <File Id="filDB6A9B293587B0D721A1D0746C9AEE52" KeyPath="yes" Source="$(var.Examples)\CS\Ping\Properties\AssemblyInfo.cs" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dirC29063724239E881B2EDD73FC3D4C2D8" Name="Seminar">
+                    <Component Id="cmp21B1E8BC2C2073B588483E57CA318D30" Guid="*">
+                        <File Id="fil12616546C8C6D4EDDA1821EB0E8FA248" KeyPath="yes" Source="$(var.Examples)\CS\Seminar\Doxyfile" />
+                    </Component>
+                    <Component Id="cmp22C3463D15C5D958E686CCF31A3F04D4" Guid="*">
+                        <File Id="fil597EF7D26F75EF1421EECD6BF38D8D60" KeyPath="yes" Source="$(var.Examples)\CS\Seminar\Seminar.cs" />
+                    </Component>
+                    <Component Id="cmp52FE9B5F7018396670358D520D6B56AA" Guid="*">
+                        <File Id="filE3703446F278CB17C7327C6AC3C69EAF" KeyPath="yes" Source="$(var.Examples)\CS\Seminar\Seminar.csproj" />
+                    </Component>
+                    <Component Id="cmp3803EE254E8F6D92DF63189E4E1EECC9" Guid="*">
+                        <File Id="fil0AD89507C6A68CFD44AFE2DC893B31B2" KeyPath="yes" Source="$(var.Examples)\CS\Seminar\Seminar.fsmcs" />
+                    </Component>
+                    <Directory Id="dir1747B04B20D153E43C7AC7E3CB1CAB34" Name="Properties">
+                        <Component Id="cmp06CC2E39E2124C019D3C94F2EA9AD791" Guid="*">
+                            <File Id="filCD0335688AC3D50A72C5D7853E9817B0" KeyPath="yes" Source="$(var.Examples)\CS\Seminar\Properties\AssemblyInfo.cs" />
+                        </Component>
+                    </Directory>
+                    <Directory Id="dirF5F735BCF1BF8450496B3A809F8267C0" Name="Test">
+                        <Directory Id="dir633CFC7EDAD10ED85BD5035F3297E210" Name="SeminarTest">
+                            <Component Id="cmp7318595A7E19C3886E6F04CCB0232487" Guid="*">
+                                <File Id="fil077E9AD51FB18C370D84E5693AECC871" KeyPath="yes" Source="$(var.Examples)\CS\Seminar\Test\SeminarTest\SeminarTest.cs" />
+                            </Component>
+                            <Component Id="cmp61BA14630BF4636F124FCDE1277952FB" Guid="*">
+                                <File Id="filEA70AD9D6EB9D16B74FCC7681A179AC4" KeyPath="yes" Source="$(var.Examples)\CS\Seminar\Test\SeminarTest\SeminarTest.csproj" />
+                            </Component>
+                            <Directory Id="dir2794D87DA57FF2B623AA3C99894B0E4E" Name="Properties">
+                                <Component Id="cmpBE7DC1A5B3895C6759B7B1247C42584C" Guid="*">
+                                    <File Id="fil2DC1B435C6C044CAA2965CC1D93FFF4D" KeyPath="yes" Source="$(var.Examples)\CS\Seminar\Test\SeminarTest\Properties\AssemblyInfo.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir68D12222910DB809C6ED85A64B48F1D2" Name="TrafficLight">
+                    <Component Id="cmp024F8D484755F4B4B7078DD9301BDAFD" Guid="*">
+                        <File Id="fil197604015734184CBDFD54ABBD1316E9" KeyPath="yes" Source="$(var.Examples)\CS\TrafficLight\Doxyfile" />
+                    </Component>
+                    <Component Id="cmpC4DD6DF01EEE991E9B84A4AF9E826BAD" Guid="*">
+                        <File Id="fil783F4C0E1CE56EDAD80FFCED3ED113FD" KeyPath="yes" Source="$(var.Examples)\CS\TrafficLight\TrafficLight.cs" />
+                    </Component>
+                    <Component Id="cmpF2A1841CBDEEFAF29A2ED198313D670E" Guid="*">
+                        <File Id="fil387B04C20FD838CF7F02E69FFB0F4243" KeyPath="yes" Source="$(var.Examples)\CS\TrafficLight\TrafficLight.csproj" />
+                    </Component>
+                    <Component Id="cmpA0C4D5BA9BB2C1532EFC9D66A79850E4" Guid="*">
+                        <File Id="filD88DF5888308FE0169A25697A90537A1" KeyPath="yes" Source="$(var.Examples)\CS\TrafficLight\TrafficLight.exe.config" />
+                    </Component>
+                    <Component Id="cmpADFAF59EE4A17A86A31FD2AA71E530D0" Guid="*">
+                        <File Id="filCADBFFC4F0D237D712D52F83E8BB30E0" KeyPath="yes" Source="$(var.Examples)\CS\TrafficLight\TrafficLight.fsmcs" />
+                    </Component>
+                    <Directory Id="dirD4C36602B80A36FC74AFE41CD1327873" Name="Properties">
+                        <Component Id="cmpE43E5B885120CCD672D9EC72B316A197" Guid="*">
+                            <File Id="fil765813ED007A8C017D36F9A9932B60E6" KeyPath="yes" Source="$(var.Examples)\CS\TrafficLight\Properties\AssemblyInfo.cs" />
+                        </Component>
+                    </Directory>
+                    <Directory Id="dirD05992468885DBA049442B0D4174BD62" Name="Test">
+                        <Directory Id="dirC330A6CC7B43ABE64C0821F7C9A82D96" Name="TrafficLightTest">
+                            <Component Id="cmpD92D61BB8BC6C455815CECE2587A6FC3" Guid="*">
+                                <File Id="fil3B3C0D3132A11B685AA7B414CB144394" KeyPath="yes" Source="$(var.Examples)\CS\TrafficLight\Test\TrafficLightTest\TrafficLightTest.cs" />
+                            </Component>
+                            <Component Id="cmp0337DAE6DD8DC0994B283597B3A2AE16" Guid="*">
+                                <File Id="fil140136E21FF8D8668DD8C13831BCAC48" KeyPath="yes" Source="$(var.Examples)\CS\TrafficLight\Test\TrafficLightTest\TrafficLightTest.csproj" />
+                            </Component>
+                            <Component Id="cmp1B4F9AC7F93484FC9265EF9521F5658F" Guid="*">
+                                <File Id="filC41F30ECA478A499E859D4968507DDC7" KeyPath="yes" Source="$(var.Examples)\CS\TrafficLight\Test\TrafficLightTest\TrafficLightTest.lib.config" />
+                            </Component>
+                            <Directory Id="dir1E366037A784D22E8F5CF379F1CAFA6F" Name="Properties">
+                                <Component Id="cmpDE2067ADEAD122156BE37C3C7070E503" Guid="*">
+                                    <File Id="fil9C4A4443B876D105D40C3D66CCD0EA6A" KeyPath="yes" Source="$(var.Examples)\CS\TrafficLight\Test\TrafficLightTest\Properties\AssemblyInfo.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir1E22D131A50E58FA3EDC333876BC0049" Name="Turnstile">
+                    <Component Id="cmpEB0662CE4C91E4EC6424FF939ACD8441" Guid="*">
+                        <File Id="fil8A282889E344D03ED0AC7578B3FF1CFD" KeyPath="yes" Source="$(var.Examples)\CS\Turnstile\Doxyfile" />
+                    </Component>
+                    <Component Id="cmp7AE3AB1832B1048E326439324A57F1DA" Guid="*">
+                        <File Id="fil2B9DADCF67648382080D71EA9DA90222" KeyPath="yes" Source="$(var.Examples)\CS\Turnstile\Turnstile.cs" />
+                    </Component>
+                    <Component Id="cmpC700EDFC43ED3A2651D12C46CCEE0D6B" Guid="*">
+                        <File Id="fil280436B224770B8CE2A9E9238ACC4FCF" KeyPath="yes" Source="$(var.Examples)\CS\Turnstile\Turnstile.csproj" />
+                    </Component>
+                    <Component Id="cmpA0103359D91A8176CBFCF9568A8794D1" Guid="*">
+                        <File Id="fil2291E078D186F2F98D3136087BB55D89" KeyPath="yes" Source="$(var.Examples)\CS\Turnstile\Turnstile.fsmcs" />
+                    </Component>
+                    <Directory Id="dirAE0C4E9366F683E462282FDA7803F2BC" Name="Properties">
+                        <Component Id="cmp3EB4746AF0347887887BEAF176912F73" Guid="*">
+                            <File Id="filC1BED0F8225E477591325AE8CB568B30" KeyPath="yes" Source="$(var.Examples)\CS\Turnstile\Properties\AssemblyInfo.cs" />
+                        </Component>
+                    </Directory>
+                    <Directory Id="dir1FEB8A525BD3BC6E7FF6BDD8DA552058" Name="Test">
+                        <Directory Id="dir8BBC9FD9F9EAE64B7099D8E8987D8FD2" Name="TurnstileTest">
+                            <Component Id="cmpE6A554F3116FF3390E531A99FF5D50BB" Guid="*">
+                                <File Id="fil940A5A86536A76FF5BE72E51C49DB296" KeyPath="yes" Source="$(var.Examples)\CS\Turnstile\Test\TurnstileTest\TurnstileTest.cs" />
+                            </Component>
+                            <Component Id="cmp6A41AAB14249528A289F8B179D007D97" Guid="*">
+                                <File Id="fil5901FD19FE51038EBF5147FB77F717D9" KeyPath="yes" Source="$(var.Examples)\CS\Turnstile\Test\TurnstileTest\TurnstileTest.csproj" />
+                            </Component>
+                            <Directory Id="dir7312AD4546D1112B77DAC3637EB56C81" Name="Properties">
+                                <Component Id="cmpD7E93DC105700C5B9E4C86E450CFF08B" Guid="*">
+                                    <File Id="fil8B0B0E49E44779875905E04097BE31D7" KeyPath="yes" Source="$(var.Examples)\CS\Turnstile\Test\TurnstileTest\Properties\AssemblyInfo.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                    </Directory>
+                </Directory>
+                <Directory Id="dirD0150FD2C6879B58310E6A8654551A18" Name="WashingMachine">
+                    <Component Id="cmp4DC8C5F080047CC4A22F711D53715856" Guid="*">
+                        <File Id="fil1CC58C8DC440B7562B9304051EC2B8B9" KeyPath="yes" Source="$(var.Examples)\CS\WashingMachine\Doxyfile" />
+                    </Component>
+                    <Component Id="cmp8C27CEAF7F394F275EFC72499EB85E0D" Guid="*">
+                        <File Id="fil5DB2FC6CA8DF478B7901A5CA7E8FEE43" KeyPath="yes" Source="$(var.Examples)\CS\WashingMachine\WashingMachine.cs" />
+                    </Component>
+                    <Component Id="cmp9642E4CAFD4C9FDC152A50A699002190" Guid="*">
+                        <File Id="filB2E9B2260EA13EA65188CEBFEC22DFA2" KeyPath="yes" Source="$(var.Examples)\CS\WashingMachine\WashingMachine.csproj" />
+                    </Component>
+                    <Component Id="cmp98A374346F1BBBFEDADDD79F7836AF6F" Guid="*">
+                        <File Id="filC804BC6BA372804DE719FD331C048B9D" KeyPath="yes" Source="$(var.Examples)\CS\WashingMachine\WashingMachine.fsmcs" />
+                    </Component>
+                    <Directory Id="dirDD120D6FEB9D7C57BFF56164695C9E77" Name="Properties">
+                        <Component Id="cmpCCEFB6AB3F5AC234016C67DA8BCAF935" Guid="*">
+                            <File Id="fil8CB09C75D76492457760553DA3D503F7" KeyPath="yes" Source="$(var.Examples)\CS\WashingMachine\Properties\AssemblyInfo.cs" />
+                        </Component>
+                    </Directory>
+                    <Directory Id="dir4B8753B0903B0AB34D43691E73826C9B" Name="Test">
+                        <Directory Id="dirA6BDA4015EA7BE0C8288E5E88C843D24" Name="WashingMachineTest">
+                            <Component Id="cmp9EF784050DA93B94DCDCCB2E6035E163" Guid="*">
+                                <File Id="fil711DE4F06C33FBE5258D0B31277320BE" KeyPath="yes" Source="$(var.Examples)\CS\WashingMachine\Test\WashingMachineTest\WashingMachineTest.cs" />
+                            </Component>
+                            <Component Id="cmp1E7D8BE90E715CA3360E7E7858BA339B" Guid="*">
+                                <File Id="filC172428159FC0C1F2CD1ED984B30025D" KeyPath="yes" Source="$(var.Examples)\CS\WashingMachine\Test\WashingMachineTest\WashingMachineTest.csproj" />
+                            </Component>
+                            <Directory Id="dir061A886D5B13F8964CBEF30F0D26908D" Name="Properties">
+                                <Component Id="cmp12DACA9DE6778CA68B9E1AAFC9577A81" Guid="*">
+                                    <File Id="fil8758CB97FA32921F2132959B43D10827" KeyPath="yes" Source="$(var.Examples)\CS\WashingMachine\Test\WashingMachineTest\Properties\AssemblyInfo.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir945E3D19E22567A266390D5698596267" Name="XmppChat">
+                    <Component Id="cmp7198FC7C84BAB7BBF3729FC8059E5239" Guid="*">
+                        <File Id="filDAA49E3D6048F40562486DB6BE0145E9" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\ChatScenario.cs" />
+                    </Component>
+                    <Component Id="cmp63FDC4234F48B8B7DE73E9B8958004AF" Guid="*">
+                        <File Id="filEB7ABFD02AAF85593B98D1C8D84A9533" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\ChatScenarioTest.cs" />
+                    </Component>
+                    <Component Id="cmpD9080A6D52031DDB6B4B0570180C8012" Guid="*">
+                        <File Id="fil1E71090FDE18CE087DD82BC63C04E542" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\Client.cs" />
+                    </Component>
+                    <Component Id="cmp34C2650897E9B79FAD85A5CF147D04D1" Guid="*">
+                        <File Id="fil9753EDC7821F674A74E25377529BD1FA" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\Doxyfile" />
+                    </Component>
+                    <Component Id="cmp251829E67CE143D8114A09CA7CF79664" Guid="*">
+                        <File Id="filF3DD1F8BC2B1BAB8315C084252E300C3" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\IChatScenario.cs" />
+                    </Component>
+                    <Component Id="cmp3514E5DF08BC3FD66BE2CA43910A4E95" Guid="*">
+                        <File Id="filABE50ADA5C1AC2880F4AB7DCCDF77A83" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\TestChat01.fsmcs" />
+                    </Component>
+                    <Component Id="cmp65EE77B566ADAA3D47A3A270E267D2BC" Guid="*">
+                        <File Id="fil3D3279FBE1EE09395C6C3863B7994CA5" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\TestLogin.fsmcs" />
+                    </Component>
+                    <Component Id="cmpACCDF593564D195030ACB6012F77E0E0" Guid="*">
+                        <File Id="filBDB828EC3A2ED66F1EBF1CB74B55F91A" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\TestLogin02.fsmcs" />
+                    </Component>
+                    <Component Id="cmp4EB2121B5D3F4B9E48CF3F6D555FE2CE" Guid="*">
+                        <File Id="fil599251C9AAC5A1DAFDBA0D481850E239" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\TestOpenClose01.fsmcs" />
+                    </Component>
+                    <Component Id="cmp16ED12425739C10E71C0CE21C60FD907" Guid="*">
+                        <File Id="fil263D3C42372258BAE1B97A8502964BB0" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\TestOpenClose02.fsmcs" />
+                    </Component>
+                    <Component Id="cmpF9159A5AB28BE7828BF42A90EDE698F2" Guid="*">
+                        <File Id="fil8836C8C14B9515775289770BABD4A9D2" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\TestRegisterNewAccount.fsmcs" />
+                    </Component>
+                    <Component Id="cmpDD1CA85A9AF5A4302BB000FDB15A60DA" Guid="*">
+                        <File Id="fil0130D821460F16B5AEBC99A7FA767A09" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\TestRosterAdd.fsmcs" />
+                    </Component>
+                    <Component Id="cmpB5C9EAC60436BEAF47009F04FC6F69CB" Guid="*">
+                        <File Id="filE11793DD3835ECA7C73EA02DF59D1454" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\TestRosterAddRemove.fsmcs" />
+                    </Component>
+                    <Component Id="cmp7680613EEC8F9E2B3C9175A333AD834D" Guid="*">
+                        <File Id="fil551DD81AB815C97C5D4A3F52ACDC61F5" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\TestSubscription01.fsmcs" />
+                    </Component>
+                    <Component Id="cmpC913EED3602E865B30D3950317886EF3" Guid="*">
+                        <File Id="fil4DAA20A5B8CA13D5A213335ACD5E6BA8" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\TestUnSubscribe.fsmcs" />
+                    </Component>
+                    <Component Id="cmp10AF8515FC99021AE14860AB70000CD4" Guid="*">
+                        <File Id="fil4045D2D6C2A5EAF5EE75023147AC915A" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\XmppChat.csproj" />
+                    </Component>
+                    <Component Id="cmp0C45C13A03C70F234C39EC6E2A23AB62" Guid="*">
+                        <File Id="fil3E7BEE29EF7D4C9778218C52AC3A2848" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\XmppChat.exe.config" />
+                    </Component>
+                    <Component Id="cmpF1422E351BCEC7412CCA3F0DF844F186" Guid="*">
+                        <File Id="filD99534A1CEE196F9750DB45C9C2E8275" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\XmppDb.cs" />
+                    </Component>
+                    <Directory Id="dirCA4B4502F59FC0B1B6E10CBBCBFD757D" Name="Properties">
+                        <Component Id="cmpCE7C453D7DFA19869F1A91735DEEECA0" Guid="*">
+                            <File Id="filEA07F0459E5944001E8153597E9DA1F2" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\Properties\AssemblyInfo.cs" />
+                        </Component>
+                        <Component Id="cmp574F52B885690A29149F2B74FBEBFADD" Guid="*">
+                            <File Id="fil79D4E62A932FEE86B092A871A3D6D9A9" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\Properties\Settings.Designer.cs" />
+                        </Component>
+                        <Component Id="cmp3CDB2F8FB58C2656D1726215D6178F09" Guid="*">
+                            <File Id="fil6DFF3DA69EF76AA3EF682A24780BD327" KeyPath="yes" Source="$(var.Examples)\CS\XmppChat\Properties\Settings.settings" />
+                        </Component>
+                    </Directory>
+                </Directory>
+            </Directory>
+            <Directory Id="dir602A5053BD8BD7B42A4171FB01943F26" Name="VB">
+                <Component Id="cmp3E4FB63C88904532F48D73134D336194" Guid="*">
+                    <File Id="fil82054978D14933CBC8ED12E01E8401B2" KeyPath="yes" Source="$(var.Examples)\VB\StateBuilderDotNetExamplesVs2010.sln" />
+                </Component>
+                <Directory Id="dirE04A26293C3EE7CDD34F2BC3DBF3497C" Name="Door">
+                    <Component Id="cmp6C3EC8260B584DDAB5B67155833D04CA" Guid="*">
+                        <File Id="fil5B48DFDBF922DD5C424FF18BA819FDA7" KeyPath="yes" Source="$(var.Examples)\VB\Door\Door.exe.config" />
+                    </Component>
+                    <Component Id="cmpBEDDF1470ED9BB18DD2C40ECD7D3237F" Guid="*">
+                        <File Id="fil16B42860C383496EC6F820F0BD947B0A" KeyPath="yes" Source="$(var.Examples)\VB\Door\Door.fsmvb" />
+                    </Component>
+                    <Component Id="cmp5FB352CE1F8DC8BAD4C252CC3C923C6D" Guid="*">
+                        <File Id="filA59ABAAAFEE58AC0307717D7DF7DB5EF" KeyPath="yes" Source="$(var.Examples)\VB\Door\Door.vb" />
+                    </Component>
+                    <Component Id="cmp5CC1D62F2B1AEE5C5BF928429C3BF1DE" Guid="*">
+                        <File Id="filB88457E98E619963677E8A1A493A580B" KeyPath="yes" Source="$(var.Examples)\VB\Door\Door.vbproj" />
+                    </Component>
+                    <Directory Id="dirF55E9BE36CD74D51F4A441473E6EE7C0" Name="My Project">
+                        <Component Id="cmpC96BE2543116A03C9CD998F44EB7BDA9" Guid="*">
+                            <File Id="fil0A39FCBA029ABEAEF0149AC3073BE6B7" KeyPath="yes" Source="$(var.Examples)\VB\Door\My Project\AssemblyInfo.vb" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dirBC9B509A545F181A7975F812419F55A9" Name="HelloWorld">
+                    <Component Id="cmp8A18D73C5C77C588C99E1A74BCA4E02D" Guid="*">
+                        <File Id="fil3EBD29B7CD1B6EC5BA7BE86E4DBC6152" KeyPath="yes" Source="$(var.Examples)\VB\HelloWorld\HelloWorld.fsmvb" />
+                    </Component>
+                    <Component Id="cmp1A183B44F9E99EBBAE931F06991914EA" Guid="*">
+                        <File Id="fil674E94B1B755F901B6AB644C8D567D1E" KeyPath="yes" Source="$(var.Examples)\VB\HelloWorld\HelloWorld.vb" />
+                    </Component>
+                    <Component Id="cmp69F9E616B9A1878E48590A8A23EE931A" Guid="*">
+                        <File Id="fil28456A783C2C0811C90A7D68DDE1ED83" KeyPath="yes" Source="$(var.Examples)\VB\HelloWorld\HelloWorld.vbproj" />
+                    </Component>
+                    <Directory Id="dirEE5A8183603DA4B0C3ECA7786EB4564A" Name="My Project">
+                        <Component Id="cmp3ECF76DF4B838D3CB4CD757364539C6C" Guid="*">
+                            <File Id="fil5BE37B707D0B86379D2255761B14A087" KeyPath="yes" Source="$(var.Examples)\VB\HelloWorld\My Project\AssemblyInfo.vb" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir15108194BB083280A02B680B26FF4A2F" Name="Light">
+                    <Component Id="cmp948797AC8BD6B62F0BEDA050309C93FA" Guid="*">
+                        <File Id="fil3B3FD7E4CAE4288FA3306244DD7FDB5E" KeyPath="yes" Source="$(var.Examples)\VB\Light\Light.fsmvb" />
+                    </Component>
+                    <Component Id="cmp7E640DF6BC0D71A105D8FD7FE1968B4B" Guid="*">
+                        <File Id="fil9D833A864B6CB01E31DB7B00354C00FC" KeyPath="yes" Source="$(var.Examples)\VB\Light\Light.vb" />
+                    </Component>
+                    <Component Id="cmp9EDE3B6D57D8D572317E2C524B3EA9C8" Guid="*">
+                        <File Id="fil001005BE7243C746E995B3DD94344EF2" KeyPath="yes" Source="$(var.Examples)\VB\Light\Light.vbproj" />
+                    </Component>
+                    <Directory Id="dir233D5016521ADE77B6E7C4C9957C3078" Name="My Project">
+                        <Component Id="cmp54AD088E5AED9A62BE3A3E518665E095" Guid="*">
+                            <File Id="filCF58AFC1B5901677329D6225874EA4CA" KeyPath="yes" Source="$(var.Examples)\VB\Light\My Project\AssemblyInfo.vb" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir850B0E6A0EEFEC2AFDECA205171069DB" Name="Microwave">
+                    <Component Id="cmp971BE6AF25576608E2AF03A84230AFFE" Guid="*">
+                        <File Id="filEC9C9FAE3A4A45171787DB1FBA711189" KeyPath="yes" Source="$(var.Examples)\VB\Microwave\Microwave.fsmvb" />
+                    </Component>
+                    <Component Id="cmpC79406FE808AE2449A93F3F582EB2F9E" Guid="*">
+                        <File Id="fil87347AC5765EC74620ED85DF69C70A5B" KeyPath="yes" Source="$(var.Examples)\VB\Microwave\Microwave.vb" />
+                    </Component>
+                    <Component Id="cmp1C3B522283D03F9A8495C2E5F49B6806" Guid="*">
+                        <File Id="fil1AACF969779AA8694E4F32CE6C4E824A" KeyPath="yes" Source="$(var.Examples)\VB\Microwave\Microwave.vbproj" />
+                    </Component>
+                    <Directory Id="dir821DDF1259E5D07FB97486C8E4614D15" Name="My Project">
+                        <Component Id="cmp809A4577CAAE0568186674E41D9CBAC6" Guid="*">
+                            <File Id="filA8DDC2D42A59B6B4A7E335CF84F13975" KeyPath="yes" Source="$(var.Examples)\VB\Microwave\My Project\AssemblyInfo.vb" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir75B056E5C5A5B4B02CF7BF164BA5D694" Name="Ping">
+                    <Component Id="cmpEC30858B2446A3C82CCA8045BC672747" Guid="*">
+                        <File Id="fil24D42C46A5B51E6F15A932EEA1D97D1A" KeyPath="yes" Source="$(var.Examples)\VB\Ping\Ping.exe.config" />
+                    </Component>
+                    <Component Id="cmp95D1970D7AE4E7E8C30B698CE7CDE508" Guid="*">
+                        <File Id="fil928EB14274767953B646B53ED019FDE6" KeyPath="yes" Source="$(var.Examples)\VB\Ping\Ping.fsmvb" />
+                    </Component>
+                    <Component Id="cmp1D1D05EF9949B511E72FB7A5FB193BCC" Guid="*">
+                        <File Id="filA3B15902816A503707E1D64B7ABDBB20" KeyPath="yes" Source="$(var.Examples)\VB\Ping\Ping.vb" />
+                    </Component>
+                    <Component Id="cmp9ED7B99F690D928DF734E87212D252A1" Guid="*">
+                        <File Id="filA08C3BDE97C006920920A99A70505ED4" KeyPath="yes" Source="$(var.Examples)\VB\Ping\Ping.vbproj" />
+                    </Component>
+                    <Directory Id="dir300916BABA97848E260A7EC5D6461AA5" Name="My Project">
+                        <Component Id="cmp1F013DD89A075441E96A674743316D14" Guid="*">
+                            <File Id="fil475B330455B827F24AFEAEE9ADD20563" KeyPath="yes" Source="$(var.Examples)\VB\Ping\My Project\AssemblyInfo.vb" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir0B7D213B503B147701765AAE7F905FA7" Name="Seminar">
+                    <Component Id="cmp1686FB7841A711BB1F2E3859855AE208" Guid="*">
+                        <File Id="fil4BABD9899BB17146FC89A70A6908C38B" KeyPath="yes" Source="$(var.Examples)\VB\Seminar\Seminar.fsmvb" />
+                    </Component>
+                    <Component Id="cmp4724CFB26C360913B3A6DFFB35153DC5" Guid="*">
+                        <File Id="fil58D4BF34995BC49CAEF6DC6DFF3DA762" KeyPath="yes" Source="$(var.Examples)\VB\Seminar\Seminar.vb" />
+                    </Component>
+                    <Component Id="cmp68FFE091ACC64D1D317B29AB9992A98B" Guid="*">
+                        <File Id="fil466AA20EB300D32A88788798B9DDC42E" KeyPath="yes" Source="$(var.Examples)\VB\Seminar\Seminar.vbproj" />
+                    </Component>
+                    <Directory Id="dir19E249B7467DDCD460BB7B90A1924DB9" Name="My Project">
+                        <Component Id="cmp23B8BF791F88AF20CD59446423769257" Guid="*">
+                            <File Id="fil2EE3BC66103D3D4CEF4686CA73C0475A" KeyPath="yes" Source="$(var.Examples)\VB\Seminar\My Project\AssemblyInfo.vb" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir9EBEAAEBCF85A2AF634D4EFEA524E794" Name="TrafficLight">
+                    <Component Id="cmp118E3E6F43F66049483D0F3FC6F63850" Guid="*">
+                        <File Id="filAEA65CCFED35ACD9D82427FC47BD1DD3" KeyPath="yes" Source="$(var.Examples)\VB\TrafficLight\TrafficLight.exe.config" />
+                    </Component>
+                    <Component Id="cmp3EDAACD06E891BF0E9252373298FCA4E" Guid="*">
+                        <File Id="fil5B0FAD5230AB9DB6F4382EF2D0BED82F" KeyPath="yes" Source="$(var.Examples)\VB\TrafficLight\TrafficLight.fsmvb" />
+                    </Component>
+                    <Component Id="cmpD8189A9C0955C13564B5CFBBC2377CDA" Guid="*">
+                        <File Id="filDD6501701B0C9D2F63A86BDEF27A623B" KeyPath="yes" Source="$(var.Examples)\VB\TrafficLight\TrafficLight.vb" />
+                    </Component>
+                    <Component Id="cmpAAFFD8CC78C4AB073C8F0E876F0CCE87" Guid="*">
+                        <File Id="filED6E674724E5201D036FE92E2E21450A" KeyPath="yes" Source="$(var.Examples)\VB\TrafficLight\TrafficLight.vbproj" />
+                    </Component>
+                    <Directory Id="dir4CBB671344900AA1164D45B449B7B6C5" Name="My Project">
+                        <Component Id="cmpA7BF7289D3A7F2E4ECA2DD2EAC505E45" Guid="*">
+                            <File Id="fil56AF04E8ED79673D7A91793BDD72D170" KeyPath="yes" Source="$(var.Examples)\VB\TrafficLight\My Project\AssemblyInfo.vb" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir5B2FBB98585AA76A6A319099D28D894B" Name="Turnstile">
+                    <Component Id="cmp70C55AC4D22752E9D4453001D15B826D" Guid="*">
+                        <File Id="filCE0B72E36CF953117AE99D0C64EDCDFB" KeyPath="yes" Source="$(var.Examples)\VB\Turnstile\Turnstile.fsmvb" />
+                    </Component>
+                    <Component Id="cmp7ACAF68B91B953593DFA4D27A091A510" Guid="*">
+                        <File Id="fil34ACA3E96952492599EB425745042A21" KeyPath="yes" Source="$(var.Examples)\VB\Turnstile\Turnstile.vb" />
+                    </Component>
+                    <Component Id="cmp516D6DC24EFDCC4210D29AEA5430E7B1" Guid="*">
+                        <File Id="filB88772533123304AB284C66D52F8F61F" KeyPath="yes" Source="$(var.Examples)\VB\Turnstile\Turnstile.vbproj" />
+                    </Component>
+                    <Directory Id="dir2F3AF6A2650AE0C033FC17D4E1E5A991" Name="My Project">
+                        <Component Id="cmp1D4648E02948A9420B84914B4B2AE4E1" Guid="*">
+                            <File Id="filD82527158B93D3257EF3C91DEAD102E9" KeyPath="yes" Source="$(var.Examples)\VB\Turnstile\My Project\AssemblyInfo.vb" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dirCCD5410B6CD0F34DE1F4A4FCD39B6E5F" Name="WashingMachine">
+                    <Component Id="cmp426656872F57DB369A226BA758E483FD" Guid="*">
+                        <File Id="fil3F1A89D9DE3BF7C43C136EF60678E932" KeyPath="yes" Source="$(var.Examples)\VB\WashingMachine\WashingMachine.fsmvb" />
+                    </Component>
+                    <Component Id="cmpFF9B9C49EAF168C916A991A7E8A3DE60" Guid="*">
+                        <File Id="fil410842CB63A21B4762F9DF08DD14B8AA" KeyPath="yes" Source="$(var.Examples)\VB\WashingMachine\WashingMachine.vb" />
+                    </Component>
+                    <Component Id="cmpEEFC890076E3D1DEE239E26BA4F5C0F0" Guid="*">
+                        <File Id="filAA59EC931B08C397C8262AA85EE9BEC0" KeyPath="yes" Source="$(var.Examples)\VB\WashingMachine\WashingMachine.vbproj" />
+                    </Component>
+                    <Directory Id="dir261751FB07FD9CF95FD083C7D0C317A6" Name="My Project">
+                        <Component Id="cmp4345565D2EEA9AC6605B3C7DDD6EB5D5" Guid="*">
+                            <File Id="fil7EC5256F0A63FBD5E62D4E2B1D1F9137" KeyPath="yes" Source="$(var.Examples)\VB\WashingMachine\My Project\AssemblyInfo.vb" />
+                        </Component>
+                    </Directory>
+                </Directory>
+            </Directory>
+            <Directory Id="dirCCF631EB0A72FBC4D102C77DEFBCCA86" Name="WP7">
+                <Component Id="cmp1FF21A6D55F066C935CEE03559401CE5" Guid="*">
+                    <File Id="filB13685EA6ADAD1CD71D55E9B63A2679C" KeyPath="yes" Source="$(var.Examples)\WP7\StateMachineExamplesWp7.sln" />
+                </Component>
+                <Directory Id="dirE16F2E8D08244B0A25659433099AE68A" Name="Wp7Blink">
+                    <Component Id="cmp3123F14C7625ECD91BE71A8E7F8125B5" Guid="*">
+                        <File Id="fil7AD5D8471F4FC3BBBA78E9E7ADA04EAF" KeyPath="yes" Source="$(var.Examples)\WP7\Wp7Blink\App.xaml" />
+                    </Component>
+                    <Component Id="cmp4C871741AC63EB4F8AC3139FE0918191" Guid="*">
+                        <File Id="fil0C5B0B2C2634657479364377FBC7A9BA" KeyPath="yes" Source="$(var.Examples)\WP7\Wp7Blink\App.xaml.cs" />
+                    </Component>
+                    <Component Id="cmp6DAC2B7C341F97D8865C09DCA8837B65" Guid="*">
+                        <File Id="fil73C6E2044DCD7688AE232AA513256E6B" KeyPath="yes" Source="$(var.Examples)\WP7\Wp7Blink\ApplicationIcon.png" />
+                    </Component>
+                    <Component Id="cmp550887C5AC2A03124D199D229352AB9A" Guid="*">
+                        <File Id="fil9163E14C47924F4606B3DF93EB505277" KeyPath="yes" Source="$(var.Examples)\WP7\Wp7Blink\Background.png" />
+                    </Component>
+                    <Component Id="cmpDDB19BC4C32A01BEA4A684AA0A4CC50A" Guid="*">
+                        <File Id="filFDC47033427C0AB3C8644203F93B22F9" KeyPath="yes" Source="$(var.Examples)\WP7\Wp7Blink\Blink.fsmcs" />
+                    </Component>
+                    <Component Id="cmpA74F764C2196F3ECE23DCD9A9D48B42F" Guid="*">
+                        <File Id="fil48FC19BAE398C0E2304B29527C69301F" KeyPath="yes" Source="$(var.Examples)\WP7\Wp7Blink\MainPage.xaml" />
+                    </Component>
+                    <Component Id="cmp1AF8831A80A73F6A72BD5856538883C1" Guid="*">
+                        <File Id="filA19F5A48FBE8CF25848BD3799B58248E" KeyPath="yes" Source="$(var.Examples)\WP7\Wp7Blink\MainPage.xaml.cs" />
+                    </Component>
+                    <Component Id="cmpA54838E36B624B2910D066E7A31BBEB8" Guid="*">
+                        <File Id="fil9A9AFADE2B46613FD5F06C40B0AFAE28" KeyPath="yes" Source="$(var.Examples)\WP7\Wp7Blink\SplashScreenImage.jpg" />
+                    </Component>
+                    <Component Id="cmpC02E0F1FF841A4804BD70D40F40C5A19" Guid="*">
+                        <File Id="fil0A61B8F358568ED329BC465A5671BFBA" KeyPath="yes" Source="$(var.Examples)\WP7\Wp7Blink\Wp7Blink.csproj" />
+                    </Component>
+                    <Directory Id="dirF11263E2B56E44E0B305A89792118FAB" Name="Properties">
+                        <Component Id="cmp32679FC5410315967B25A6D84FED3E50" Guid="*">
+                            <File Id="fil5B18EEB08008B61251E305CF4B660C2C" KeyPath="yes" Source="$(var.Examples)\WP7\Wp7Blink\Properties\AppManifest.xml" />
+                        </Component>
+                        <Component Id="cmpA81A16EADE604EFE0F64E150882E0D7F" Guid="*">
+                            <File Id="filF133DF863568C61482A41BD73E6C8F41" KeyPath="yes" Source="$(var.Examples)\WP7\Wp7Blink\Properties\AssemblyInfo.cs" />
+                        </Component>
+                        <Component Id="cmpEFB6AC8F7CB08C04502EC1FC8F9CA748" Guid="*">
+                            <File Id="fil9AE70FD958639BE32ED0F724A66162F6" KeyPath="yes" Source="$(var.Examples)\WP7\Wp7Blink\Properties\WMAppManifest.xml" />
+                        </Component>
+                    </Directory>
+                </Directory>
+            </Directory>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="ExamplesGroup">
+            <ComponentRef Id="cmpC7F0D7DA82B8A553BCBAF4E5420A9EFA" />
+            <ComponentRef Id="cmpD20F9B225BDCB8109EF5A0AF52723993" />
+            <ComponentRef Id="cmp45D32B8BCCB5B8B428973F248309646C" />
+            <ComponentRef Id="cmp6D04FDE771489C8F5E42C20BCC6CFB35" />
+            <ComponentRef Id="cmp8E02E3B02946344AB74A91E084EF516E" />
+            <ComponentRef Id="cmp7E5F8082DF997E5B33065FB1A3C11E7E" />
+            <ComponentRef Id="cmp86AD26564BD744177CE22A824858093F" />
+            <ComponentRef Id="cmp80AAE64BEF192A80BA808E98C7CD8E81" />
+            <ComponentRef Id="cmp966BB2FF29159E27F074D12D219C0520" />
+            <ComponentRef Id="cmp1E28D0A03E0A1694D8F93B62C74C3B48" />
+            <ComponentRef Id="cmpCBF8B332665DE33638FB11679B33D566" />
+            <ComponentRef Id="cmpF52041C19C62B25A327CFAB202BA9EA5" />
+            <ComponentRef Id="cmpBB7F203986F5F493DFEF11618D7E0C62" />
+            <ComponentRef Id="cmpD0B81C26F9559297FC3F430B285756C5" />
+            <ComponentRef Id="cmp039FB8FECA252C4D66AF7C7C4537407A" />
+            <ComponentRef Id="cmp5E9DC1AEC32FB155D9E4933BA6634AB6" />
+            <ComponentRef Id="cmpB17FD75B9F770E848E3E424E730F259A" />
+            <ComponentRef Id="cmp6E038AF4505275A9BBE3F67FDBDD310A" />
+            <ComponentRef Id="cmp746737B3A83645B8D1145CEB04345915" />
+            <ComponentRef Id="cmp31433B3374F0D5436D3D3082A69A893B" />
+            <ComponentRef Id="cmp43250907837EB159DD44935219FBD881" />
+            <ComponentRef Id="cmp5FB8C8C005249B3D85505BD2E4BA08CD" />
+            <ComponentRef Id="cmp0F88A6069139481C534E7C1926C8E2FF" />
+            <ComponentRef Id="cmp4787D69C6C93644FB0DD1E7D3B91AD09" />
+            <ComponentRef Id="cmp688567B2FD366EE00F5538D948FA3456" />
+            <ComponentRef Id="cmpD56ED54310DCA1A4A37D75FA056E0EE1" />
+            <ComponentRef Id="cmp859E305D2DC1356A0D7A4918A1E7C397" />
+            <ComponentRef Id="cmpADAE12A794D9DC9520CBF081E6F876C1" />
+            <ComponentRef Id="cmp8D12E468B9FB8FB4C2152EDE5E064FAA" />
+            <ComponentRef Id="cmp4143FD8100334530ACD7B491C0C3657E" />
+            <ComponentRef Id="cmpC858EC6568C5B38E5DAEA2CA099F8C1D" />
+            <ComponentRef Id="cmp0C4623231E07D77CAB0F7B7D002F63EE" />
+            <ComponentRef Id="cmpC02DD8C0C3007C1A1DEE960F72E76BF7" />
+            <ComponentRef Id="cmp287DBBB015794DBAFE454697C8FD1462" />
+            <ComponentRef Id="cmp882DCF7FBDB6561B38AB7FACDC84A510" />
+            <ComponentRef Id="cmpFCEA8178D3B2D03F9BB8BB09B0A19B46" />
+            <ComponentRef Id="cmp6A68746362AD196BCB71688867E239F9" />
+            <ComponentRef Id="cmp33B759FC2A32EA85D02C567B9DFCD285" />
+            <ComponentRef Id="cmp13E7AA777C466ED971D150D02785547B" />
+            <ComponentRef Id="cmp085304D37B70E67DAA76E8FC5A3D9381" />
+            <ComponentRef Id="cmp9B74F3D808340996D6178580C6B68FB7" />
+            <ComponentRef Id="cmp3FC0AB808DB9837FBE87219312B1195B" />
+            <ComponentRef Id="cmpF2F79C5FAEF48327665EEFB2E6353EA6" />
+            <ComponentRef Id="cmpD981F3E19B8FA6A528A5708F71CBDF1E" />
+            <ComponentRef Id="cmp50E541068093CE5812ADDCAEC5F01357" />
+            <ComponentRef Id="cmp149E2E286BF8D54F6E21A9BBF62817F1" />
+            <ComponentRef Id="cmp5D004B22A504D3A3BA2FAA5CB5622DD9" />
+            <ComponentRef Id="cmp5838057E8DA5AA46CE5FAC6F8F208440" />
+            <ComponentRef Id="cmpDF7EF411F9C9D05B54B70121A4BC4133" />
+            <ComponentRef Id="cmpD289265E41812A6918F7A6F670D68016" />
+            <ComponentRef Id="cmpC81094CCFE29BD8EED4C3114C13C04BD" />
+            <ComponentRef Id="cmp7C32989023E4A33683F6E204CF7F78AB" />
+            <ComponentRef Id="cmpC6D6A6AF1AB017B6251BE7895EFD4403" />
+            <ComponentRef Id="cmp7DC44D6D7810BFBFB682AB0799125F72" />
+            <ComponentRef Id="cmpDCE6E9CA9F13EA54713D86B746761CF9" />
+            <ComponentRef Id="cmpD9475082507ABAA3835F5AA3A9CC9911" />
+            <ComponentRef Id="cmp892E95F19FC4E17FBCEA5EBE61C63E16" />
+            <ComponentRef Id="cmp3B9E49CD3921D7BDCFA9F9DE53C387A3" />
+            <ComponentRef Id="cmp29B3864341C8D60A00923229C61F4FAB" />
+            <ComponentRef Id="cmpFCF1478B75D915F7389A6227BEB5D05A" />
+            <ComponentRef Id="cmpC64F8079AEC68BC51F2EFCCC4A05F13A" />
+            <ComponentRef Id="cmp2CC17C34C8AEB487F299423029F57A0C" />
+            <ComponentRef Id="cmp8D63FE683E6FE236B171D15EAF7041BA" />
+            <ComponentRef Id="cmpAF205D1A124D7FFE1D0680C22B8F53D7" />
+            <ComponentRef Id="cmp7AB7D90B8F36E2A5177DC2FBA39E0FC0" />
+            <ComponentRef Id="cmpF068C8652FB85523D56B68D4D009A853" />
+            <ComponentRef Id="cmpD55EF2C40BE1AAB370A9E3609F1D56C2" />
+            <ComponentRef Id="cmp8812611133A15C4F2E74B460DCF6845E" />
+            <ComponentRef Id="cmp8997AA6E012C8A6C8070B237618E97F0" />
+            <ComponentRef Id="cmpC008A0B7A49BB748CB563777CCA29699" />
+            <ComponentRef Id="cmp2C03807D9AD60FC589478708D6BAB1CA" />
+            <ComponentRef Id="cmp3839F00EC5B7E34D2A313CBF496F9FA9" />
+            <ComponentRef Id="cmp2CF58CE622C852032E0D10ED37A3EE47" />
+            <ComponentRef Id="cmp17E5CC423636CC727493E888A18A94C7" />
+            <ComponentRef Id="cmpC993908FDC55F29B2F2F2200BD42BA35" />
+            <ComponentRef Id="cmp3FC828A113F69A0711B633D2330D9E70" />
+            <ComponentRef Id="cmpDE013EEEE09F9E2A7EEE745EB9DB5EF4" />
+            <ComponentRef Id="cmp94AF76298A665983A74723E22FE377DB" />
+            <ComponentRef Id="cmpDCC82E8306749E486BCE4C8AC7A3905C" />
+            <ComponentRef Id="cmpDE611A6CE7D8DDE7855ED3FE3A42D2A9" />
+            <ComponentRef Id="cmpD6980477EFA9727418E10CC367AF05E8" />
+            <ComponentRef Id="cmp91B73E3CB71D3CFE475306FB237836F6" />
+            <ComponentRef Id="cmp358EF0F3E92907B51B1BAFACCD2892FF" />
+            <ComponentRef Id="cmp3B63E35053378D6880E1D1559FFE257F" />
+            <ComponentRef Id="cmp33006BC6247B1E0BC612B454505D052B" />
+            <ComponentRef Id="cmp9BBF6BAFDE2F69B9666BAE8A75852C00" />
+            <ComponentRef Id="cmp50FAFB78FE17E6ADC57CE3E8AC799059" />
+            <ComponentRef Id="cmp769ED9D2EE62CC3A9A05A3D290BF99B4" />
+            <ComponentRef Id="cmp0220757E7BC40083B98901C656DBB55A" />
+            <ComponentRef Id="cmpE53AAD460AE22AAEF6AE8FA40382BC4E" />
+            <ComponentRef Id="cmpF5E0FC0DB2D106E3900C7C5514A3A51C" />
+            <ComponentRef Id="cmp21B1E8BC2C2073B588483E57CA318D30" />
+            <ComponentRef Id="cmp22C3463D15C5D958E686CCF31A3F04D4" />
+            <ComponentRef Id="cmp52FE9B5F7018396670358D520D6B56AA" />
+            <ComponentRef Id="cmp3803EE254E8F6D92DF63189E4E1EECC9" />
+            <ComponentRef Id="cmp06CC2E39E2124C019D3C94F2EA9AD791" />
+            <ComponentRef Id="cmp7318595A7E19C3886E6F04CCB0232487" />
+            <ComponentRef Id="cmp61BA14630BF4636F124FCDE1277952FB" />
+            <ComponentRef Id="cmpBE7DC1A5B3895C6759B7B1247C42584C" />
+            <ComponentRef Id="cmp024F8D484755F4B4B7078DD9301BDAFD" />
+            <ComponentRef Id="cmpC4DD6DF01EEE991E9B84A4AF9E826BAD" />
+            <ComponentRef Id="cmpF2A1841CBDEEFAF29A2ED198313D670E" />
+            <ComponentRef Id="cmpA0C4D5BA9BB2C1532EFC9D66A79850E4" />
+            <ComponentRef Id="cmpADFAF59EE4A17A86A31FD2AA71E530D0" />
+            <ComponentRef Id="cmpE43E5B885120CCD672D9EC72B316A197" />
+            <ComponentRef Id="cmpD92D61BB8BC6C455815CECE2587A6FC3" />
+            <ComponentRef Id="cmp0337DAE6DD8DC0994B283597B3A2AE16" />
+            <ComponentRef Id="cmp1B4F9AC7F93484FC9265EF9521F5658F" />
+            <ComponentRef Id="cmpDE2067ADEAD122156BE37C3C7070E503" />
+            <ComponentRef Id="cmpEB0662CE4C91E4EC6424FF939ACD8441" />
+            <ComponentRef Id="cmp7AE3AB1832B1048E326439324A57F1DA" />
+            <ComponentRef Id="cmpC700EDFC43ED3A2651D12C46CCEE0D6B" />
+            <ComponentRef Id="cmpA0103359D91A8176CBFCF9568A8794D1" />
+            <ComponentRef Id="cmp3EB4746AF0347887887BEAF176912F73" />
+            <ComponentRef Id="cmpE6A554F3116FF3390E531A99FF5D50BB" />
+            <ComponentRef Id="cmp6A41AAB14249528A289F8B179D007D97" />
+            <ComponentRef Id="cmpD7E93DC105700C5B9E4C86E450CFF08B" />
+            <ComponentRef Id="cmp4DC8C5F080047CC4A22F711D53715856" />
+            <ComponentRef Id="cmp8C27CEAF7F394F275EFC72499EB85E0D" />
+            <ComponentRef Id="cmp9642E4CAFD4C9FDC152A50A699002190" />
+            <ComponentRef Id="cmp98A374346F1BBBFEDADDD79F7836AF6F" />
+            <ComponentRef Id="cmpCCEFB6AB3F5AC234016C67DA8BCAF935" />
+            <ComponentRef Id="cmp9EF784050DA93B94DCDCCB2E6035E163" />
+            <ComponentRef Id="cmp1E7D8BE90E715CA3360E7E7858BA339B" />
+            <ComponentRef Id="cmp12DACA9DE6778CA68B9E1AAFC9577A81" />
+            <ComponentRef Id="cmp7198FC7C84BAB7BBF3729FC8059E5239" />
+            <ComponentRef Id="cmp63FDC4234F48B8B7DE73E9B8958004AF" />
+            <ComponentRef Id="cmpD9080A6D52031DDB6B4B0570180C8012" />
+            <ComponentRef Id="cmp34C2650897E9B79FAD85A5CF147D04D1" />
+            <ComponentRef Id="cmp251829E67CE143D8114A09CA7CF79664" />
+            <ComponentRef Id="cmp3514E5DF08BC3FD66BE2CA43910A4E95" />
+            <ComponentRef Id="cmp65EE77B566ADAA3D47A3A270E267D2BC" />
+            <ComponentRef Id="cmpACCDF593564D195030ACB6012F77E0E0" />
+            <ComponentRef Id="cmp4EB2121B5D3F4B9E48CF3F6D555FE2CE" />
+            <ComponentRef Id="cmp16ED12425739C10E71C0CE21C60FD907" />
+            <ComponentRef Id="cmpF9159A5AB28BE7828BF42A90EDE698F2" />
+            <ComponentRef Id="cmpDD1CA85A9AF5A4302BB000FDB15A60DA" />
+            <ComponentRef Id="cmpB5C9EAC60436BEAF47009F04FC6F69CB" />
+            <ComponentRef Id="cmp7680613EEC8F9E2B3C9175A333AD834D" />
+            <ComponentRef Id="cmpC913EED3602E865B30D3950317886EF3" />
+            <ComponentRef Id="cmp10AF8515FC99021AE14860AB70000CD4" />
+            <ComponentRef Id="cmp0C45C13A03C70F234C39EC6E2A23AB62" />
+            <ComponentRef Id="cmpF1422E351BCEC7412CCA3F0DF844F186" />
+            <ComponentRef Id="cmpCE7C453D7DFA19869F1A91735DEEECA0" />
+            <ComponentRef Id="cmp574F52B885690A29149F2B74FBEBFADD" />
+            <ComponentRef Id="cmp3CDB2F8FB58C2656D1726215D6178F09" />
+            <ComponentRef Id="cmp3E4FB63C88904532F48D73134D336194" />
+            <ComponentRef Id="cmp6C3EC8260B584DDAB5B67155833D04CA" />
+            <ComponentRef Id="cmpBEDDF1470ED9BB18DD2C40ECD7D3237F" />
+            <ComponentRef Id="cmp5FB352CE1F8DC8BAD4C252CC3C923C6D" />
+            <ComponentRef Id="cmp5CC1D62F2B1AEE5C5BF928429C3BF1DE" />
+            <ComponentRef Id="cmpC96BE2543116A03C9CD998F44EB7BDA9" />
+            <ComponentRef Id="cmp8A18D73C5C77C588C99E1A74BCA4E02D" />
+            <ComponentRef Id="cmp1A183B44F9E99EBBAE931F06991914EA" />
+            <ComponentRef Id="cmp69F9E616B9A1878E48590A8A23EE931A" />
+            <ComponentRef Id="cmp3ECF76DF4B838D3CB4CD757364539C6C" />
+            <ComponentRef Id="cmp948797AC8BD6B62F0BEDA050309C93FA" />
+            <ComponentRef Id="cmp7E640DF6BC0D71A105D8FD7FE1968B4B" />
+            <ComponentRef Id="cmp9EDE3B6D57D8D572317E2C524B3EA9C8" />
+            <ComponentRef Id="cmp54AD088E5AED9A62BE3A3E518665E095" />
+            <ComponentRef Id="cmp971BE6AF25576608E2AF03A84230AFFE" />
+            <ComponentRef Id="cmpC79406FE808AE2449A93F3F582EB2F9E" />
+            <ComponentRef Id="cmp1C3B522283D03F9A8495C2E5F49B6806" />
+            <ComponentRef Id="cmp809A4577CAAE0568186674E41D9CBAC6" />
+            <ComponentRef Id="cmpEC30858B2446A3C82CCA8045BC672747" />
+            <ComponentRef Id="cmp95D1970D7AE4E7E8C30B698CE7CDE508" />
+            <ComponentRef Id="cmp1D1D05EF9949B511E72FB7A5FB193BCC" />
+            <ComponentRef Id="cmp9ED7B99F690D928DF734E87212D252A1" />
+            <ComponentRef Id="cmp1F013DD89A075441E96A674743316D14" />
+            <ComponentRef Id="cmp1686FB7841A711BB1F2E3859855AE208" />
+            <ComponentRef Id="cmp4724CFB26C360913B3A6DFFB35153DC5" />
+            <ComponentRef Id="cmp68FFE091ACC64D1D317B29AB9992A98B" />
+            <ComponentRef Id="cmp23B8BF791F88AF20CD59446423769257" />
+            <ComponentRef Id="cmp118E3E6F43F66049483D0F3FC6F63850" />
+            <ComponentRef Id="cmp3EDAACD06E891BF0E9252373298FCA4E" />
+            <ComponentRef Id="cmpD8189A9C0955C13564B5CFBBC2377CDA" />
+            <ComponentRef Id="cmpAAFFD8CC78C4AB073C8F0E876F0CCE87" />
+            <ComponentRef Id="cmpA7BF7289D3A7F2E4ECA2DD2EAC505E45" />
+            <ComponentRef Id="cmp70C55AC4D22752E9D4453001D15B826D" />
+            <ComponentRef Id="cmp7ACAF68B91B953593DFA4D27A091A510" />
+            <ComponentRef Id="cmp516D6DC24EFDCC4210D29AEA5430E7B1" />
+            <ComponentRef Id="cmp1D4648E02948A9420B84914B4B2AE4E1" />
+            <ComponentRef Id="cmp426656872F57DB369A226BA758E483FD" />
+            <ComponentRef Id="cmpFF9B9C49EAF168C916A991A7E8A3DE60" />
+            <ComponentRef Id="cmpEEFC890076E3D1DEE239E26BA4F5C0F0" />
+            <ComponentRef Id="cmp4345565D2EEA9AC6605B3C7DDD6EB5D5" />
+            <ComponentRef Id="cmp1FF21A6D55F066C935CEE03559401CE5" />
+            <ComponentRef Id="cmp3123F14C7625ECD91BE71A8E7F8125B5" />
+            <ComponentRef Id="cmp4C871741AC63EB4F8AC3139FE0918191" />
+            <ComponentRef Id="cmp6DAC2B7C341F97D8865C09DCA8837B65" />
+            <ComponentRef Id="cmp550887C5AC2A03124D199D229352AB9A" />
+            <ComponentRef Id="cmpDDB19BC4C32A01BEA4A684AA0A4CC50A" />
+            <ComponentRef Id="cmpA74F764C2196F3ECE23DCD9A9D48B42F" />
+            <ComponentRef Id="cmp1AF8831A80A73F6A72BD5856538883C1" />
+            <ComponentRef Id="cmpA54838E36B624B2910D066E7A31BBEB8" />
+            <ComponentRef Id="cmpC02E0F1FF841A4804BD70D40F40C5A19" />
+            <ComponentRef Id="cmp32679FC5410315967B25A6D84FED3E50" />
+            <ComponentRef Id="cmpA81A16EADE604EFE0F64E150882E0D7F" />
+            <ComponentRef Id="cmpEFB6AC8F7CB08C04502EC1FC8F9CA748" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

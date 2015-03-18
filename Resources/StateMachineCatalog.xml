@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Option 1: No admin right, local to current user
+ Visual Studio -> Menu Tools -> Options -> Text Editor -> XML -> Miscellaneous. 
+ In Caching section, click on Browse and select the directory where this file is located
+ 
+Option 2: Admin right required, visibility to all users
+Copy this file and StateMachineDotNet-v1.xsd to the following diretory depending on the Visual Studio version
+VS 2005: "C:\Program Files\Microsoft Visual Studio 8.0\Xml\Schemas"
+VS 2008: "C:\Program Files\Microsoft Visual Studio 9.0\Xml\Schemas"
+VS 2010: "C:\Program Files\Microsoft Visual Studio 10.0\Xml\Schemas"
+
+-->
+<SchemaCatalog xmlns="http://schemas.microsoft.com/xsd/catalog">
+  <Schema href="StateMachineDotNet-v1.xsd" targetNamespace="http://www.stateforge.com/StateMachineDotNet-v1" />
+  <Association extension="fsmcs" schema="StateMachineDotNet-v1.xsd"/>
+</SchemaCatalog>

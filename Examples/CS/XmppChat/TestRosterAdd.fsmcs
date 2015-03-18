@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.stateforge.com/StateMachineDotNet-v1
+                                     http://www.stateforge.com/xsd/StateMachineDotNet-v1.xsd" >
+    <!-- general settings -->
+    <settings asynchronous="true" namespace="StateForge.Examples.XmppChat">
+        <object instance="chatScenario" class="ChatScenario"/>
+        <object instance="alice" class="Client"/>
+        <object instance="bob" class="Client"/>
+    </settings>
+
+    <!-- events -->
+    <events>
+        <eventSource name="IChatScenario" file="IChatScenario.cs"/>
+        <eventSource name="Timer">
+            <timer id="EvTimerMaxDuration" name="TimerMaxDuration"/>
+            <timer id="EvTimerIdleDuration" name="TimerIdleDuration"/>
+        </eventSource>
+    </events>
+
+    <!-- States -->
+    <state name="XmppTestRosterAdd">
+        <transition event="EvTimerMaxDuration" nextState="Alice_End">
+            <action>chatScenario.Error = "Maximum duration expired"</action>
+        </transition>
+        <!-- State Idle -->
+        <state name="Idle">
+            <transition event="Start" nextState="Alice_Login">
+                <timerStart timer="TimerMaxDuration" duration="chatScenario.MaxDuration"/>
+            </transition>
+        </state>
+        <!-- State Alice_Login -->
+        <state name="Alice_Login" description="Alice logins">
+            <onEntry action="alice.Open()"/>
+            <transition event="LoggedIn" nextState="Alice_WaitRosterEnd">
+                <condition>jid.User == "Alice"</condition>
+            </transition>
+        </state>
+        <!-- State Alice_WaitRosterEnd -->
+        <state name="Alice_WaitRosterEnd" description="Alice waits for roster end">
+            <transition event="RosterEnd" nextState="Alice_RosterAdd"/>
+        </state>
+        <!-- State Alice_RosterAdd -->
+        <state name="Alice_RosterAdd" description="Alice adds bob in roster">
+            <onEntry action="alice.RosterAddItem(bob.Jid)"/>
+            <transition event="RosterItem" nextState="Alice_Closing">
+                <condition><![CDATA[jid.Equals(alice.Jid) && (item.Jid.Equals(bob.Jid))]]></condition>
+            </transition>
+        </state>
+        <!-- State Alice_Closing -->
+        <state name="Alice_Closing" description="Alice is closing">
+            <onEntry action="alice.Close()"/>
+            <transition event="Closed" condition="jid.User == alice.Jid.User" nextState="Alice_End"/>
+        </state>
+        <!-- State Alice_End -->
+        <state name="Alice_End" kind="final"/>
+    </state>
+</sm:StateMachine>

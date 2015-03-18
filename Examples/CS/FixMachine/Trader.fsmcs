@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.stateforge.com/StateMachineDotNet-v1
+                                     http://www.stateforge.com/xsd/StateMachineDotNet-v1.xsd" >
+
+    <!-- general settings -->
+    <settings asynchronous="false" namespace="StateForge.Examples.FixMachine">
+        <object instance="trader" class="Trader"/>
+        <using>QuickFix</using>
+    </settings>
+    <!-- events -->
+    <events>
+        <eventSource name="FixMachine">
+            <event id="EvCreate">
+                <parameter name="sessionID" type="SessionID"/>
+            </event>
+            <event id="EvLogon">
+                <parameter name="sessionID" type="SessionID"/>
+            </event>
+            <event id="EvLogout">
+                <parameter name="sessionID" type="SessionID"/>
+            </event>
+            <event id="EvToAdmin">
+                <parameter name="message" type="Message"/>
+                <parameter name="sessionID" type="SessionID"/>
+            </event>
+            <event id="EvToApp">
+                <parameter name="message" type="Message"/>
+                <parameter name="sessionID" type="SessionID"/>
+            </event>
+            <event id="EvFromAdmin">
+                <parameter name="message" type="Message"/>
+                <parameter name="sessionID" type="SessionID"/>
+            </event>
+            <event id="EvFromApp">
+                <parameter name="message" type="Message"/>
+                <parameter name="sessionID" type="SessionID"/>
+            </event>
+        </eventSource>
+    </events>
+
+    <!-- States -->
+    <state name="Trader">
+        <state name="Init">
+        </state>
+        <state name="LoggedIn">
+        </state>
+    </state>
+</sm:StateMachine>

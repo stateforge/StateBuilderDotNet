@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 >
+
+    <!-- general settings -->
+    <settings asynchronous="true" namespace="StateForge.Examples.TrafficLight">
+        <object instance="light" class="Light"/>
+        <context class="TrafficLightContext"/>
+    </settings>
+    <!-- events -->
+    <events>
+        <eventSource name="TrafficLight" feeder="TrafficLight">
+            <event id="Start">
+                <parameter name="message" type="String"/>
+            </event>
+            <event id="Stop"/>
+        </eventSource>
+        <eventSource name="TimerEvents">
+            <timer id="EvTimerMaxDuration" name="MaxDuration"/>
+            <timer id="EvTimerRed" name="TimerRed"/>
+            <timer id="EvTimerYellow" name="TimerYellow"/>
+            <timer id="EvTimerGreen" name="TimerGreen"/>
+        </eventSource>
+    </events>
+
+    <!-- States -->
+    <state name="Root">
+        <onEntry>
+            <timerStart timer="MaxDuration" duration="light.TimerMaxDuration"/>
+        </onEntry>
+        <transition event="EvTimerMaxDuration" nextState="End"/>
+        <state name="Red">
+            <onEntry>
+                <action>light.TurnOnRed()</action>
+                <timerStart timer="TimerRed" duration="light.TimerRedDuration"/>
+            </onEntry>
+            <onExit  action="light.TurnOffRed()"/>
+            <transition event="EvTimerRed" nextState="Green"/>
+        </state>
+        <state name="Yellow">
+            <onEntry action="light.TurnOnYellow()">
+                <timerStart timer="TimerYellow" duration="light.TimerYellowDuration"/>
+            </onEntry>
+            <onExit  action="light.TurnOffYellow()"/>
+            <transition event="EvTimerYellow" nextState="Red"/>
+        </state>
+        <state name="Green">
+            <onEntry action="light.TurnOnGreen()">
+                <timerStart timer="TimerGreen" duration="light.TimerGreenDuration"/>
+            </onEntry>
+            <onExit  action="light.TurnOffGreen()"/>
+            <transition event="EvTimerGreen" nextState="Yellow"/>
+        </state>
+        <state name="End" kind="final"/>
+    </state>
+</sm:StateMachine>

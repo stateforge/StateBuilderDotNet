@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.stateforge.com/StateMachineDotNet-v1
+                                     http://www.stateforge.com/xsd/StateMachineDotNet-v1.xsd" >
+    <!-- general settings -->
+    <settings asynchronous="true" namespace="StateForge.Examples.CallManager">
+        <object instance="callControl" class="CallControl"/>
+        <object instance="callScenario" class="CallScenario"/>
+        <object instance="config" class="CallBase01Config"/>
+    </settings>
+
+    <!-- events -->
+    <events>
+        <eventSource name="IManagementAction" file="IManagement.cs" feeder="CallScenario"/>
+        <eventSource name="ICallEvent" file="ICallEvent.cs" feeder="CallScenario"/>
+        <!--<eventSource name="ICallAction" file="ICallAction.cs" feeder="CallManager"/>-->
+        <eventSource name="Timers">
+            <timer id="EvTimerTestMaxDuration" name="TestMaxDuration"/>
+            <!--<timer id="EvTimerCallDuration" name="CallDuration"/>
+            <timer id="EvTimerRingDuration" name="RingDuration"/>-->
+        </eventSource>
+    </events>
+
+    <!-- States -->
+    <state name="CallBase01">
+        <!--<transition event="EvTimerTestMaxDuration" nextState="Error">
+            <action>callManager.Error = "EvTimerTestMaxDuration"</action>
+        </transition>-->
+        <!-- 
+       <transition event="EvStop"                 nextState="Error">
+            <action>callManager.Error = "EvStop"</action>
+        </transition>
+        <transition event="EvTokenInvalid"         nextState="Error">
+            <action>callManager.Error = "An invalid call token has been used"</action>
+        </transition>-->
+
+        <!-- State Idle -->
+        <state name="Idle">
+            <transition event="Start" nextState="Running">
+                <timerStart timer="TestMaxDuration" duration="config.TestMaxDuration"/>
+            </transition>
+        </state>
+        <!-- State Running -->
+        <state name="Running">
+            <parallel nextState="End">
+                <!-- Machine Alice -->
+                <state name="Alice">
+                    <!-- State A_Setup_B -->
+                    <state name="A_Setup_B" description="A calls B and waits for being alerted or for call establishment">
+                        <onEntry>
+                            <action>callControl.Setup("Alice", "Bob", "AB")</action>
+
+                        </onEntry>
+                        <transition event="EvTimerTestMaxDuration" nextState="End">
+                            <action>callControl.Error = "EvTimerTestMaxDuration"</action>
+                        </transition>
+                        <transition event="IncomingConnection" nextState="A_End">
+                            <condition>connection.Endpoint.Name == "CpeB"</condition>
+
+                        </transition>
+                    </state>
+
+                    <!-- State A_Alerting_B -->
+                    <!--<state  name="A_Alerting_B" description="A waits for the call to be established">
+                        <transition event="EvCallEstablished" nextState="A_Established_B">
+                            <condition>call.Token == callManager.Token("AB")</condition>
+                        </transition>
+                    </state>-->
+
+                    <!-- State A_Established_B -->
+                    <!--<state  name="A_Established_B" description="A waits for the CallDuration timer to expire">
+                        <onEntry>
+                            <timerStart timer="CallDuration" duration="config.CallDuration"/>
+                        </onEntry>
+                        <transition event="EvTimerCallDuration" nextState="A_Release_B"/>
+                    </state>-->
+
+                    <!-- State A_Release_B -->
+                    <!--<state name="A_Release_B" description="A hangs up B">
+                        <onEntry>
+                            <action>callManager.Clear(callManager.Token("AB"))</action>
+                        </onEntry>
+                        <transition event="EvConnectionReleased">
+                            <condition>connection.Call.Token == callManager.Token("AB")</condition>
+                        </transition>
+                        <transition event="EvCallCleared" nextState="A_End">
+                            <condition>call.Token == callManager.Token("AB")</condition>
+                        </transition>
+                    </state>-->
+
+                    <!-- State End -->
+                    <state name="A_End" kind="final"/>
+                </state>
+                <!-- Machine Alice -->
+
+                <!-- Machine Bob -->
+                <state name="Bob">
+
+                    <!-- State B_Waiting_A -->
+                    <state name="B_Waiting_A" description="B waits for incoming call from A">
+                        <transition event="IncomingConnection" nextState="B_Waiting_A">
+                            <condition>connection.Endpoint.Name == "CpeB"</condition>
+                            <action>callControl.SetToken("BA1", connection.Call.Token)</action>
+                        </transition>
+                        <transition event="IncomingConnection" nextState="End">
+                        </transition>
+                        <transition event="EvTimerTestMaxDuration">
+                            <action>callControl.Error = "EvTimerTestMaxDuration"</action>
+                        </transition>
+                    </state>
+
+                    <!-- State B_Ringing_A -->
+                    <!--<state name="B_Ringing_A" description="B rings until the RingDuration timer expires and answers">
+                        <onEntry>
+                            <timerStart timer="RingDuration" duration="config.RingDuration"/>
+                        </onEntry>
+                        <transition event="EvTimerRingDuration" nextState="B_Established_A">
+                            <action>callManager.Answer(callManager.Token("BA1"))</action>
+                        </transition>
+                    </state>-->
+
+                    <!-- State B_Established_A -->
+                    <!--<state name="B_Established_A" description="B waits for the CallDuration timer to expire">
+                        <transition event="EvTimerCallDuration" nextState="B_WaitReleasing_A"/>
+                    </state>-->
+
+                    <!-- State B_WaitReleasing_A -->
+                    <!--<state name="B_WaitReleasing_A" description="B waits for the call to be releasing">
+                        <transition event="EvConnectionReleasing" nextState="B_Releasing_A">
+                            <condition>connection.Call.Token == callManager.Token("BA1")</condition>
+                        </transition>
+                    </state>-->
+
+                    <!-- State B_Releasing_A -->
+                    <!--<state name="B_Releasing_A" description="B waits for the call to be released">
+                        <transition event="EvConnectionReleased">
+                            <condition>connection.Call.Token == callManager.Token("BA1")</condition>
+                        </transition>
+                        <transition event="EvCallCleared" nextState="B_End">
+                            <condition>call.Token == callManager.Token("BA1")</condition>
+                        </transition>
+                    </state>-->
+
+                    <!-- State End -->
+                    <state name="B_End" kind="final"/>
+                </state>
+                <!-- Machine Called -->
+            </parallel>
+        </state>
+        <!-- Running state -->
+
+        <!-- End state -->
+        <state name="End" kind="final"/>
+    </state>
+    <!-- Top state -->
+</sm:StateMachine>

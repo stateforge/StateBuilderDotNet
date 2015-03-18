@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="30475eb5-e334-428d-a945-71a3aec10897" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <introduction>
+            <para>Here is the documentation for the Ping example</para>
+            <autoOutline/>
+        </introduction>
+        <section address="Description">
+            <title>Description</title>
+            <content>
+                <para>
+                    The Ping example uses the ICMP protocol to ping a remote host.
+                </para>
+            </content>
+        </section>
+
+        <section address="PingExampleFsm">
+            <title>Finite State Machine Markup Language</title>
+            <content>
+                <para>
+                    The following code represents the state machine in the FsmML format:
+                </para>
+                <code source="..\Examples\CS\Ping\Ping.fsmcs" language="xml"/>
+            </content>
+        </section>
+
+        <section address="PingCode">
+            <title>C# Code</title>
+            <content>
+                <para>
+                    Here the Ping C# code:
+                </para>
+                <code source="..\Examples\CS\Ping\Ping.cs" language="c#"/>
+            </content>
+        </section>
+        <relatedTopics>
+            <link xlink:href="e255e8c9-98cd-4479-bb31-bb106056f709">List of examples</link>
+        </relatedTopics>
+    </developerConceptualDocument>
+
+</topic>

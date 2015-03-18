@@ -1,0 +1,80 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <PropertyGroup>
+        <StateBuilderDotNetDirectory>$(Registry:HKEY_CURRENT_USER\Software\StateForge\StateBuilderDotNet@InstallDir)</StateBuilderDotNetDirectory>
+        <StateBuilderDotNetSrcDirectory>$(Registry:HKEY_CURRENT_USER\Software\StateForge\StateBuilderDotNetSrc@InstallDir)</StateBuilderDotNetSrcDirectory>
+    </PropertyGroup>
+
+    <!-- Where are the executable and the library -->
+    <PropertyGroup Condition="!Exists('$(StateBuilderDotNetSrcDirectory)')">
+        <StateBuilderDotNetExecutable>$(StateBuilderDotNetDirectory)\bin\StateBuilderDotNet.exe</StateBuilderDotNetExecutable>
+        <StateMachineDotNetLibrary>$(StateBuilderDotNetDirectory)\lib\StateForge.StateMachine.dll</StateMachineDotNetLibrary>
+        <StateMachineDotNetLibrary Condition="'$(TargetFrameworkProfile)' == 'WindowsPhone71'">$(StateBuilderDotNetDirectory)\lib\StateForge.StateMachineWp7.dll</StateMachineDotNetLibrary>
+    </PropertyGroup>
+
+    <!-- Only used for source build-->
+    <PropertyGroup Condition="Exists('$(StateBuilderDotNetSrcDirectory)')">
+        <StateBuilderDotNetExecutable Condition="'$(Configuration)' == 'Debug'">$(StateBuilderDotNetSrcDirectory)\StateBuilderGui\bin\Debug\StateBuilderDotNet.exe</StateBuilderDotNetExecutable>
+        <StateBuilderDotNetExecutable Condition="'$(Configuration)' == 'Release'">$(StateBuilderDotNetSrcDirectory)\StateBuilderGui\bin\Release\AllInOne\StateBuilderDotNet.exe</StateBuilderDotNetExecutable>
+        <StateMachineDotNetLibrary>$(StateBuilderDotNetSrcDirectory)\StateMachine\bin\$(Configuration)\StateForge.StateMachine.dll</StateMachineDotNetLibrary>
+        <StateMachineDotNetLibrary Condition="'$(TargetFrameworkProfile)' == 'WindowsPhone71'">$(StateBuilderDotNetSrcDirectory)\StateMachineWp7\bin\$(Configuration)\StateForge.StateMachineWp7.dll</StateMachineDotNetLibrary>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <BuildDependsOn>
+            StateBuilderCs;
+            StateBuilderVb;
+            $(BuildDependsOn)
+        </BuildDependsOn>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <CleanDependsOn>
+            $(CleanDependsOn);
+            StateBuilderCsClean;
+            StateBuilderVbClean;
+        </CleanDependsOn>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <Reference Include="StateForge.StateMachine">
+            <HintPath>$(StateMachineDotNetLibrary)</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <!-- C#-->
+    <ItemGroup>
+        <StateMachinesFilesCs Include="*.fsmcs"/>
+    </ItemGroup>
+
+    <Target Name="StateBuilderCs" Inputs="@(StateMachinesFilesCs)" Outputs="@(StateMachinesFilesCs-&gt;'%(Filename)Fsm.cs')">
+        <Exec Command="&quot;$(StateBuilderDotNetExecutable)&quot; -b &quot;%(StateMachinesFilesCs.FullPath)&quot;" Outputs="@(StateMachinesFilesCs->'%(Filename)Fsm.cs')">
+            <Output ItemName="Compile" TaskParameter="Outputs" />
+        </Exec>
+    </Target>
+
+    <Target Name="StateBuilderCsClean">
+        <ItemGroup>
+            <StateMachinesGeneratedFilesCs Include="@(StateMachinesFilesCs->'%(Filename)Fsm.cs')"/>
+        </ItemGroup>
+        <Delete Files="@(StateMachinesGeneratedFilesCs)"/>
+    </Target>
+
+    <!-- VB -->
+    <ItemGroup>
+        <StateMachinesFilesVb Include="*.fsmvb"/>
+    </ItemGroup>
+
+    <Target Name="StateBuilderVb" Inputs="@(StateMachinesFilesVb)" Outputs="@(StateMachinesFilesVb-&gt;'%(Filename)Fsm.vb')">
+        <Exec Command="&quot;$(StateBuilderDotNetExecutable)&quot; -b &quot;%(StateMachinesFilesVb.FullPath)&quot;" Outputs="@(StateMachinesFilesVb->'%(Filename)Fsm.vb')">
+            <Output ItemName="Compile" TaskParameter="Outputs" />
+        </Exec>
+    </Target>
+
+    <Target Name="StateBuilderVbClean">
+        <ItemGroup>
+            <StateMachinesGeneratedFilesVb Include="@(StateMachinesFilesVb->'%(Filename)Fsm.vb')"/>
+        </ItemGroup>
+        <Delete Files="@(StateMachinesGeneratedFilesVb)"/>
+    </Target>
+</Project>

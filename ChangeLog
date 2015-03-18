@@ -1,0 +1,86 @@
+
+2010-09-09
+  * Make namespace attribute NOT optional
+  
+2010-09-10
+  * Add moq
+  * Add StateBuuilder.targets  
+  
+2010-09-11
+  * Removed OnStateChanged
+  
+2010-09-12
+  * Add LightTestRhino
+  * Add StateMachine.GetTranistionName(TransitionType transition) and fill ProcessTransition{Begin,End} with the transition name
+  * Add StateBuilderClean target
+  * Add test when output file cannot be written because of permission issue
+
+2010-09-14
+  * add nunit integration in LightTestRhinoTest.csproj
+  * add moq.dll, nunit.dll and CommmandLine in svn
+  * compile with msbuild.exe
+  * Install Svn.exe from SlikSvn
+  * Upgrade TortoiseSVN to 1.6.10, Build 19898
+  * CruiseControl kickoff
+
+2010-09-15
+  * add gallio/nunit
+
+2010-09-15
+  * PartCover
+
+2010-09-18
+  * Done with CCNet
+  * Generate Msi
+  * Add UI to Msi
+
+2010-09-19
+  * Generate build number
+
+2010-09-20
+  * remember last installed directory
+  * use INSTALLROOT to msiexec
+  * Add icons to fsm file and StateBuilder
+  * Add "Generate with StateBuilderDotNet" when right clicking on fsm file
+  * Set install dir to user directory
+
+2010-09-21
+  * Install StateBuilderDotNet.targets
+  * Use registry to localte the StateBuilderDotNet executable and StateMachine library
+
+2010-09-22
+ * Install StateMachineDotNet.xsd in Resources
+ * Use InitialTargets="GetBuildNumber;SetEnvStateBuilderDotNetSrcDirectory" in build.proj
+ * Add catalog to enable intellisense
+ * Add Bootstrapper
+
+ 2010-09-23
+  * Use dotNetInstaller to create a Setup.exe
+
+ 2010-09-24
+   * Support for VS 2008, framework 2.0, 3.5 and 4.0 
+
+ 2010-09-25
+   * Add ItemTemplate for VS 2008 and 2010
+   * add dns entry in C:\Windows\System32\drivers\etc\host
+
+ 2010-09-27
+   * change StateMachineDotNet.xsd in StateMachineDotNet-v1.xsd
+   * change namespace prefix from smdotnet to sm
+   * Start documentation with Sandcastle
+
+ 2010-09-28
+   * add class and state diagram
+   * add schemaLocation to fsm file so intellisense works without configuration
+   * double on the error list in VS and open the file
+   * xsd.exe invoked automatically
+
+ 2010-10-02
+   * Add doc examples
+
+ 2010-10-03
+   * change Context visibility
+   * Add more doc for examples
+   * add Doc target and integrate into ccnet
+
+

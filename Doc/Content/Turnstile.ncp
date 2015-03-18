@@ -1,0 +1,156 @@
+<Project>
+  <Name>Turnstile</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.3.1512.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Turnstile</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Turnstile</Name>
+        <Access>Public</Access>
+        <Location left="498" top="35" />
+        <Size width="196" height="179" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private TurnstileContext context</Member>
+        <Member type="Field">Barrier barrier</Member>
+        <Member type="Field">Alarm alarm</Member>
+        <Member type="Field">CoinMachine coinMachine</Member>
+        <Member type="Method">public void Coin()</Member>
+        <Member type="Method">public void Pass()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>TurnstileContext</Name>
+        <Access>Internal</Access>
+        <Location left="402" top="484" />
+        <Size width="434" height="179" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">Barrier barrier</Member>
+        <Member type="Field">Alarm alarm</Member>
+        <Member type="Field">CoinMachine coinMachine</Member>
+        <Member type="Constructor">public TurnstileContext(Barrier barrier, Alarm alarm, CoinMachine coinMachine)</Member>
+        <Member type="Method">public void EvCoin()</Member>
+        <Member type="Method">public void EvPass()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Barrier</Name>
+        <Access>Public</Access>
+        <Location left="934" top="298" />
+        <Size width="162" height="127" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void DoLock()</Member>
+        <Member type="Method">public void DoUnlock()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Alarm</Name>
+        <Access>Public</Access>
+        <Location left="755" top="298" />
+        <Size width="162" height="127" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void DoAlertStaff()</Member>
+        <Member type="Method">public void DoRing()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>CoinMachine</Name>
+        <Access>Public</Access>
+        <Location left="573" top="298" />
+        <Size width="162" height="127" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void DoAccept()</Member>
+        <Member type="Method">public void DoReject()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="0" second="2">
+        <Label>creates</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>684</X>
+          <Y>253</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>956</X>
+          <Y>260</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="0" second="1">
+        <Label>creates and uses</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>555</X>
+          <Y>241</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>444</X>
+          <Y>418</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="0" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>655</X>
+          <Y>239</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="0" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>667</X>
+          <Y>459</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>667</X>
+          <Y>450</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="3">
+        <Label>uses</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>728</X>
+          <Y>459</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>774</X>
+          <Y>459</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>

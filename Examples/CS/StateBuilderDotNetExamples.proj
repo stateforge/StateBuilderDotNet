@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project InitialTargets="RemoveEnvStateBuilderDotNetSrcDirectory" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />
+  <Import Project="$(MSBuildExtensionsPath)\ExtensionPack\MSBuild.ExtensionPack.tasks" />
+  
+  <PropertyGroup>
+    <SolutionFileName>StateBuilderDotNetExamplesVs2010.sln</SolutionFileName>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!--MSBuild 4.0 property-->
+    <ProgramFiles32>$(MSBuildProgramFiles32)</ProgramFiles32>
+    <!--Use OS env vars as a fallback-->
+    <ProgramFiles32 Condition=" '' == '$(ProgramFiles32)'">$(ProgramFiles%28x86%29)</ProgramFiles32>
+    <ProgramFiles32 Condition=" '' == '$(ProgramFiles32)' ">$(ProgramFiles)</ProgramFiles32>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <NUnit-ToolPath>$(ProgramFiles32)\NUnit 2.5.10\bin\net-2.0</NUnit-ToolPath>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <Configuration>Release</Configuration>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <!-- where to put unit test and cover result -->
+    <ReportDir>Report</ReportDir>
+  </PropertyGroup>
+  
+  <!-- This registry key is set only for source build and need to be removed-->
+  <Target Name="RemoveEnvStateBuilderDotNetSrcDirectory">
+    <MSBuild.ExtensionPack.Computer.Registry TaskAction="DeleteKey" RegistryHive="CurrentUser" Key="Software\StateForge\StateBuilderDotNetSrc"/>
+  </Target>
+  
+  <Target Name="Build" DependsOnTargets="CoreBuild;NUnitTests">
+  </Target>
+
+  <Target Name="CoreBuild">
+    <Message Importance="high" Text="Building solution $(SolutionFileName)"/>
+    <MSBuild Projects="$(SolutionFileName)" ContinueOnError="false" Properties="Configuration=$(Configuration)">
+      <Output ItemName="BuildOutput" TaskParameter="TargetOutputs"/>
+    </MSBuild>
+  </Target>
+
+  <Target Name="Clean" DependsOnTargets="NUnitTestsClean">
+    <MSBuild Projects="$(SolutionFileName)" ContinueOnError="false" Targets="Clean"
+             Properties="Configuration=$(Configuration)" />
+  </Target>
+  
+  <!-- NUnit -->
+  <Target Name="NUnitTests" DependsOnTargets="NUnitTestsClean;CoreBuild">
+    <MakeDir Directories="$(ReportDir)"/>
+
+    <CreateItem Include="**\bin\$(Configuration)\*Test*.dll" Exclude="TestAll\**">
+      <Output TaskParameter="Include" ItemName="TestAssemblies" />
+    </CreateItem>
+    <NUnit Assemblies="@(TestAssemblies)"
+           ToolPath="$(NUnit-ToolPath)"
+           OutputXmlFile="$(ReportDir)\TestResult.xml" 
+           DisableShadowCopy="true"/>
+  </Target>
+
+  <Target Name="NUnitTestsClean">
+    <Delete Files="$(ReportDir)\TestResult.xml"/>
+  </Target>
+  
+</Project>

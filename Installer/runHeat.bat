@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\WiX Toolset v3.6\bin\heat.exe" dir "../Examples" -cg ExamplesGroup -ag -gg -scom -sreg -sfrag -srd -dr Examples -out "Examples.wxs" -var var.Examples 

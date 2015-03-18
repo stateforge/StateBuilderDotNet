@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.stateforge.com/StateMachineDotNet-v1
+                                     http://www.stateforge.com/xsd/StateMachineDotNet-v1.xsd" >
+    <!-- general settings -->
+    <settings asynchronous="true" namespace="StateForge.Examples.XmppChat">
+        <object instance="chatScenario" class="ChatScenario"/>
+        <object instance="alice" class="Client"/>
+        <object instance="bob" class="Client"/>
+    </settings>
+
+    <!-- events -->
+    <events>
+        <eventSource name="IChatScenario" file="IChatScenario.cs"/>
+        <eventSource name="Timer">
+            <timer id="EvTimerMaxDuration" name="TimerMaxDuration"/>
+            <timer id="EvTimerSubscribeMaxDuration" name="TimerSubscribeMaxDuration"/>
+        </eventSource>
+    </events>
+
+    <!-- States -->
+    <state name="XmppTestSubscription01">
+        <transition event="EvTimerMaxDuration" nextState="End">
+            <action>chatScenario.Error = "Maximum duration expired"</action>
+        </transition>
+        <transition event="Error" action="chatScenario.Error = exception.Message" nextState="End"/>
+        <!-- State Idle -->
+        <state name="Idle">
+            <transition event="Start" nextState="Login">
+                <timerStart timer="TimerMaxDuration" duration="chatScenario.MaxDuration"/>
+            </transition>
+        </state>
+        
+        <!-- State Login -->
+        <state name="Login">
+            <parallel nextState="RosterItemRemove">
+                <!-- Machine Alice -->
+                <state name="AliceLogin">
+                    <!-- State Alice_Login -->
+                    <state name="Alice_Login" description="Alice logins">
+                        <onEntry action="alice.Open()"/>
+                        <transition event="LoggedIn" condition="jid.User == alice.Jid.User" nextState="Alice_WaitPresence"/>
+                    </state>
+                    <!-- State Alice_WaitPresence -->
+                    <state name="Alice_WaitPresence" description="Alice wait for presence">
+                        <transition event="PresenceRx" condition="jid.User == alice.Jid.User" nextState="Alice_Login_End"/>
+                    </state>
+                    <!-- State Alice_Login_End -->
+                    <state name="Alice_Login_End" kind="final"/>
+                </state>
+
+                <!-- Machine Bob -->
+                <state name="BobLogin">
+                    <!-- State Bob_Login -->
+                    <state name="Bob_Login" description="Bob logins">
+                        <onEntry action="bob.Open()"/>
+                        <transition event="LoggedIn" condition="jid.User == bob.Jid.User" nextState="Bob_WaitPresence"/>
+                    </state>
+                    <!-- State Bob_WaitPresence -->
+                    <state name="Bob_WaitPresence" description="Bob wait for presence">
+                        <transition event="PresenceRx" condition="jid.User == bob.Jid.User" nextState="Bob_Login_End"/>
+                    </state>
+                    <!-- State Bob_Login_End -->
+                    <state name="Bob_Login_End" kind="final"/>
+                </state>
+            </parallel>
+        </state>
+        <!-- State RosterItemRemove -->
+        <state name="RosterItemRemove">
+            <parallel nextState="Subscription">
+                <!-- Machine AliceRosterItemRemove -->
+                <state name="AliceRosterItemRemove">
+                    <!-- State Alice_RosterItemRemoveAndWaitForReply -->
+                    <state name="Alice_RosterItemRemoveAndWaitForReply"
+                           description="Alice removes Bob from his roster and waits for confirmation">
+                        <onEntry action="alice.RosterRemoveItem(bob.Jid)"/>
+                        <transition event="RosterItem" nextState="Alice_RosterItemRemoveEnd">
+                            <condition><![CDATA[jid.Equals(alice.Jid) && (item.Jid.Equals(bob.Jid))]]></condition>
+                        </transition>
+                    </state>
+                    <!-- State Alice_RosterItemRemoveEnd -->
+                    <state name="Alice_RosterItemRemoveEnd" kind="final"/>
+                </state>
+                <!-- Machine BobRosterItemRemove -->
+                <state name="BobRosterItemRemove">
+                    <!-- State Bob_RosterItemRemoveAndWaitForReply -->
+                    <state name="Bob_RosterItemRemoveAndWaitForReply"
+                           description="Bob removes Alice from his roster and waits for confirmation">
+                        <onEntry action="bob.RosterRemoveItem(alice.Jid)"/>
+                        <transition event="RosterItem" nextState="Bob_RosterItemRemoveEnd">
+                            <condition><![CDATA[jid.Equals(bob.Jid) && (item.Jid.Equals(alice.Jid))]]></condition>
+                        </transition>
+                    </state>
+                    <!-- State Bob_RosterItemRemoveEnd -->
+                    <state name="Bob_RosterItemRemoveEnd" kind="final"/>
+                </state>
+            </parallel>
+        </state>
+        <!-- State Subscription -->
+        <state name="Subscription">
+            <parallel nextState="Closing">
+                <!-- Machine AliceSubscription -->
+                <state name="AliceSubscription">
+                    <!-- State Alice_SendSubscriptionRequestAndWaitForReply -->
+                    <state name="Alice_SendSubscriptionRequestAndWaitForReply" 
+                           description="Alice sends a subscribtion request to Bob and waits for the subscribtion confirm">
+                        <onEntry action="alice.SubscriptionRequest(bob.Jid)"/>
+                        <transition event="SubscribeConfirm" 
+                                    condition="jid.User == alice.Jid.User" 
+                                    nextState="Alice_RosterRequest">
+                        </transition>
+                    </state>
+                    <!-- State Alice_RosterRequest -->
+                    <state name="Alice_RosterRequest" description="Alice sends a roster request">
+                        <onEntry action="alice.RosterRequest()"/>
+                        <transition event="RosterItem" nextState="Alice_Subscription_End">
+                            <condition><![CDATA[jid.Equals(alice.Jid) && (item.Jid.Equals(bob.Jid))]]></condition>
+                        </transition>
+                    </state>
+                    <!-- State Alice_Subscription_End -->
+                    <state name="Alice_Subscription_End" kind="final"/>
+                </state>
+
+                <!-- Machine BobSubscription -->
+                <state name="BobSubscription">
+                    <!-- State Bob_WaitForSubscriptionRequestAndSendReply -->
+                    <state name="Bob_WaitForSubscriptionRequestAndSendReply" 
+                           description="Bob wait a subscribtion request from Alice and send a subscribtion confirm">
+                        <transition event="SubscribeRequest" 
+                                    condition="jid.User == bob.Jid.User" 
+                                    action="bob.SubscriptionConfirm(alice.Jid)" 
+                                    nextState="Bob_Subscription_End"/>
+                    </state>
+                    <!-- State Bob_Subscription_End -->
+                    <state name="Bob_Subscription_End" kind="final"/>
+                </state>
+            </parallel>
+        </state>
+        <!-- State Closing -->
+        <state name="Closing" description="Everyone is closing">
+            <onEntry action="chatScenario.CloseAll()"/>
+            <transition event="ClosedAll" nextState="End"/>
+        </state>
+        <state name="End" kind="final"/>
+    </state>
+</sm:StateMachine>

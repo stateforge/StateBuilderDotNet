@@ -1,0 +1,97 @@
+<Project>
+  <Name>Light</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.3.1512.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Light</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Light</Name>
+        <Access>Public</Access>
+        <Location left="502" top="80" />
+        <Size width="196" height="131" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private LightContext context</Member>
+        <Member type="Field">LightDriver driver</Member>
+        <Member type="Method">public void SwitchPressed()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>LightContext</Name>
+        <Access>Internal</Access>
+        <Location left="220" top="332" />
+        <Size width="220" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">ILightDriver driver</Member>
+        <Member type="Constructor">public LightContext(ILightDriver driver)</Member>
+        <Member type="Method">public void EvSwitchPressed()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>LightDriver</Name>
+        <Access>Public</Access>
+        <Location left="774" top="332" />
+        <Size width="171" height="127" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void DoOn()</Member>
+        <Member type="Method">public void DoOff()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>ILightDriver</Name>
+        <Access>Public</Access>
+        <Location left="526" top="332" />
+        <Size width="162" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void DoOn()</Member>
+        <Member type="Method">void DoOff()</Member>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="0" second="2">
+        <Label>creates</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>644</X>
+          <Y>236</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>796</X>
+          <Y>287</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="0" second="1">
+        <Label>creates and uses</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>538</X>
+          <Y>236</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>301</X>
+          <Y>288</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Realization" first="2" second="3">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>749</X>
+          <Y>390</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Association" first="1" second="3">
+        <Label>uses</Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>

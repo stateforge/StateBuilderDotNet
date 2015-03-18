@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.stateforge.com/StateMachineDotNet-v1
+                                     http://www.stateforge.com/xsd/StateMachineDotNet-v1.xsd" >
+
+    <!-- general settings -->
+    <settings asynchronous="false" namespace="StateForge.Examples.Microwave">
+        <object instance="microwave" class="Microwave"/>
+    </settings>
+    <!-- Events -->
+    <events>
+        <eventSource name="Microwave" feeder="Microwave">
+            <event id="EvStart"/>
+            <event id="EvStop"/>
+            <event id="EvTurnOn"/>
+            <event id="EvTurnOff"/>
+        </eventSource>
+        <eventSource name="CookingAnalyzer" feeder="Microwave">
+            <event id="EvCookingDone"/>
+        </eventSource>
+        <eventSource name="Door" feeder="Microwave">
+            <event id="EvDoorOpened"/>
+            <event id="EvDoorClosed"/>
+        </eventSource>
+    </events>
+
+    <!-- States -->
+    <state name="Microwave">
+        <transition event="EvStop" nextState="End"/>
+        <state name="Initial">
+            <transition event="EvStart" nextState="Operating"/>
+        </state>
+        <state name="Operating">
+            <parallel nextState="End">
+                <!-- First region is the engine -->
+                <state name="Engine">
+                    <state name="EngineOff">
+                        <transition event="EvTurnOn"
+                                    condition="context.ContextParent.MicrowaveOperatingParallel.MicrowaveDoorContext.StateCurrent == MicrowaveDoorOpenedState.Instance"
+                                    nextState="EngineWaitDoorToClose"/>
+                        <transition event="EvTurnOn" nextState="EngineCooking"/>
+                    </state>
+                    <state name="EngineOn">
+                        <transition event="EvTurnOff" nextState="EngineOff"/>
+                        <transition event="EvCookingDone" nextState="EngineOff"/>
+                        <state name="EngineWaitDoorToClose">
+                            <transition event="EvDoorClosed" nextState="EngineCooking"/>
+                        </state>
+                        <state name="EngineCooking">
+                            <transition event="EvDoorOpened" nextState="EngineWaitDoorToClose"/>
+                        </state>
+                    </state>
+                </state>
+                <!-- Second region is the door -->
+                <state name="Door">
+                    <state name="DoorClosed">
+                        <transition event="EvDoorOpened" nextState="DoorOpened"/>
+                    </state>
+                    <state name="DoorOpened">
+                        <transition event="EvDoorClosed" nextState="DoorClosed"/>
+                    </state>
+                </state>
+            </parallel>
+        </state>
+        <state name="End" kind="final"/>
+    </state>
+
+</sm:StateMachine>

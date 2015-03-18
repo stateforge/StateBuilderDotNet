@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.stateforge.com/StateMachineDotNet-v1
+                                     http://www.stateforge.com/xsd/StateMachineDotNet-v1.xsd" >
+    <!-- general settings -->
+    <settings asynchronous="true" namespace="StateForge.Examples.XmppChat">
+        <object instance="chatScenario" class="ChatScenario"/>
+        <object instance="alice" class="Client"/>
+        <object instance="bob" class="Client"/>
+    </settings>
+
+    <!-- events -->
+    <events>
+        <eventSource name="IChatScenario" file="IChatScenario.cs"/>
+        <eventSource name="Timer">
+            <timer id="EvTimerMaxDuration" name="TimerMaxDuration"/>
+        </eventSource>
+    </events>
+
+    <!-- States -->
+    <state name="XmppTestChat01">
+        <transition event="EvTimerMaxDuration" nextState="End">
+            <action>chatScenario.Error = "Maximum duration expired"</action>
+        </transition>
+        <transition event="Error" action="chatScenario.Error = exception.Message" nextState="End"/>
+        <!-- State Idle -->
+        <state name="Idle">
+            <transition event="Start" nextState="Login">
+                <timerStart timer="TimerMaxDuration" duration="chatScenario.MaxDuration"/>
+            </transition>
+        </state>
+        
+        <!-- State Login -->
+        <state name="Login">
+            <parallel nextState="Chatting">
+                <!-- Machine Alice -->
+                <state name="AliceLogin">
+                    <!-- State Alice_Login -->
+                    <transition event="Closed" nextState="End">
+                        <action>chatScenario.Error = "Event closed has been received for Alice"</action>
+                    </transition>
+                    <state name="Alice_Login" description="Alice logins">
+                        <onEntry action="alice.Open()"/>
+                        <transition event="LoggedIn" condition="jid.User == alice.Jid.User" nextState="Alice_WaitPresence"/>
+                    </state>
+                    <!-- State Alice_WaitPresence -->
+                    <state name="Alice_WaitPresence" description="Alice wait for presence">
+                        <transition event="PresenceRx" condition="jid.User == alice.Jid.User" nextState="Alice_Login_End"/>
+                    </state>                    
+                    <!-- State Alice_Login_End -->
+                    <state name="Alice_Login_End" kind="final"/>
+                </state>
+
+                <!-- Machine Bob -->
+                <state name="BobLogin">
+                    <transition event="Closed" nextState="End">
+                        <action>chatScenario.Error = "Event closed has been received for Bob"</action>
+                    </transition>
+                    <!-- State Bob_Login -->
+                    <state name="Bob_Login" description="Bob logins">
+                        <onEntry action="bob.Open()"/>
+                        <transition event="LoggedIn" condition="jid.User == bob.Jid.User" nextState="Bob_WaitPresence"/>
+                    </state>
+                    <!-- State Bob_WaitPresence -->
+                    <state name="Bob_WaitPresence" description="Alice wait for presence">
+                        <transition event="PresenceRx" condition="jid.User == bob.Jid.User" nextState="Bob_Login_End"/>
+                    </state>
+                    <!-- State Bob_Login_End -->
+                    <state name="Bob_Login_End" kind="final"/>
+                </state>
+            </parallel>
+        </state>
+        <!-- State Chatting -->
+        <state name="Chatting">
+            <parallel nextState="Closing">
+                <!-- Machine AliceChatting -->
+                <state name="AliceChatting">
+                    <!-- State Alice_Sending -->
+                    <state name="Alice_Sending" description="Alice sends a message to Bob and waits for the reply">
+                        <onEntry action="alice.SendChat(bob.Jid, &quot;Ciao&quot;)"/>
+                        <transition event="MessageRx" condition="jid.User == alice.Jid.User" nextState="Alice_Chatting_End"/>
+                    </state>
+                    <!-- State Alice_Closing_End -->
+                    <state name="Alice_Chatting_End" kind="final"/>
+                </state>
+
+                <!-- Machine BobChatting -->
+                <state name="BobChatting">
+                    <!-- State Bob_WaitMessage -->
+                    <state name="Bob_WaitMessage" description="Bob wait a messsage from Alice and reply">
+                        <transition event="MessageRx" 
+                                    condition="jid.User == bob.Jid.User" 
+                                    action="bob.SendChat(alice.Jid, &quot;Bene, grazie&quot;)" 
+                                    nextState="Bob_Chatting_End"/>
+                    </state>
+                    <!-- State Bob_Chatting_End -->
+                    <state name="Bob_Chatting_End" kind="final"/>
+                </state>
+            </parallel>
+        </state>
+        <state name="Closing" description="Everyone is closing">
+            <onEntry action="chatScenario.CloseAll()"/>
+            <transition event="ClosedAll" nextState="End"/>
+        </state>
+        <state name="End" kind="final"/>
+    </state>
+</sm:StateMachine>

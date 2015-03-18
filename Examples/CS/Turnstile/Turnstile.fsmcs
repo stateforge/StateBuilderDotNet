@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.stateforge.com/StateMachineDotNet-v1
+                                     http://www.stateforge.com/xsd/StateMachineDotNet-v1.xsd" >
+
+  <!-- general settings -->
+  <settings asynchronous="false" namespace="StateForge.Examples.Turnstile">
+    <object instance="barrier" class="Barrier"/>
+    <object instance="alarm" class="Alarm"/>
+    <object instance="coinMachine" class="CoinMachine"/>
+    <context class="TurnstileContext"/>
+  </settings>
+    
+  <!-- events -->
+  <events>
+    <eventSource name="Turnstile" feeder="Turnstile">
+      <event id="Coin"/>
+      <event id="Pass"/>
+    </eventSource>
+  </events>
+ 
+  <!-- States -->
+  <state name="Turnstile">
+    <state name="Locked">
+      <onEntry action="barrier.DoLock()"/>
+      <transition event="Coin" action="coinMachine.DoAccept()" nextState="Unlocked"/>
+      <transition event="Pass" action="alarm.DoAlertStaff()"/>
+    </state>
+    <state name="Unlocked">
+      <onEntry action="barrier.DoUnlock()"/>
+      <transition event="Coin">
+        <action>coinMachine.DoReject()</action>
+        <action>alarm.DoRing()</action>
+      </transition>
+      <transition event="Pass" nextState="Locked"/>
+    </state>
+  </state>
+</sm:StateMachine>

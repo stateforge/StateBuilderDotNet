@@ -1,0 +1,41 @@
+<Project Name="New Obfuscator Project" UseRelativePaths="True" CheckVersionsWhileResolvingAssemblies="True" ID="{5637e019-955a-4753-9f34-92fcd965f8d7}">
+  <SearchDirectories />
+  <OutputSettings OutputPath=".\bin\Release\AllInOne" EncryptDependancies="False" CompressDependancies="False" MainAssemblyPath="StateBuilderDotNet" RunAssemblyPath="StateBuilderDotNet" SNPath="" SignToolPath="" LicensingDLLPath="..\..\..\..\..\..\..\Program Files\Infralution\Infralution Licensing System\Bin\Infralution.Licensing.dll" LicensingMergeAssemblyName="" OverwriteInputFiles="False">
+    <AdditionalAssemblies />
+  </OutputSettings>
+  <ObfuscationSettings RenamingScheme="0" UseOverloadedFieldNames="False" UseOverloadedMethodNames="False" HonorObfuscationAttributes="True" ExcludeSerializedTypes="True" ProcessInlineStrings="True" ForceXAMLProcessingModeExclude="False" ForceRenameParams="False" />
+  <ObfuscationRules />
+  <Assembly Load="true" Path=".\bin\Release\CommandLine.dll" XapEntryName="" KeyFilePath="" CertFilePath="" TimeStampURL="" Embed="True" PfxPassword="" PfxPasswordCert="">
+    <ObfuscationSettings EncryptStrings="True" SuppressReflector="True" ReduceMetaData="False" ObfuscationDisposition="1" FlowObfuscation="2" SuppressILDASM="True" SuppressReflection="False" CombineResources="True" EncryptResources="True" CompressResources="True" MarkAsSealed="False" EnableTamperDetection="False" EnableAntiDebugging="False" SymbolRenaming="True" HideExternalCalls="False" HideInternalCalls="False" GeneratePdbFile="True" ObfuscatePdbFileNames="True">
+      <Watermarks Watermark0="" Watermark1="" Watermark2="" Watermark3="" Watermark4="" Watermark5="" Watermark6="" Watermark7="" Watermark8="" Watermark9="" />
+    </ObfuscationSettings>
+  </Assembly>
+  <Assembly Load="true" Path=".\bin\Release\ICSharpCode.NRefactory.dll" XapEntryName="" KeyFilePath="" CertFilePath="" TimeStampURL="" Embed="True" PfxPassword="" PfxPasswordCert="">
+    <ObfuscationSettings EncryptStrings="True" SuppressReflector="True" ReduceMetaData="False" ObfuscationDisposition="1" FlowObfuscation="2" SuppressILDASM="True" SuppressReflection="False" CombineResources="True" EncryptResources="True" CompressResources="True" MarkAsSealed="False" EnableTamperDetection="False" EnableAntiDebugging="False" SymbolRenaming="True" HideExternalCalls="False" HideInternalCalls="False" GeneratePdbFile="True" ObfuscatePdbFileNames="True">
+      <Watermarks Watermark0="" Watermark1="" Watermark2="" Watermark3="" Watermark4="" Watermark5="" Watermark6="" Watermark7="" Watermark8="" Watermark9="" />
+    </ObfuscationSettings>
+  </Assembly>
+  <Assembly Load="true" Path=".\obj\x86\Release\StateBuilderDotNet.exe" XapEntryName="" KeyFilePath="" CertFilePath="" TimeStampURL="" Embed="True" PfxPassword="" PfxPasswordCert="">
+    <ObfuscationSettings EncryptStrings="True" SuppressReflector="True" ReduceMetaData="False" ObfuscationDisposition="1" FlowObfuscation="2" SuppressILDASM="True" SuppressReflection="False" CombineResources="True" EncryptResources="True" CompressResources="True" MarkAsSealed="False" EnableTamperDetection="False" EnableAntiDebugging="False" SymbolRenaming="True" HideExternalCalls="False" HideInternalCalls="False" GeneratePdbFile="True" ObfuscatePdbFileNames="True">
+      <Watermarks Watermark0="" Watermark1="" Watermark2="" Watermark3="" Watermark4="" Watermark5="" Watermark6="" Watermark7="" Watermark8="" Watermark9="" />
+    </ObfuscationSettings>
+  </Assembly>
+  <Assembly Load="true" Path=".\bin\Release\StateBuilderLib.dll" XapEntryName="" KeyFilePath="" CertFilePath="" TimeStampURL="" Embed="True" PfxPassword="" PfxPasswordCert="">
+    <ObfuscationSettings EncryptStrings="True" SuppressReflector="True" ReduceMetaData="False" ObfuscationDisposition="1" FlowObfuscation="2" SuppressILDASM="True" SuppressReflection="False" CombineResources="True" EncryptResources="True" CompressResources="True" MarkAsSealed="False" EnableTamperDetection="False" EnableAntiDebugging="False" SymbolRenaming="True" HideExternalCalls="False" HideInternalCalls="False" GeneratePdbFile="True" ObfuscatePdbFileNames="True">
+      <Watermarks Watermark0="" Watermark1="" Watermark2="" Watermark3="" Watermark4="" Watermark5="" Watermark6="" Watermark7="" Watermark8="" Watermark9="" />
+    </ObfuscationSettings>
+  </Assembly>
+  <WarningSuppressions>
+    <WS ID="ICSharpCode.NRefactory.Visitors.CodeDomVerboseOutputGenerator.GeneratePrimitiveExpression(CodePrimitiveExpression e)3521" />
+    <WS ID="ICSharpCode.NRefactory.Ast.PrimitiveExpression.ToString()2411" />
+    <WS ID="Infralution.Licensing.AuthenticatedLicenseProvider.GetLicenseFilePath(LicenseContext context, Type type)248" />
+    <WS ID="ICSharpCode.NRefactory.Visitors.VBNetConstructsConvertVisitor.CreateDictionary(String[] classNames)3541" />
+    <WS ID="ICSharpCode.NRefactory.Visitors.VBNetConstructsConvertVisitor.CreateDictionary(String[] classNames)1719" />
+    <WS ID="ICSharpCode.NRefactory.AbstractSpecial.ToString()353" />
+    <WS ID="ICSharpCode.NRefactory.PrettyPrinter.VBNetOutputVisitor.UnsupportedNode(INode node)353" />
+    <WS ID="ICSharpCode.NRefactory.Comment.ToString()358" />
+    <WS ID="ICSharpCode.NRefactory.PrettyPrinter.CSharpOutputVisitor.NotSupported(INode node)355" />
+    <WS ID="Infralution.Licensing.LicenseUtilities.GetSavedLicenseKey(Assembly assembly, Type type)2461" />
+    <WS ID="Infralution.Licensing.EncryptedLicenseProvider.GetLicenseFilePath(LicenseContext context, Type type)248" />
+  </WarningSuppressions>
+</Project>

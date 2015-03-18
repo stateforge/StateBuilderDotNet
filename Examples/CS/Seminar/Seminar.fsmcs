@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.stateforge.com/StateMachineDotNet-v1
+                                     http://www.stateforge.com/xsd/StateMachineDotNet-v1.xsd" >
+
+    <!-- general settings -->
+    <settings asynchronous="false" namespace="StateForge.Examples.Seminar">
+        <object instance="mySeminar" class="SeminarActuator"/>
+        <context class="SeminarContext"/>
+    </settings>
+    <!-- events -->
+    <events>
+        <eventSource name="Seminar" feeder="Seminar">
+            <event id="Cancelled"/>
+            <event id="TermStarted"/>
+            <event id="ClassesEnded"/>
+            <event id="ExamsClosed"/>
+            <event id="StudentEnrollRequest">
+                <parameter name="student" type="Student"/>
+            </event>
+            <event id="StudentDropped"
+                   preAction="mySeminar.RemoveConfirmedStudent(student)">
+                <parameter name="student" type="Student"/>
+            </event>
+        </eventSource>
+    </events>
+
+    <!-- States -->
+    <state name="Seminar">
+        <transition event="Cancelled" nextState="End"/>
+        <!-- States Enrollment -->
+        <state name="Enrollment">
+            <onEntry action="mySeminar.StartEnrollment()"/>
+            <onExit action="mySeminar.StopEnrollment()"/>
+
+            <transition event="TermStarted" nextState="BeingTaught"/>
+            <!-- States OpenForEnrollment -->
+            <state name="OpenForEnrollment">
+                <transition event="StudentEnrollRequest" condition="(mySeminar.StudentsCount + 1) == mySeminar.MaxStudents" nextState="Full">
+                    <action>mySeminar.ConfirmStudentEnrollment(student)</action>
+                </transition>
+                <transition event="StudentEnrollRequest">
+                    <action>mySeminar.ConfirmStudentEnrollment(student)</action>
+                </transition>
+                <transition event="StudentDropped"/>
+            </state>
+            <!-- States Full -->
+            <state name="Full">
+                <transition event="StudentEnrollRequest">
+                    <action>mySeminar.AddStudentInWaitingList(student);</action>
+                </transition>
+                <transition event="StudentDropped" condition="mySeminar.HasStudentInWaitingList()">
+                    <action>mySeminar.InformStudentInWaitingList()</action>
+                </transition>
+                <transition event="StudentDropped"  nextState="OpenForEnrollment"/>
+            </state>
+        </state>
+        <!-- States BeingTaught -->
+        <state name="BeingTaught">
+            <onEntry action="mySeminar.StartTeaching()"/>
+            <onExit action="mySeminar.StopTeaching()"/>
+            <transition event="StudentDropped" condition="mySeminar.IsEmpty()" nextState="End"/>
+            <transition event="ClassesEnded" nextState="FinalExams"/>
+        </state>
+        <!-- States FinalExams -->
+        <state name="FinalExams">
+            <onEntry action="mySeminar.StartExams()"/>
+            <transition event="ExamsClosed" nextState="End"/>
+        </state>
+        <state name="End" kind="final"/>
+    </state>
+</sm:StateMachine>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="48"
+   height="48"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.1 "
+   sodipodi:docname="StateBuilderDotNet.svg"
+   inkscape:export-filename="C:\Users\frederic\Documents\projects\StateForge\dev\StateBuilderDotNet\Installer\Icons\StateBuilderDotNet.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient5214">
+      <stop
+         style="stop-color:#fb0000;stop-opacity:1;"
+         offset="0"
+         id="stop5216" />
+      <stop
+         style="stop-color:#ff4100;stop-opacity:1;"
+         offset="1"
+         id="stop5218" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3766">
+      <stop
+         style="stop-color:#000098;stop-opacity:1;"
+         offset="0"
+         id="stop3768" />
+      <stop
+         style="stop-color:#004199;stop-opacity:1;"
+         offset="1"
+         id="stop3770" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3766"
+       id="linearGradient3772"
+       x1="28.065218"
+       y1="2.7802112"
+       x2="3.0099339"
+       y2="30.816202"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5214"
+       id="linearGradient5222"
+       x1="6"
+       y1="1047.3622"
+       x2="46"
+       y2="1008.3622"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-51,2.0000174)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3766"
+       id="linearGradient3771"
+       x1="-29.486288"
+       y1="12.734976"
+       x2="-20.955038"
+       y2="12.734976"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.9001807,0,0,2.9001807,50.202542,1175.6831)" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="8.9375"
+     inkscape:cx="-4.7552448"
+     inkscape:cy="25.762903"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1280"
+     inkscape:window-height="738"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2985"
+       empspacing="4"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1004.3622)">
+    <rect
+       style="fill:url(#linearGradient5222);fill-opacity:1;stroke:#004c00;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3757"
+       width="44"
+       height="44.000019"
+       x="-49"
+       y="1008.3622"
+       ry="6.5437565"
+       inkscape:export-filename="C:\Users\frederic\Documents\projects\StateForge\dev\StateBuilderDotNet\Installer\Icons\StateBuilderDotNet.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:46.40289688px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient3771);fill-opacity:1;stroke:none;font-family:Sans"
+       x="-35.788834"
+       y="1229.2249"
+       id="text2993"
+       sodipodi:linespacing="125%"
+       transform="scale(1.176884,0.84970142)"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="C:\Users\frederic\Documents\projects\StateForge\dev\StateBuilderDotNet\Installer\Icons\StateBuilderDotNet.png"><tspan
+         sodipodi:role="line"
+         id="tspan2995"
+         x="-35.788834"
+         y="1229.2249"
+         style="fill:url(#linearGradient3771);fill-opacity:1">#</tspan></text>
+  </g>
+</svg>

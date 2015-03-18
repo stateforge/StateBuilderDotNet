@@ -1,0 +1,55 @@
+<Project>
+  <Name>Led</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.3.1512.0, Culture=neutral, PublicKeyToken=null">
+    <Name>LedContext</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>LedContext</Name>
+        <Access>Public</Access>
+        <Location left="641" top="262" />
+        <Size width="202" height="183" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public LedContext(Led led)</Member>
+        <Member type="Property">public Led Led { get; }</Member>
+        <Member type="Method">public void On()</Member>
+        <Member type="Method">public void Off()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>LedContext</Name>
+        <Access>Public</Access>
+        <Location left="953" top="262" />
+        <Size width="261" height="183" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public LedContext(Led led)</Member>
+        <Member type="Property">public Led Led { get; }</Member>
+        <Member type="Method">public void On()</Member>
+        <Member type="Method">public void Off()</Member>
+        <Member type="Method">private void OnSync()</Member>
+        <Member type="Method">private void OffSync()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Comment">
+        <Text>Synchronous state machine:
+On() and Off() are synchronous.</Text>
+        <Location left="641" top="163" />
+        <Size width="202" height="75" />
+      </Entity>
+      <Entity type="Comment">
+        <Text>Asynchronous state machine:
+On() and Off() are asynchronous.
+OnSync() and OffSync() are synchronous and private.</Text>
+        <Location left="953" top="163" />
+        <Size width="261" height="75" />
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.3.1512.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Untitled</Name>
+    <Language>CSharp</Language>
+    <Entities />
+    <Relationships />
+  </ProjectItem>
+</Project>

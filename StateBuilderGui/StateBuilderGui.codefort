@@ -1,0 +1,40 @@
+<Project z:Id="i1" xmlns="CodeFort.Model" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/">
+    <Assemblies>
+        <ProjectAssembly z:Id="i2">
+            <DoEmbed>true</DoEmbed>
+            <FullName>ICSharpCode.NRefactory, Version=4.0.0.7070, Culture=neutral, PublicKeyToken=null</FullName>
+        </ProjectAssembly>
+        <ProjectAssembly z:Id="i3">
+            <DoEmbed>true</DoEmbed>
+            <DoObfuscate>true</DoObfuscate>
+            <FullName>StateBuilderLib, Version=2.3.0.0, Culture=neutral, PublicKeyToken=null</FullName>
+        </ProjectAssembly>
+        <ProjectAssembly z:Id="i4">
+            <DoEmbed>true</DoEmbed>
+            <FullName>CommandLine, Version=1.8.0.0, Culture=neutral, PublicKeyToken=null</FullName>
+        </ProjectAssembly>
+        <ProjectAssembly z:Id="i5">
+            <DoEmbed>true</DoEmbed>
+            <FullName>Infralution.Licensing, Version=4.7.2.0, Culture=neutral, PublicKeyToken=3e7e8e3744a5c13f</FullName>
+        </ProjectAssembly>
+        <ProjectAssembly z:Id="i6">
+            <DoObfuscate>true</DoObfuscate>
+            <FullName>StateBuilderDotNet, Version=2.3.0.0, Culture=neutral, PublicKeyToken=null</FullName>
+        </ProjectAssembly>
+    </Assemblies>
+    <FormatVersion>3.00</FormatVersion>
+    <MainAssembly z:Ref="i6"/>
+    <ProjectType>Net</ProjectType>
+    <Settings>
+        <DoAntiDecompilation>false</DoAntiDecompilation>
+        <DoAntiIldasm>false</DoAntiIldasm>
+        <DoEncryptStrings>true</DoEncryptStrings>
+        <DoIncludeUnreferencedXapAssemblies>false</DoIncludeUnreferencedXapAssemblies>
+        <DoSealClasses>true</DoSealClasses>
+        <DoWholeAssemblyEncryption>false</DoWholeAssemblyEncryption>
+        <DoXamlBamlRename>false</DoXamlBamlRename>
+        <SourcePath>bin\Release\StateBuilderDotNet.exe</SourcePath>
+        <TargetPath>bin\Release\AllInOne\StateBuilderDotNet.exe</TargetPath>
+        <TypeSettings/>
+    </Settings>
+</Project>

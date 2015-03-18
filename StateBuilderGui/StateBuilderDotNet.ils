@@ -1,0 +1,17 @@
+﻿<EncryptedLicenseParameters>
+  <ProductName>StateBuilderDotNet</ProductName>
+  <ProductPassword>StateBuilderDotNet</ProductPassword>
+  <RSAKeyValue>
+    <Modulus>t5HZ8Lf0+ZqHC4rbJH/F1j05+03Ex3oRcEYprvCEfw7BmzaDpy8hvNRZ8o74OX0a5XEVZnuT1Li36VlX0vp7bHiHMa5VrhrFlr/xgp8qMX8CM1yLh5eCPdTU7Ob6dZ5ra5bAvveOBVMqF1PKRHstGnI04JpMeu4ouCm/ys8ozRc=</Modulus>
+    <Exponent>AQAB</Exponent>
+    <P>9T49Tn4Z4FHKXhS22qlGVhS3b5RXrxLsHA2F4EBIiVVHLLD+nfjQReDfbPZrh+edHacXDQC3IQnbNJsH5GacGw==</P>
+    <Q>v58ZnqrnOwQ3ByK18SflwtxLfHL+Pyq3BwknV7Yvv9Xg62yo8wSBPL4rVfdnjG7d3Du4IMRnKVWsWCp2RwAqtQ==</Q>
+    <DP>GsCAVYih7/tcFOkzjSS7/HXkELLg4cMxqFm9SdoZT4nS6sgf7kGPDqBaHvu+fSPB2tM4S33RfDQkClgDA2JCEw==</DP>
+    <DQ>mAJJW6ItvpZwZLu3Y3AIB1WkmDvMzyU+fllXmXAQXvj27SuMtwPK1fnx/Mc/oJrOawgA4BWN1K9/AY3luBs8xQ==</DQ>
+    <InverseQ>5gSGAYWy505M10XgizNb1gCvHB+/ThiBxymWzyh8YTpK5jInd1GbRLbrR4LNaWPAkrVF43Z8RpQ/xXvn1Vs4Mw==</InverseQ>
+    <D>nkPySbbgT77pxYrPCzXaJK6e6cqP6IeWt1zWnUwif8UCKMakVSSuirXuYtDes/nnkX+gur26o8EqVtY/gNeSRmcxbzfzQ6fq1TLmkuCntJ7eHQw0/Pf5/QFXjGJhJy4z/L0W8ZrtEQqwh4HxfRfz3IOJBhqyza0sTWxZ5G+fXXk=</D>
+  </RSAKeyValue>
+  <DesignSignature>O9R5+uae4uXGE96JpTgujRqnmXj2yZa2LN4EN2HO7vfzdEFbarxT3zi2+oYxre81dvxbTxz4GaVaHogJWTu0/xjuf1picgG70doYEZsL6d6o4eaSsJgRSf0EaF3DMmvtvx17XD3mPPqbUemPm2kUFDUiaPYPYmIz/Y438JxLf8g=</DesignSignature>
+  <RuntimeSignature>CspGJ6+AfMztLMDkpZcx/xAh/gVod2/i7+uIClZV1oIAKuaz0ej+cOk6XneHY5IiAw6qrl0cSXLAar7tDxldvJ1TC2e0O+YA4veRj3qAqzlYarYyZO6gpdSLplQZrwkNqNraAbvaMsSW09DCELpdi0/yxdvxKt5FPCeCWg4P868=</RuntimeSignature>
+  <KeyStrength>7</KeyStrength>
+</EncryptedLicenseParameters>

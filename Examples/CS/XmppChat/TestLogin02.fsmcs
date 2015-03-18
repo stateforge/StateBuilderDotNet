@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.stateforge.com/StateMachineDotNet-v1
+                                     http://www.stateforge.com/xsd/StateMachineDotNet-v1.xsd" >
+    
+    <!-- general settings -->
+    <settings asynchronous="true" namespace="StateForge.Examples.XmppChat">
+        <object instance="chatScenario" class="ChatScenario"/>
+        <object instance="alice" class="Client"/>
+        <object instance="bob" class="Client"/>
+    </settings>
+
+    <!-- events -->
+    <events>
+        <eventSource name="IChatScenario" file="IChatScenario.cs"/>
+        <eventSource name="Timer">
+            <timer id="EvTimerMaxDuration" name="TimerMaxDuration"/>
+            <timer id="EvTimerIdleDuration" name="TimerIdleDuration"/>
+        </eventSource>
+    </events>
+
+    <!-- States -->
+    <state name="XmppTestLogin02">
+        <transition event="EvTimerMaxDuration" nextState="End">
+            <action>chatScenario.Error = "Maximum duration expired"</action>
+        </transition>
+        <!-- State Idle -->
+        <state name="Idle">
+            <transition event="Start" nextState="Login">
+                <timerStart timer="TimerMaxDuration" duration="chatScenario.MaxDuration"/>
+            </transition>
+        </state>
+        <!-- State Login -->
+        <state name="Login" description="Everyone logins">
+            <onEntry action="chatScenario.OpenAll()"/>
+            <transition event="LoggedInAll" nextState="LoggedIn"/>
+        </state>
+        <!-- State Idle -->
+        <state name="LoggedIn" description="">
+            <onEntry>
+                <timerStart timer="TimerIdleDuration" duration="chatScenario.IdleDuration"/>
+            </onEntry>
+            <transition event="EvTimerIdleDuration" nextState="Closing"/>
+        </state>
+        <!-- State Closing -->
+        <state name="Closing" description="Everyone is closing">
+            <onEntry action="chatScenario.CloseAll()"/>
+            <transition event="ClosedAll" nextState="End"/>
+        </state>
+        <!-- State End -->
+        <state name="End" kind="final"/>
+    </state>
+</sm:StateMachine>

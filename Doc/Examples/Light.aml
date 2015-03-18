@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="dab02ba9-9859-475a-9561-68dc26718faf" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <summary>
+      <para>Light example</para>
+    </summary>
+   
+    <introduction>
+      <para>Here is a the Light example documentation</para>
+    </introduction>
+      <section address="LightExampleProblemDefinition">
+          <title>Problem Definition</title>
+          <content>
+              <para>This section explains how to design an application that uses the extended state machine design pattern</para>
+              <para>
+                  Let's identify the events, the various states, transitions and actions to perform.
+              </para>
+
+              <list class="bullet">
+                  <listItem>
+                      <para>
+                          Events: This system receives one event from a switch called <codeInline>EvSwitchPressed()</codeInline>.
+                      </para>
+                  </listItem>
+                  <listItem>
+                      <para>
+                          Actions: the light has a driver that is responsible for performing the actions <codeInline>DoOn()</codeInline> and <codeInline>DoOff()</codeInline>.
+                      </para>
+                  </listItem>
+                  <listItem>
+                      <para>
+                          States: The light can be in two state, either <codeInline>On</codeInline> or <codeInline>Off</codeInline>.
+                      </para>
+                      <para>
+                          Upon entering the state <codeInline>On</codeInline>, call the driver method <codeInline>DoOn()</codeInline>.
+                      </para>
+                      <para>
+                          Upon entering the state <codeInline>Off</codeInline>, call the driver method <codeInline>DoOff()</codeInline>.
+                      </para>
+                  </listItem>
+                  <listItem>
+                      <para>
+                          Transitions:
+                      </para>
+                      <para>
+                          when in state <codeInline>Off</codeInline> and the event <codeInline>EvSwitchPressed()</codeInline> is received,
+                          go to state <codeInline>On</codeInline>.
+                      </para>
+                      <para>
+                          when in state <codeInline>On</codeInline> and the event <codeInline>EvSwitchPressed()</codeInline> is received,
+                          go to state <codeInline>Off</codeInline>.
+                      </para>
+                  </listItem>
+              </list>
+          </content>
+      </section>
+
+      <section address="LightExampleStateDiagram">
+          <title>State Diagram</title>
+          <content>
+              <para>The following picture is a UML state diagram of the light system. </para>
+              <mediaLink>
+                  <caption>Light state diagram</caption>
+                  <image xlink:href="LightStateDiagram"/>
+              </mediaLink>
+          </content>
+      </section>
+
+      <section address="LightExampleClassDiagram">
+          <title>Class Diagram</title>
+          <content>
+              <para>The following picture is a UML class diagram of the light system:</para>
+              <mediaLink>
+                  <caption>Light class diagram</caption>
+                  <image xlink:href="LightClassDiagram"/>
+              </mediaLink>
+              <para>
+                  This class diagram is composed of four classes, it can be used to model any kind of state machine, ranging from simple to very complex.
+              </para>
+              <list class="ordered">
+                  <listItem>
+                      <para>
+                          <codeInline>ILightDriver</codeInline> is an interface that defines the possible actions that will be carried out.
+                      </para>
+                  </listItem>
+                  <listItem>
+                      <para>
+                          <codeInline>LightDriver:</codeInline>
+                      </para>
+                      <list class="bullet">
+                          <listItem>
+                              <para>
+                                  is a concrete implementation of the <codeInline>ILightDriver</codeInline> interface.
+                              </para>
+                          </listItem>
+                          <listItem>
+                              <para>
+                                  implements <codeInline>DoOn()</codeInline> and <codeInline>DoOff()</codeInline>.
+                              </para>
+                          </listItem>
+                      </list>
+                  </listItem>
+                  <listItem>
+                      <para>
+                          <codeInline>LightContext:</codeInline>
+                      </para>
+                      <list class="bullet">
+                          <listItem>
+                              <para>
+                                  is generated by <application>StateBuilderDotNet</application>.
+                              </para>
+                          </listItem>
+                          <listItem>
+                              <para>
+                                  has an instance of <codeInline>LightDriver</codeInline> which is given through its constructor.
+                              </para>
+                          </listItem>
+                          <listItem>
+                              <para>
+                                  invokes the actions through <codeInline>ILightDriver</codeInline> depending on the current state and the event received.
+                              </para>
+                          </listItem>
+                          <listItem>
+                              <para>
+                                  holds the current state.
+                              </para>
+                          </listItem>
+                      </list>
+                  </listItem>
+                  <listItem>
+                      <para>
+                          <codeInline>Light:</codeInline>
+                      </para>
+                      <list class="bullet">
+                          <listItem>
+                              <para>
+                                  is exposed to the outside world.
+                              </para>
+                          </listItem>
+                          <listItem>
+                              <para>
+                                  holds and creates <codeInline>LightContext</codeInline> and <codeInline>LightDriver</codeInline>
+                              </para>
+                          </listItem>
+                          <listItem>
+                              <para>
+                                  feeds <codeInline>LightContext</codeInline> with events.
+                              </para>
+                          </listItem>
+                      </list>
+                  </listItem>
+              </list>
+              <alert>
+                  <para>
+                      It is possible to use a 2 class design instead of 4. Remove the interface <codeInline>ILightDriver</codeInline> and merge <codeInline>LightDriver</codeInline> inside <codeInline>Light</codeInline>.
+                     
+                  </para>
+              </alert>
+          </content>
+      </section>
+
+      <section address="LightExampleFsm">
+          <title>Finite State Machine Markup Language</title>
+          <content>
+              <para>
+                  The following code represents the state machine in the FsmML format:
+              </para>
+              <code source="..\Examples\CS\Light\Light.fsmcs" language="xml"/>
+          </content>
+      </section>
+
+      <section address="LightExampleSourceCode">
+          <title>Source Code</title>
+          <content>
+              <para>
+                  Here is the source code containing the classes involved so far:
+              </para>
+              <code source="..\Examples\CS\Light\Light.cs" language="c#"/>
+          </content>
+      </section>
+    <relatedTopics>
+
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

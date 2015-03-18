@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  >
+
+    <!-- general settings -->
+    <settings asynchronous="true" namespace="StateForge.Examples.CallManager">
+        <object instance="callControl" class="CallControl"/>
+        <object instance="config" class="CallControlConfig"/>
+    </settings>
+
+    <!-- events -->
+    <events>
+        <eventSource name="IManagementAction" file="IManagement.cs" feeder="CallControl"/>
+        <eventSource name="IEndpointEvent" file="IEndpointEvent.cs"/>
+        <eventSource name="ICallAction" file="ICallAction.cs"/>
+        <eventSource name="Timers">
+            <!--<timer id="EvTimerTestMaxDuration" name="TestMaxDuration"/>-->
+        </eventSource>
+    </events>
+
+    <!-- States -->
+    <state name="CallControl">
+        <transition event="Stop" nextState="Stopping"/>
+        <state name="Idle">
+            <transition event="Start" nextState="Starting"/>
+        </state>
+        <state name="Starting">
+            <onEntry action="callControl.DoEndpointStart()"/>
+            <transition event="EndpointOpened"
+                        condition="callControl.IsLastToOpen() == true" 
+                        action="callControl.Started()"
+                        nextState="Running"/>
+        </state>
+        <state name="Running">
+        </state>
+        <state name="Stopping">
+            <onEntry action="callControl.DoEndpointStop()"/>
+            <transition event="EndpointClosed" 
+                        condition="callControl.IsLastToClose() == true"
+                        action="callControl.Stopped()"
+                        nextState="End"/>
+        </state>
+        <state name="End" kind="final"/>
+    </state>
+</sm:StateMachine>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.stateforge.com/StateMachineDotNet-v1
+                                     http://www.stateforge.com/xsd/StateMachineDotNet-v1.xsd" >
+
+    <!-- general settings -->
+    <settings asynchronous="true" namespace="Company.Product">
+        <object instance="my$safeprojectname$" class="I$safeprojectname$Actuator"/>
+        <context class="$safeprojectname$Context"/>
+    </settings>
+    <!-- events -->
+    <events>
+        <eventSource name="$safeprojectname$">
+            <event id="EvOn"/>
+            <event id="EvOff"/>
+        </eventSource>
+    </events>
+
+    <!-- States -->
+    <state name="Root">
+        <state name="Off">
+            <onEntry action="my$safeprojectname$.DoOff();"/>
+            <transition event="EvOn" nextState="On"/>
+        </state>
+        <state name="On">
+            <onEntry action="my$safeprojectname$.DoOn();"/>
+            <transition event="EvOff" nextState="Off"/>
+        </state>
+    </state>
+</sm:StateMachine>

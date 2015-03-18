@@ -1,0 +1,173 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="CopyToReleasesDir" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <Import Project="$(MSBuildExtensionsPath)\ExtensionPack\MSBuild.ExtensionPack.tasks" />
+
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+        <OutputPath>bin\$(Configuration)\</OutputPath>
+        <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+        <OutputPath>bin\$(Configuration)\</OutputPath>
+        <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+        <ProductVersion>3.0</ProductVersion>
+        <ProjectGuid>{D564DF16-6816-4929-80A8-51F2E5559182}</ProjectGuid>
+        <SchemaVersion>2.0</SchemaVersion>
+        <OutputName>StateBuilderDotNet-Setup</OutputName>
+        <OutputType>Package</OutputType>
+        <Version Condition="$(Version)==''">0.0.0.0</Version>
+        <InstallSource Condition="$(InstallSource)==''">../Package</InstallSource>
+        <OutputNameWithVersion>StateBuilderDotNet-$(Version)</OutputNameWithVersion>
+        <OutputNameMsi>$(OutputName).msi</OutputNameMsi>
+        <DefineConstants>Version=$(Version);Examples=..\Examples\</DefineConstants>
+        <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+        <DefineSolutionProperties>false</DefineSolutionProperties>
+        <WindowsSDKPath>$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\GenericBootstrapper\3.5@Path)</WindowsSDKPath>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <ReleasesDir>..\Releases</ReleasesDir>
+        <ReleasesWebDir>..\..\StateForgeWebSite\StateForgeWebSite\Files</ReleasesWebDir>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <WixExtension Include="$(WixToolPath)WixUtilExtension" />
+        <WixExtension Include="$(WixToolPath)WixNetFxExtension.dll" />
+        <WixExtension Include="$(WixToolPath)WixUIExtension.dll" />
+        <WixExtension Include="$(WixToolPath)WixVSExtension.dll" />
+        <Compile Include="Setup.wxs" />
+        <Compile Include="Files.wxs" />
+        <Compile Include="Examples.wxs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\StateBuilderGui\StateBuilderGui.csproj"/>
+        <ProjectReference Include="..\StateBuilderLib\StateBuilderLib.csproj"/>
+        <ProjectReference Include="..\StateMachine\StateMachine.csproj"/>
+    </ItemGroup>
+
+    <Import Project="$(WixTargetsPath)" />
+    
+    <Target Name="CleanDir">
+        <RemoveDir Directories="bin" />
+        <RemoveDir Directories="obj" />
+    </Target>
+
+    <PropertyGroup>
+        <CleanDependsOn>
+            $(CleanDependsOn);
+            CleanDir;
+        </CleanDependsOn>
+    </PropertyGroup>
+
+    <!-- Install and Uninstall the msi -->
+    <Target Name="Install" DependsOnTargets="CopyToReleasesDir">
+        <Exec Command='C:\Windows\System32\msiexec.exe /qn /i "$(OutputPath)\$(OutputName).msi" /l*v $(OutputPath)\$(OutputName)InstallLog.log '/>
+    </Target>
+    <Target Name="Uninstall" >
+        <Exec Command='C:\Windows\System32\msiexec.exe /qn /x "$(OutputPath)\$(OutputName).msi" /l*v $(OutputPath)\$(OutputName)UninstallLog.log ' ContinueOnError='true'/>
+    </Target>
+
+    <!-- DotNetInstaller -->
+    <PropertyGroup>
+        <InstallerLinker>$(MSBuildProgramFiles32)\dotNetInstaller\bin\InstallerLinker.exe</InstallerLinker>
+        <dotNetInstaller>$(MSBuildProgramFiles32)\dotNetInstaller\bin\dotNetInstaller.exe</dotNetInstaller>
+        <DotNetInstallerConfiguration>DotNetInstallerConfiguration.xml</DotNetInstallerConfiguration>
+        <InstallerName>StateBuilderDotNet-Setup.exe</InstallerName>
+        <InstallerNameWithVersion>StateBuilderDotNet-Setup-$(Version).exe</InstallerNameWithVersion>
+        <InstallerDescription>StateBuilderDotNet Setup</InstallerDescription>
+        <InstallerManifest>Setup.manifest</InstallerManifest>
+    </PropertyGroup>
+
+    <!-- Set the version for the DotNetIntaller configuration file -->
+    <Target Name="DotNetInstallerConfiguration">
+        <Copy SourceFiles="$(DotNetInstallerConfiguration)"
+              DestinationFiles="$(OutputPath)\$(DotNetInstallerConfiguration)" />
+        <Message Importance="high" Text="Updating DotNetInstaller configuration" />
+        <MSBuild.ExtensionPack.Xml.XmlFile
+          TaskAction="UpdateAttribute"
+          File="$(OutputPath)\$(DotNetInstallerConfiguration)"
+          XPath="/configurations/fileattributes/fileattribute[@name='FileDescription']"
+          Key="value"
+          Value="$(InstallerDescription)"/>
+        <MSBuild.ExtensionPack.Xml.XmlFile
+          TaskAction="UpdateAttribute"
+          File="$(OutputPath)\$(DotNetInstallerConfiguration)"
+          XPath="/configurations[@fileversion]"
+          Key="fileversion"
+          Value="$(Version)"/>
+        <MSBuild.ExtensionPack.Xml.XmlFile
+          TaskAction="UpdateAttribute"
+          File="$(OutputPath)\$(DotNetInstallerConfiguration)"
+          XPath="/configurations[@productversion]"
+          Key="productversion"
+          Value="$(Version)"/>
+    </Target>
+
+    <!-- Set the version for the setup manifest -->
+    <Target Name="DotNetInstallerManifest">
+        <Copy SourceFiles="$(InstallerManifest)"
+          DestinationFiles="$(OutputPath)\$(InstallerManifest)" />
+    </Target>
+
+    <!-- Invoke the InstallerLinker to build the Setup -->
+    <Target Name="DotNetInstaller" DependsOnTargets="DotNetInstallerConfiguration;DotNetInstallerManifest">
+        <Message Importance="high" Text="Building installer" />
+        <Exec Command="&quot;$(InstallerLinker)&quot; /Embed+ /Template:&quot;$(dotNetInstaller)&quot; /Output:$(OutputPath)\$(InstallerName) /Configuration:$(OutputPath)\$(DotNetInstallerConfiguration) /AppPath:bin\$(Configuration) /Manifest:$(InstallerManifest)" />
+    </Target>
+
+    <!-- Copy the msi and Setup to the Release directory -->
+    <Target Name="CopyToReleasesDir" DependsOnTargets="Build;DotNetInstaller">
+        <Copy SourceFiles="$(OutputPath)$(OutputName).msi"
+              DestinationFiles="$(ReleasesDir)\$(OutputName).msi" />
+        <Copy SourceFiles="$(OutputPath)$(InstallerName)"
+             DestinationFiles="$(ReleasesDir)\$(InstallerName)" />
+        
+        <Copy SourceFiles="$(OutputPath)$(OutputName).msi"
+              DestinationFiles="$(ReleasesWebDir)\$(OutputName).msi" />
+              
+        <Copy SourceFiles="$(OutputPath)$(OutputName).msi"
+              DestinationFiles="$(ReleasesWebDir)\$(OutputName)-$(Version).msi" />
+              
+        <Copy SourceFiles="$(OutputPath)$(InstallerName)"
+             DestinationFiles="$(ReleasesWebDir)\$(InstallerName)" />
+
+        <Copy SourceFiles="$(OutputPath)$(InstallerName)"
+            DestinationFiles="$(ReleasesWebDir)\$(OutputName)-$(Version).exe" />
+    </Target>
+
+    <!--
+  <ItemGroup>
+    <BootstrapperFile Include="Microsoft.Net.Framework.3.5">
+      <ProductName>.NET Framework 3.5</ProductName>
+    </BootstrapperFile>
+    <BootstrapperFile Include="Microsoft.Windows.Installer.3.1">
+      <ProductName>Windows Installer 3.1</ProductName>
+    </BootstrapperFile>
+  </ItemGroup>
+  
+  <Target Name="Bootstrapper">
+    <Message Text="WindowsSDKPath : $(WindowsSDKPath)"/>
+    <GenerateBootstrapper ApplicationFile="$(OutputName).msi"
+                          ApplicationName="$(OutputName)"
+                          BootstrapperItems="@(BootstrapperFile)"
+                          CopyComponents="True"
+                          OutputPath="$(OutputPath)"
+                          Path="$(WindowsSDKPath)"/>
+  </Target>-->
+
+    <!--<UsingTask TaskName="HeatDirectory" AssemblyFile="$(WixToolPath)WixUtilExtension.dll" />
+  <Target Name="BeforeBuild">
+    <HeatDirectory
+       Directory="..\Examples"
+       DirectoryRefId="Examples"
+       OutputFile="ExternalDll.wxs"
+       AutogenerateGuids="true"
+       ToolPath="$(WixToolPath)" />
+  </Target>-->
+
+</Project>

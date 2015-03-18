@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.stateforge.com/StateMachineDotNet-v1
+                                     http://www.stateforge.com/xsd/StateMachineDotNet-v1.xsd" >
+
+    <!-- general settings -->
+    <settings asynchronous="false" namespace="StateForge.Examples.Persistence">
+        <object instance="myPeristence" class="IPeristenceActuator"/>
+        <context class="PersistenceParallelContext"/>
+    </settings>
+    <!-- events -->
+    <events>
+        <eventSource name="Peristence">
+            <event id="Ev12"/>
+            <event id="Ev23"/>
+            <event id="EvRunning"/>
+            <event id="EvStop"/>
+        </eventSource>
+    </events>
+
+    <!-- States -->
+    <state name="Root">
+        <transition event="EvStop" nextState="End"/>
+        <state name="Running">
+            <parallel nextState="Idle">
+                <state name="ProcessA">
+                    <state name="A1">
+                        <transition event="Ev12" nextState="A2"/>
+                    </state>
+                    <state name="A2">
+                        <transition event="Ev23" nextState="AEnd"/>
+                    </state>
+                    <state name="AEnd" kind="final"/>
+                </state>
+                <state name="ProcessB">
+                    <state name="B1">
+                        <transition event="Ev12" nextState="B2"/>
+                    </state>
+                    <state name="B2">
+                        <transition event="Ev23" nextState="BEnd"/>
+                    </state>
+                    <state name="BEnd" kind="final"/>                    
+                </state>
+            </parallel>
+        </state>
+        <state name="Idle">
+            <transition event="EvRunning" nextState="Running"/>
+        </state>
+        <state name="End" kind="final"/>
+    </state>
+</sm:StateMachine>

@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="955162f1-5008-49ff-b941-de271a0230da" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <introduction>
+            <autoOutline>2</autoOutline>
+            <para>Here is the documentation for the Xmpp example</para>
+        </introduction>
+        <section address="Description">
+            <title>Description</title>
+            <content>
+                <para>
+                    This example is composed of multiple state machines that verify the functionality of the Xmpp protocol,
+                    Xmpp allows people to "chat". GTalk and Facebook are using this protocol, so millions of people are using it everyday.
+                </para>
+            </content>
+        </section>
+        <section address="SetupTestPlan">
+            <title>Setup the test plan</title>
+            <content>
+                <para>
+                    These tests requires to setup a proper environment. The following sections explains how to setup the client and the server.
+                </para>
+            </content>
+            <sections>
+                <section address="agsXMPP">
+                    <title>
+                        agsXMPP SDK
+                    </title>
+                    <content>
+                        <para>
+                            <externalLink>
+                                <linkText>agsXMPP SDK</linkText>
+                                <linkUri>http://www.ag-software.de/agsxmpp-sdk/</linkUri>
+                            </externalLink>
+                            is a Xmpp client library for C#.
+                        </para>
+                        <para>
+                            Download and install the <application>agsXMPP SDK</application> from the
+                            <externalLink>
+                                <linkText>download page</linkText>
+                                <linkUri>http://www.ag-software.de/agsxmpp-sdk/download/</linkUri>
+                            </externalLink>
+                        </para>
+                        <para>
+                            Add a reference to the library <codeInline>agsXMPP.dll</codeInline> which can be found in
+                            <localUri>C:\Program Files\AG-Software\agsXMPP SDK\agsxmpp\bin\Net35\Debug\</localUri>
+                        </para>
+                    </content>
+                </section>
+                <section address="ODBCconnectorforMySQL">
+                    <title>
+                        ODBC connector for MySQL
+                    </title>
+                    <content>
+                        <para>
+                            Download and install the <codeInline>mysql-connector-odbc-5.x.y-win32</codeInline> from the
+                            <externalLink>
+                                <linkText>download page</linkText>
+                                <linkUri> http://dev.mysql.com/downloads/connector/odbc/5.1.html</linkUri>
+                            </externalLink>
+                        </para>
+                    </content>
+                </section>
+                <section address="LinuxServer">
+                    <title>
+                        Linux Server
+                    </title>
+                    <content>
+                        <para>
+                            The Xmpp server <application>ejabberd</application> and the database <application>mysql</application> runs on Ubuntu 10.04 inside a virtual machine. That allows to capture network traffic between the client and the server for debugging purpose.
+                        </para>
+                        <para>
+                            The name of server will be called <codeInline>xmpp-server</codeInline>.
+                        </para>
+                        <para>
+                            Make sure the client can ping the server. If setting a proper Dns server is not possible, edit <localUri>C:\Windows\System32\drivers\etc\hosts</localUri> with the administrative rights and add a new entry for the server:
+                        </para>
+                        <para>
+                            <computerOutputInline>
+                                29.242.120.231 xmpp-server
+                            </computerOutputInline>
+                        </para>
+                    </content>
+                </section>
+                <section address="MySQL">
+                    <title>
+                        MySQL
+                    </title>
+                    <content>
+                        <para>
+                            Login as root:
+                        </para>
+                        <para>
+                            <command>
+                                sudo -i
+                            </command>
+                        </para>
+                        <para>
+                            Install <application>mysql</application> client and server:
+                        </para>
+                        <para>
+                            <command>
+                                apt-get install mysql-server mysql-client
+                            </command>
+                        </para>
+                        <para>
+                            Edit <localUri>/etc/mysql/my.cnf</localUri> and change the <codeInline>bind-address</codeInline> attribute. MySQL will now listen on a TCP/IP socket so it can be reached from our client.
+                        </para>
+                        <para>
+                            <computerOutputInline>bind-address            = 0.0.0.0</computerOutputInline>
+                        </para>
+                        <para>
+                            Restart the mysql server:
+                        </para>
+                        <para>
+                            <command>
+                                # restart mysql
+                            </command>
+                        </para>
+
+                        <para>
+                            Login as root into the mysql server:
+                        </para>
+                        <para>
+                            <command>
+                                # mysql -h localhost -p -u root
+                            </command>
+                        </para>
+                        <para>
+                            Create a new user 'ejabberd' with the password 'password' and logs out:
+                        </para>
+                        <para>
+                            <command>
+                                mysql> GRANT ALL ON ejabberd.* TO 'ejabberd' IDENTIFIED BY 'password';
+                            </command>
+                        </para>
+                        <para>
+                            <command>
+                                mysql> quit
+                            </command>
+                        </para>
+                        <para>
+                            Login as ejabberd into the mysql server:
+                        </para>
+                        <para>
+                            <command>
+                                # mysql -h localhost -p -u ejabberd
+                            </command>
+                        </para>
+                        <para>
+                            Create a new database 'ejabberd' and quit:
+                        </para>
+                        <para>
+                            <command>
+                                mysql> CREATE DATABASE ejabberd;
+                            </command>
+                        </para>
+                        <para>
+                            <command>
+                                mysql> quit
+                            </command>
+                        </para>
+                        <para>
+                            Download the ejabberd sql schema:
+                        </para>
+                        <para>
+                            <command>
+                                # wget https://git.process-one.net/ejabberd/mainline/blobs/raw/2.1.x/src/odbc/mysql.sql
+                            </command>
+                        </para>
+                        <para>
+                            Import the ejabberd sql schema:
+                        </para>
+                        <para>
+                            <command>
+                                # mysql -D ejabberd -h localhost -p -u ejabberd &lt; mysql.sql
+                            </command>
+                        </para>
+                        <para>
+                            <command>
+                                mysql> quit
+                            </command>
+                        </para>
+                    </content>
+                </section>
+                <section address="Ejabberd">
+                    <title>
+                        Ejabberd
+                    </title>
+                    <content>
+                        <para>
+                            Install ejabberd:
+                        </para>
+                        <para>
+                            <command>
+                                apt-get install ejabberd
+                            </command>
+                        </para>
+                        <para>
+                            Install and download the mysql odbc connector for ejabberd:
+                        </para>
+                        <para>
+                            <command>
+                                # wget http://blog.jwchat.org/download/ejabberd-mysql-20090114_1-2_all.deb
+                            </command>
+                        </para>
+                        <para>
+                            <command>
+                                # dpkg -i ejabberd-mysql-20090114_1-2_all.deb
+                            </command>
+                        </para>
+                        <para>
+                            Edit <localUri>/etc/ejabberd/ejabberd.cfg</localUri>
+                        </para>
+                        <para>
+                            Change the hostname:
+                        </para>
+                        <para>
+                            <command>
+                                {hosts, [<replaceable>xmpp-server</replaceable>]}.
+                            </command>
+                        </para>
+                        <para>
+                            Change the authentication method to odbc:
+                        </para>
+                        <para>
+                            <command>
+                                {auth_method, odbc}.
+                            </command>
+                        </para>
+                        <para>
+                            Change the mysql connection string:
+                        </para>
+                        <para>
+                            <command>
+                                {odbc_server, {mysql, "localhost", "ejabberd", "ejabberd", "password"}}.
+                            </command>
+                        </para>
+                        <para>
+                            Allow inband account creation without registration timeout.
+                        </para>
+                        <para>
+                            <command>
+                                {access, register, [{allow, all}]}.
+                            </command>
+                        </para>
+                        <para>
+                            <command>
+                                {registration_timeout, infinity}.
+                            </command>
+                        </para>
+                        <para>
+                            Restart the ejabberd server:
+                        </para>
+                        <para>
+                            <command>
+                                /etc/init.d/ejabberd restart
+                            </command>
+                        </para>
+                    </content>
+                </section>
+                <section address="XmppTestApplication">
+                    <title>
+                        Xmpp test application
+                    </title>
+                    <content>
+                        <para>
+                            The application can be found in <localUri>Examples\Cs\XmppChat</localUri>
+                        </para>
+                        <para>
+                            Edit <localUri>Examples\Cs\XmppChat\XmppChat.config.exe</localUri> and change <codeInline>Server</codeInline>  and <codeInline>DbConnectionString</codeInline>:
+                        </para>
+                        <code language="xml">
+                            <![CDATA[
+                                <appSettings>
+                                    <add key="Server" value="xmpp-server"/>
+                                    <add key="DbConnectionString" 
+                                         value="Driver={MySQL ODBC 5.1 Driver};Server=xmpp-server;Database=ejabberd;UID=ejabberd;PWD=password;"/>
+                                </appSettings>
+                            ]]>
+                        </code>
+                        <para>
+                            Buid the XmppChat application with Visual Studio.
+                        </para>
+                        <para>
+                            Start the <application>NUnit</application> application and open <localUri>Examples\Cs\XmppChat\bin\Debug\XmppChat.exe</localUri>
+                        </para>
+                    </content>
+                </section>
+            </sections>
+
+        </section>
+        <section address="TestLogin">
+            <title>TestLogin</title>
+            <content>
+                <para>
+                    Alice logs in and logs out.
+                </para>
+                <code source="..\Examples\CS\XmppChat\TestLogin.fsmcs" language="xml"/>
+            </content>
+        </section>
+        <section address="TestLogin02">
+            <title>TestLogin02</title>
+            <content>
+                <para>
+                    Every one logs in and every one logs out.
+                </para>
+                <code source="..\Examples\CS\XmppChat\TestLogin02.fsmcs" language="xml"/>
+            </content>
+        </section>
+        <section address="TestRegisterNewAccount">
+            <title>TestRegisterNewAccount</title>
+            <content>
+                <para>
+                    Alices tries to register a new account.
+                </para>
+                <code source="..\Examples\CS\XmppChat\TestRegisterNewAccount.fsmcs" language="xml"/>
+            </content>
+        </section>
+        <section address="TestRosterAdd">
+            <title>TestRosterAdd</title>
+            <content>
+                <para>
+                    Alice adds Bob in her roster.
+                </para>
+                <code source="..\Examples\CS\XmppChat\TestRosterAdd.fsmcs" language="xml"/>
+            </content>
+        </section>
+        <section address="TestRosterAddRemove">
+            <title>TestRosterAddRemove</title>
+            <content>
+                <para>
+                    Alice adds Bob in her roster, then Alice removes Bob from her roster.
+                </para>
+                <code source="..\Examples\CS\XmppChat\TestRosterAddRemove.fsmcs" language="xml"/>
+            </content>
+        </section>
+        <section address="TestUnSubscribe">
+            <title>TestUnSubscribe</title>
+            <content>
+                <para>
+                    Alice unsubscribes from Bob, which means that Alice no longer wants the see to presence of Bob.
+                </para>
+                <code source="..\Examples\CS\XmppChat\TestUnSubscribe.fsmcs" language="xml"/>
+            </content>
+        </section>
+        <section address="TestOpenClose01">
+            <title>TestOpenClose01</title>
+            <content>
+                <para>
+                    Alice logs in and logs out, Bob do the same in parallel.
+                </para>
+                <code source="..\Examples\CS\XmppChat\TestOpenClose01.fsmcs" language="xml"/>
+            </content>
+        </section>
+        <section address="TestOpenClose02">
+            <title>TestOpenClose02</title>
+            <content>
+                <para>
+                    Alice logs in and Bob logs in. When both are logged in, Alice logs out and Bob logs out.
+                </para>
+                <code source="..\Examples\CS\XmppChat\TestOpenClose01.fsmcs" language="xml"/>
+            </content>
+        </section>
+        <section address="TestSubscription01">
+            <title>TestSubscription01</title>
+            <content>
+                <para>
+                    Alice wants to subscribe to Bob, then Bob accepts subscription from Alice.
+                </para>
+                <code source="..\Examples\CS\XmppChat\TestSubscription01.fsmcs" language="xml"/>
+            </content>
+        </section>
+        <section address="TestChat01">
+            <title>TestChat01</title>
+            <content>
+                <para>
+                    Alice sends a message to Bob, then Bob replies to Alice.
+                </para>
+                <code source="..\Examples\CS\XmppChat\TestChat01.fsmcs" language="xml"/>
+            </content>
+        </section>
+        <relatedTopics>
+            <link xlink:href="e255e8c9-98cd-4479-bb31-bb106056f709">List of examples</link>
+        </relatedTopics>
+    </developerConceptualDocument>
+
+</topic>

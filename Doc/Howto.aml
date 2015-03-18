@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="6379e43d-7899-40c6-8a80-b729d0cc5030" revisionNumber="1">
+  <developerHowToDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>How to design, implement and test state machine.</para>
+    </introduction>
+    <procedure>
+      <title>How to choose wheter the state machine is asynchronous or synchronous</title>
+      
+      <steps class="bullet">
+        <step>
+          <content>
+            <para>Choose asynchronous when multiple state machines are interconnected, or when the state machine has to deal with timers.</para>
+          </content>
+        </step>
+        <step>
+          <content>
+            <para></para>
+          </content>
+        </step>
+      </steps>
+      
+      <!-- <conclusion>Optional conclusion</conclusion> -->
+    </procedure>
+    <procedure>
+      <title>How to add a guard condition to a transition</title>
+      <steps class="ordered">
+        <step>
+          <content>
+            <para>First step</para>
+          </content>
+        </step>
+        <step>
+          <content>
+            <para>Second step</para>
+          </content>
+        </step>
+      </steps>
+      <!-- <conclusion>Optional conclusion</conclusion> -->
+    </procedure>
+
+    <!-- <codeExample>Optional code example</codeExample> -->
+    <!-- <buildInstructions>Optional instructions for building a
+         code example.</buildInstructions> -->
+    <!-- <robustProgramming>Optional discussion of error handling and other
+         issues related to writing solid code.</robustProgramming> -->
+    <!-- <security>Optional discussion of security issues.</security> -->
+    <relatedTopics>
+
+    </relatedTopics>
+  </developerHowToDocument>
+</topic>

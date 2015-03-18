@@ -1,0 +1,215 @@
+<Project>
+  <Name>HelloWorld</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.3.1512.0, Culture=neutral, PublicKeyToken=null">
+    <Name>HelloWorld</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>HelloWorld</Name>
+        <Access>Public</Access>
+        <Location left="312" top="81" />
+        <Size width="286" height="131" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private HelloWorldContext context</Member>
+        <Member type="Method">public void Print()</Member>
+        <Member type="Method">protected internal void DoPrint()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>HelloWorldContext</Name>
+        <Access>Internal</Access>
+        <Location left="312" top="308" />
+        <Size width="286" height="131" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private HelloWorld helloWorld</Member>
+        <Member type="Constructor">public HelloWorldContext(HelloWorld helloWorld)</Member>
+        <Member type="Method">public void EvPrint()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="0" second="1">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>459</X>
+          <Y>249</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>459</X>
+          <Y>249</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartRole>invoke EvPrint()</StartRole>
+        <EndRole>invoke DoPrint()</EndRole>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.3.1512.0, Culture=neutral, PublicKeyToken=null">
+    <Name>StateMachine</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>IObserver</Name>
+        <Access>Public</Access>
+        <Location left="224" top="278" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public abstract Void OnEntry(String context, String state)</Member>
+        <Member type="Method">public abstract Void OnExit(String context, String state)</Member>
+        <Member type="Method">public abstract Void OnTransitionBegin(String context, String statePrevious, String stateNext, String transition)</Member>
+        <Member type="Method">public abstract Void OnTransitionEnd(String context, String statePrevious, String stateNext, String transition)</Member>
+        <Member type="Constructor">protected IObserver()</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ObserverNull</Name>
+        <Access>Internal</Access>
+        <Location left="12" top="278" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public override Void OnEntry(String context, String state)</Member>
+        <Member type="Method">public override Void OnExit(String context, String state)</Member>
+        <Member type="Method">public override Void OnTransitionBegin(String context, String statePrevious, String stateNext, String transition)</Member>
+        <Member type="Method">public override Void OnTransitionEnd(String context, String statePrevious, String stateNext, String transition)</Member>
+        <Member type="Constructor">public ObserverNull()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>StateMachine</Name>
+        <Access>Public</Access>
+        <Location left="648" top="12" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public Void ProcessTransitionBegin(TContext context, TState stateNext, String transitionName)</Member>
+        <Member type="Method">public Void ProcessTransitionEnd(TContext context, TState stateNext, String transitionName)</Member>
+        <Member type="Method">private Void WalkChainEntry(TContext context, TState statePrevious, TState stateNext)</Member>
+        <Member type="Method">private Void WalkChainExit(TContext context, TState statePrevious, TState stateNext)</Member>
+        <Member type="Method">private Boolean IsChild(TState stateCurrent, TState state)</Member>
+        <Member type="Constructor">public StateMachine()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>StateKind</Name>
+        <Access>Public</Access>
+        <Location left="436" top="12" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Value>Leaf</Value>
+        <Value>Root</Value>
+        <Value>Error</Value>
+        <Value>Final</Value>
+        <Value>Composite</Value>
+        <Value>Parallel</Value>
+      </Entity>
+      <Entity type="Class">
+        <Name>State&lt;TContext, TState&gt;</Name>
+        <Access>Public</Access>
+        <Location left="224" top="12" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public StateKind Kind { get; protected set; }</Member>
+        <Member type="Property">public String Name { get; protected set; }</Member>
+        <Member type="Property">public TState StateParent { get; protected set; }</Member>
+        <Member type="Method">public abstract Void OnEntry(TContext context)</Member>
+        <Member type="Method">public abstract Void OnExit(TContext context)</Member>
+        <Member type="Constructor">protected State(String name, StateKind kind)</Member>
+        <Member type="Constructor">protected State(String name)</Member>
+        <Member type="Constructor">protected State()</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Context&lt;TState, TContextParent&gt;</Name>
+        <Access>Public</Access>
+        <Location left="12" top="12" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public String Name { get; set; }</Member>
+        <Member type="Property">public IObserver Observer { get; set; }</Member>
+        <Member type="Property">public TState StateCurrent { get; set; }</Member>
+        <Member type="Property">public TState StatePrevious { get; set; }</Member>
+        <Member type="Property">public TState StateNext { get; set; }</Member>
+        <Member type="Property">public TContextParent ContextParent { get; set; }</Member>
+        <Member type="Constructor">public Context()</Member>
+        <Member type="Constructor">public Context(TContextParent contextParent)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Generalization" first="1" second="0">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.3.1512.0, Culture=neutral, PublicKeyToken=null">
+    <Name>States</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>EndState</Name>
+        <Access>Public</Access>
+        <Location left="638" top="630" />
+        <Size width="306" height="141" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public static void OnEntry(HelloWorldContext context)</Member>
+        <Member type="Method">public static void OnExit(HelloWorldContext context)</Member>
+        <Member type="Method">public void EvPrint(HelloWorldContext context)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>IdleState</Name>
+        <Access>Public</Access>
+        <Location left="255" top="630" />
+        <Size width="306" height="141" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public static void OnEntry(HelloWorldContext context)</Member>
+        <Member type="Method">public static void OnExit(HelloWorldContext context)</Member>
+        <Member type="Method">public void EvPrint(HelloWorldContext context)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>State&lt;TContext, TState&gt;</Name>
+        <Access>Public</Access>
+        <Location left="791" top="334" />
+        <Size width="286" height="234" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public StateKind Kind { get; protected set; }</Member>
+        <Member type="Property">public String Name { get; protected set; }</Member>
+        <Member type="Property">public TState StateParent { get; protected set; }</Member>
+        <Member type="Method">public abstract Void OnEntry(TContext context)</Member>
+        <Member type="Method">public abstract Void OnExit(TContext context)</Member>
+        <Member type="Constructor">protected State(String name, StateKind kind)</Member>
+        <Member type="Constructor">protected State(String name)</Member>
+        <Member type="Constructor">protected State()</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>RootState</Name>
+        <Access>Public</Access>
+        <Location left="428" top="387" />
+        <Size width="306" height="141" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public static void OnEntry(HelloWorldContext context)</Member>
+        <Member type="Method">public static void OnExit(HelloWorldContext context)</Member>
+        <Member type="Method">public void EvPrint(HelloWorldContext context)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Generalization" first="0" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="1" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>

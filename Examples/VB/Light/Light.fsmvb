@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1" 
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.stateforge.com/StateMachineDotNet-v1
+                                     http://www.stateforge.com/files/xsd/StateMachineDotNet-v1.xsd" >
+
+  <!-- general settings -->
+  <settings asynchronous="false" namespace="StateForge.Examples.Light">
+    <object instance="myLight" class="ILightActuator"/>
+  </settings>
+  <!-- events -->
+  <events>
+    <eventSource name="SwitchEvent" feeder="Light">
+      <event id="EvOn"/>
+      <event id="EvOff"/>
+    </eventSource>
+  </events>
+ 
+  <!-- States -->
+  <state name="Top">
+    <state name="Off">
+      <onEntry action="myLight.DoOff()"/>
+      <transition event="EvOn" nextState="On"/>
+    </state>
+    <state name="On">
+      <onEntry action="myLight.DoOn()"/>
+      <transition event="EvOff" nextState="Off"/>
+    </state>
+  </state>
+</sm:StateMachine>

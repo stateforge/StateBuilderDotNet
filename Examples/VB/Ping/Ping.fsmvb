@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1" 
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  >
+
+  <!-- general settings -->
+  <settings asynchronous="true" namespace="StateForge.Examples.Ping">
+    <object instance="ping" class="Ping"/>
+    <!--<object instance="actuator" class="IPingActuator"/>-->
+  </settings>
+  <!-- events -->
+  <events>
+      <eventSource name="Ping" feeder="Ping">
+          <event id="StartPing"/>
+          <event id="Cancel" preAction="ping.DoCancel()"/>
+      </eventSource>
+    <eventSource name="Internal">
+      <event id="EvError"/>
+      <event id="EvPingReply" preAction="ping.Rx += 1"/>
+      <timer id="EvTimer" name="Timer" preAction="ping.PrintStatistics()"/>
+    </eventSource>
+  </events>
+ 
+  <!-- States -->
+  <state name="Root">
+    <state name="Idle">
+      <transition event="StartPing" nextState="SendPingAndWaitForReply"/>
+    </state>
+    <state name="SendPingAndWaitForReply">
+      <onEntry>
+        <action>ping.Send()</action>
+        <action>ping.Tx += 1</action>
+        <timerStart timer="Timer" duration="ping.Timeout"/>
+      </onEntry>
+      <onExit>
+        <timerStop timer="Timer"/>
+      </onExit>
+      <transition event="Cancel" nextState="End"/>
+      <transition event="EvPingReply" condition="ping.Tx = ping.Count" nextState="End"/>
+      <transition event="EvTimer" condition="ping.Tx = ping.Count" nextState="End"/>
+      <transition event="EvTimer" nextState="SendPingAndWaitForReply" />
+    </state>
+    <state name="End" kind="final">
+    </state>
+  </state>
+</sm:StateMachine>

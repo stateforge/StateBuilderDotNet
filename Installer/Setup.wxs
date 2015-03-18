@@ -1,0 +1,234 @@
+<?xml version="1.0"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+
+    <?include StateBuilderDotNet.wxi ?>
+
+    <Product Id="$(var.ProductCode)"
+             Name="$(var.ProductName)"
+             Language="1033"
+             Version="$(var.Version)"
+             Manufacturer="$(var.ProductManufacturer)"
+             UpgradeCode="$(var.ProductUpgradeCode)">
+        <Package
+			Manufacturer="$(var.ProductManufacturer)"
+			InstallerVersion="200"
+			Compressed="yes"
+            InstallScope="perUser"
+            InstallPrivileges="limited"/>
+
+        <Media Id="1" Cabinet="contents.cab" EmbedCab="yes" CompressionLevel="high"/>
+        <Icon Id="Company.ico" SourceFile="Icons\StateBuilderDotNet.ico" />
+        <Icon Id="Internet.ico" SourceFile="Icons\Internet.ico" />
+        <Icon Id="Help.ico" SourceFile="Icons\Help.ico" />
+        <Property Id="ARPPRODUCTICON" Value="Company.ico" />
+        <Property Id="ARPHELPLINK" Value="$(var.ARPHelpLink)" />
+        <Property Id="HelpUrl" Value="$(var.ProductHomePage)" />
+        <Property Id="WebSiteUrl" Value="$(var.ProductHomePage)" />
+        <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+        <WixVariable Id="WixUIDialogBmp" Value="Resources\StateForgeDialog.jpg" />
+        <WixVariable Id="WixUIBannerBmp" Value="Resources\StateForgeBanner.jpg" />
+
+        <!-- import properties from Wix VS extensions-->
+        <!-- http://wix.sourceforge.net/manual-wix3/wixvsextension.htm -->
+
+        <Upgrade Id="$(var.ProductUpgradeCode)">
+            <UpgradeVersion Minimum="$(var.Version)" OnlyDetect="yes" Property="NEWER_VERSION_FOUND" />
+            <UpgradeVersion Minimum="1.0.0" IncludeMinimum="yes" Maximum="$(var.Version)" IncludeMaximum="no" Property="OLDER_VERSION_FOUND" />
+        </Upgrade>
+
+        <CustomAction Id="NewerVersionFound" Error="The same version is already installed" />
+
+        <CustomAction Id="SetApplicationRootDirectory"
+                  Directory="INSTALLDIR"
+                  Value="[%USERPROFILE]\AppData\Local\$(var.ProductManufacturer)\$(var.ProductName)" />
+
+
+        <!-- Visual Studio 2008 Templates -->
+
+        <Property Id='VS2008_ITEM_TEMPLATE_DIR'>
+            <RegistrySearch Id="VS2008ItemTemplateDirRegistrySearch"
+                            Root="HKCU"
+                            Key="Software\Microsoft\VisualStudio\9.0"
+                            Name="UserItemTemplatesLocation"
+                            Type="directory"/>
+        </Property>
+
+        <Property Id='VS2008_PROJECT_TEMPLATE_DIR'>
+            <RegistrySearch Id="VS2008ProjectTemplateDirRegistrySearch"
+                            Root="HKCU"
+                            Key="Software\Microsoft\VisualStudio\9.0"
+                            Name="UserProjectTemplatesLocation"
+                            Type="directory"/>
+        </Property>
+
+        <Property Id='VS2008EXPRESS_ITEM_TEMPLATE_DIR'>
+            <RegistrySearch Id="VS2008ExpressItemTemplateDirRegistrySearch"
+                            Root="HKCU"
+                            Key="Software\Microsoft\VCSExpress\9.0"
+                            Name="UserItemTemplatesLocation"
+                            Type="directory"/>
+        </Property>
+
+        <Property Id='VS2008EXPRESS_PROJECT_TEMPLATE_DIR'>
+            <RegistrySearch Id="VS2008ExpressProjectTemplateDirRegistrySearch"
+                            Root="HKCU"
+                            Key="Software\Microsoft\VCSExpress\9.0"
+                            Name="UserProjectTemplatesLocation"
+                            Type="directory"/>
+        </Property>
+
+        <!-- Visual Studio 2010 Templates -->
+        <Property Id='VS2010_ITEM_TEMPLATE_DIR'>
+            <RegistrySearch Id="VS2010ItemTemplateDirRegistrySearch"
+                            Root="HKCU"
+                            Key="Software\Microsoft\VisualStudio\10.0"
+                            Name="UserItemTemplatesLocation"
+                            Type="directory"/>
+        </Property>
+
+        <Property Id='VS2010_PROJECT_TEMPLATE_DIR'>
+            <RegistrySearch Id="VS2010ProjectTemplateDirRegistrySearch"
+                            Root="HKCU"
+                            Key="Software\Microsoft\VisualStudio\10.0"
+                            Name="UserProjectTemplatesLocation"
+                            Type="directory"/>
+        </Property>
+
+        <Property Id='VS2010EXPRESS_ITEM_TEMPLATE_DIR'>
+            <RegistrySearch Id="VS2010ExpressItemTemplateDirRegistrySearch"
+                            Root="HKCU"
+                            Key="Software\Microsoft\VCSExpress\10.0"
+                            Name="UserItemTemplatesLocation"
+                            Type="directory"/>
+        </Property>
+        <Property Id='VS2010EXPRESS_PROJECT_TEMPLATE_DIR'>
+            <RegistrySearch Id="VS2010ExpressProjectTemplateDirRegistrySearch"
+                            Root="HKCU"
+                            Key="Software\Microsoft\VCSExpress\10.0"
+                            Name="UserProjectTemplatesLocation"
+                            Type="directory"/>
+        </Property>
+
+        <!-- Visual Studio 2012 Templates -->
+        <Property Id='VS2012_ITEM_TEMPLATE_DIR'>
+            <RegistrySearch Id="VS2012ItemTemplateDirRegistrySearch"
+                            Root="HKCU"
+                            Key="Software\Microsoft\VisualStudio\11.0"
+                            Name="UserItemTemplatesLocation"
+                            Type="directory"/>
+        </Property>
+
+        <Property Id='VS2012_PROJECT_TEMPLATE_DIR'>
+            <RegistrySearch Id="VS2012ProjectTemplateDirRegistrySearch"
+                            Root="HKCU"
+                            Key="Software\Microsoft\VisualStudio\11.0"
+                            Name="UserProjectTemplatesLocation"
+                            Type="directory"/>
+        </Property>
+
+        <!--<Property Id='VS2012EXPRESS_ITEM_TEMPLATE_DIR'>
+            <RegistrySearch Id="VS2012ExpressItemTemplateDirRegistrySearch"
+                            Root="HKCU"
+                            Key="Software\Microsoft\VCSExpress\11.0"
+                            Name="UserItemTemplatesLocation"
+                            Type="directory"/>
+        </Property>
+        <Property Id='VS2012EXPRESS_PROJECT_TEMPLATE_DIR'>
+            <RegistrySearch Id="VS2012ExpressProjectTemplateDirRegistrySearch"
+                            Root="HKCU"
+                            Key="Software\Microsoft\VCSExpress\11.0"
+                            Name="UserProjectTemplatesLocation"
+                            Type="directory"/>
+        </Property>-->
+        
+        <CustomAction Id="LaunchExamplesDir"
+              ExeCommand='"[WindowsFolder]\explorer.exe" "[INSTALLDIR]Examples\CS"'
+              Directory="INSTALLDIR"
+              Return="asyncNoWait" >
+        </CustomAction>
+
+        <Property Id="InstallURL">$(var.ARPHelpLink)/Deploy/Install/$(var.ProductName)?version=$(var.Version)</Property>
+        <Property Id="UninstallURL">$(var.ARPHelpLink)/Deploy/Uninstall/$(var.ProductName)?version=$(var.Version)</Property>
+        
+        <CustomAction Id="SetInstallURL" Property="WixShellExecTarget" Value="[InstallURL]"></CustomAction>
+        <CustomAction Id="SetUninstallURL" Property="WixShellExecTarget" Value="[UninstallURL]"></CustomAction>
+        <CustomAction Id="OpenURL" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" Return="ignore" />
+        
+        <InstallUISequence>
+            <!-- Execute the custom action to set the install folder. -->
+            <Custom Action="SetApplicationRootDirectory" After="CostFinalize" />
+        </InstallUISequence>
+
+        <InstallExecuteSequence>
+            <!-- Check for newer versions with FindRelatedProducts and execute the custom action after it -->
+            <Custom Action="SetApplicationRootDirectory" After="CostFinalize" />
+            <Custom Action="NewerVersionFound" After="FindRelatedProducts">
+                <![CDATA[NEWER_VERSION_FOUND]]>
+            </Custom>
+            <!-- Remove the previous versions of the product -->
+            <RemoveExistingProducts After="InstallInitialize"/>
+            <!-- WixCloseApplications is a built in custom action that uses util:CloseApplication below -->
+            <Custom Action="WixCloseApplications" Before="InstallInitialize" />
+            <Custom Action="SetInstallURL" After="InstallFinalize"><![CDATA[NOT UPGRADINGPRODUCTCODE]]></Custom>
+            <Custom Action="SetUninstallURL" After="InstallFinalize"><![CDATA[REMOVE ~= "ALL" AND NOT UPGRADINGPRODUCTCODE]]></Custom>
+            
+            <Custom Action="OpenURL" After="SetUninstallURL"></Custom>
+            <!--<Custom Action="LaunchExamplesDir" After="OpenURL"><![CDATA[NOT UPGRADINGPRODUCTCODE]]></Custom>-->
+
+        </InstallExecuteSequence>
+        <!-- This will ask the user to close the app if it's running while upgrading -->
+        <!--<util:CloseApplication Id="CloseSuperForm" CloseMessage="no" Description="!(loc.MustCloseSuperForm)"
+                           ElevatedCloseMessage="no" RebootPrompt="no" Target="$(var.ProductExecutable)" />-->
+
+        <!-- Use the built in WixUI_InstallDir GUI -->
+        <!--<UIRef Id="WixUI_Mondo" />-->
+
+        <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Open examples directory"></Property>
+        <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1"></Property>
+        
+        <UIRef Id="WixUI_ErrorProgressText" />
+        <UIRef Id="WixUI_Minimal" />
+        <UI>
+            <!--<UIRef Id="WixUI_Minimal" />-->
+            <Publish Dialog="ExitDialog"
+            Control="Finish"
+            Event="DoAction"
+            Value="LaunchExamplesDir">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed</Publish>
+        </UI>
+        <!--<UI>
+      -->
+        <!-- These dialog references are needed for CloseApplication above to work correctly -->
+        <!--
+      <DialogRef Id="FilesInUse" />
+      <DialogRef Id="MsiRMFilesInUse" />
+      -->
+        <!-- Here we'll add the GUI logic for installation and updating in a future post-->
+        <!--
+    </UI>-->
+
+        <Property Id="NETFRAMEWORK40CLIENT">
+            <RegistrySearch Id="NetFramework40Client"
+               Root="HKLM"
+               Key="SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Client"
+               Name="Install"
+               Type="raw" />
+        </Property>
+
+        <Condition Message="[ProductName] requires the Microsoft .NET Framework 4 Client Profile">
+            Installed Or NETFRAMEWORK40CLIENT
+        </Condition>
+
+        <Property Id="ALLUSERS" Secure="yes"/>
+
+        <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+
+        <!-- Installation directory and files are defined in Files.wxs -->
+        <Directory Id="TARGETDIR" Name="SourceDir"/>
+
+        <!-- Installation directory and files are defined in Files.wxs -->
+        <FeatureRef Id="Complete">
+
+        </FeatureRef>
+
+    </Product>
+</Wix>

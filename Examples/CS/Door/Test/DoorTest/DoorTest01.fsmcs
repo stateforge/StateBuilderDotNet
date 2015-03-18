@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.stateforge.com/StateMachineDotNet-v1
+                                     http://www.stateforge.com/xsd/StateMachineDotNet-v1.xsd" >
+
+    <!-- general settings -->
+    <settings asynchronous="true" namespace="StateForge.Examples.Door.Test">
+        <object instance="doorTest" class="DoorTest"/>
+        <object instance="door" class="Door"/>
+    </settings>
+
+    <!-- events -->
+    <events>
+        <eventSource name="DoorTest">
+            <timer id="EvTimer" name="Timer"/>
+        </eventSource>
+        <eventSource name="IEngine" file="../../Door.cs"/>
+    </events>
+
+    <!-- States -->
+    <state name="DoorTest01">
+        <onEntry action="door.Start();"/>
+
+        <state name="Closed">
+            <onEntry action="door.OpenRequest()"/>
+            <transition event="StartOpen" nextState="Opening"/>
+        </state>
+
+        <state name="Opening">
+            <onEntry>
+                <timerStart timer="Timer" duration="doorTest.DurationOpening"/>
+            </onEntry>
+            <transition event="EvTimer" nextState="StopOpening"/>
+        </state>
+
+        <state name="StopOpening">
+            <onEntry action="door.SensorOpened();"/>
+            <transition event="Stop" nextState="Opened"/>
+        </state>
+
+        <state name="Opened">
+            <onEntry action="door.CloseRequest();"/>
+            <transition event="StartClose" nextState="Closing"/>
+        </state>
+
+        <state name="Closing">
+            <onEntry>
+                <timerStart timer="Timer" duration="doorTest.DurationOpening"/>
+            </onEntry>
+            <transition event="EvTimer" nextState="StopClosing"/>
+        </state>
+
+        <state name="StopClosing">
+            <onEntry action="door.SensorClosed();"/>
+            <transition event="Stop" nextState="End"/>
+        </state>
+        <state name="End" kind="final"/>
+    </state>
+</sm:StateMachine>

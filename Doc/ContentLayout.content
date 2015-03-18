@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Topics>
+  <Topic id="ef1d2f62-dc0d-4d0c-8801-c892fb50d804" visible="True" isDefault="true" />
+  <Topic id="32b960d9-f56e-40d4-bfea-2366aa0eb50d" visible="True" title="Getting Started" />
+  <Topic id="a7a0191a-4cde-4a40-913f-d43c55a5467d" visible="True" />
+  <Topic id="ef3b3e3e-e2b5-4461-bd74-10e2cc3b6187" visible="True" title="Visual Studio Integration" />
+  <Topic id="e255e8c9-98cd-4479-bb31-bb106056f709" visible="True" apiParentMode="InsertAfter">
+    <Topic id="28bb5d53-b5dd-48c2-99ad-14be11a49af5" visible="True" />
+    <Topic id="dab02ba9-9859-475a-9561-68dc26718faf" visible="True" />
+    <Topic id="6ef348e8-e508-422d-8c81-8b60d6cdd349" visible="True" />
+    <Topic id="5a26797e-e46b-45ac-b48e-e0772ead3110" visible="True" />
+    <Topic id="e79d5bb9-579b-458e-a7c0-64101a04fadb" visible="True" />
+    <Topic id="df8634f6-4652-4fff-b092-acaba3c3bb66" visible="True" />
+    <Topic id="13afaa12-ae68-478d-aec1-0b07dd863f27" visible="True" />
+    <Topic id="30475eb5-e334-428d-a945-71a3aec10897" visible="True" />
+    <Topic id="f03632ac-f9ac-4db4-b793-29a8250e3629" visible="True" />
+    <Topic id="955162f1-5008-49ff-b941-de271a0230da" visible="True" />
+  </Topic>
+</Topics>

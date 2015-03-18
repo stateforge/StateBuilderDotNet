@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sm:StateMachine xmlns:sm="http://www.stateforge.com/StateMachineDotNet-v1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.stateforge.com/StateMachineDotNet-v1
+                                     http://www.stateforge.com/xsd/StateMachineDotNet-v1.xsd" >
+    <!-- general settings -->
+    <settings asynchronous="true" namespace="StateForge.Examples.XmppChat">
+        <object instance="chatScenario" class="ChatScenario"/>
+        <object instance="alice" class="Client"/>
+        <object instance="bob" class="Client"/>
+    </settings>
+
+    <!-- events -->
+    <events>
+        <eventSource name="IChatScenario" file="IChatScenario.cs"/>
+        <eventSource name="Timer">
+            <timer id="EvTimerMaxDuration" name="TimerMaxDuration"/>
+            <timer id="EvTimerIdleDuration" name="TimerIdleDuration"/>
+        </eventSource>
+    </events>
+
+    <!-- States -->
+    <state name="XmppTestRegisterNewAccount">
+        <transition event="EvTimerMaxDuration" nextState="Alice_End">
+            <action>chatScenario.Error = "Maximum duration expired"</action>
+        </transition>
+        <!-- State Idle -->
+        <state name="Idle">
+            <transition event="Start" nextState="Alice_RegisterNewAccount">
+                <timerStart timer="TimerMaxDuration" duration="chatScenario.MaxDuration"/>
+            </transition>
+        </state>
+        <!-- State Alice_RegisterNewAccount -->
+        <state name="Alice_RegisterNewAccount" description="Alice registers a new account">
+            <onEntry action="alice.RegisterNewAccount()"/>
+            <transition event="LoggedIn" condition="jid.User == alice.Jid.User" nextState="Alice_Idle"/>
+        </state>
+        <!-- State Alice_Idle -->
+        <state name="Alice_Idle" description="Alice start the idle timer and go to next state upon expiring">
+            <onEntry>
+                <timerStart timer="TimerIdleDuration" duration="chatScenario.IdleDuration"/>
+            </onEntry>
+            <transition event="Closed" nextState="Alice_End">
+                <action>chatScenario.Error = "Event closed has been received"</action>
+            </transition>
+            <transition event="EvTimerIdleDuration" nextState="Alice_Closing"/>
+        </state>
+        <!-- State Alice_Closing -->
+        <state name="Alice_Closing" description="Alice is closing">
+            <onEntry action="alice.Close()"/>
+            <transition event="Closed" condition="jid.User == alice.Jid.User" nextState="Alice_End"/>
+        </state>
+        <!-- State Alice_End -->
+        <state name="Alice_End" kind="final"/>
+    </state>
+</sm:StateMachine>
