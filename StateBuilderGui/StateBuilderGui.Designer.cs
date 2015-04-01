@@ -159,14 +159,7 @@ namespace StateForge
             this.helpToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
             this.helpToolStripMenuItem1.Text = "Help";
             this.helpToolStripMenuItem1.Click += new System.EventHandler(this.helpToolStripMenuItem1_Click);
-            // 
-            // installLicenceToolStripMenuItem
-            // 
-            this.installLicenceToolStripMenuItem.Name = "installLicenceToolStripMenuItem";
-            this.installLicenceToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.installLicenceToolStripMenuItem.Text = "Install Licence...";
-            this.installLicenceToolStripMenuItem.Click += new System.EventHandler(this.installLicenseButton_Click);
-            // 
+             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Image = global::StateForge.Properties.Resources.Help;

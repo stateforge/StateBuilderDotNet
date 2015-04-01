@@ -39,15 +39,7 @@ namespace StateForge
             title.Text += "  " + assemblyInfo.Version;
             description.Text = assemblyInfo.Description;
             copyright.Text = assemblyInfo.Copyright;
-            if (gui.licenceInfralution.IsLicensed() == true)
-            {
-                licenceInUse.Text = "This product is licensed";
-            }
-            else
-            {
-                licenceInUse.Text = "A trial version is being used: " + gui.licenceInfralution.DaysRemaining + " remaining days";
-
-            }
+           
         }
 
         private void StateForgeWebSite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -66,6 +58,11 @@ namespace StateForge
             {
                 MessageBox.Show(other.Message);
             }
+        }
+
+        private void copyright_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

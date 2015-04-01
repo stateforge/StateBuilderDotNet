@@ -26,20 +26,7 @@ namespace StateForge
     {
         static TraceSource ts = new TraceSource("StateBuilder");
         private static readonly HeadingInfo headingInfo = new HeadingInfo(Application.ProductName, Application.ProductVersion);
-        internal LicenceInfralution licenceInfralution;
-        // Password StateBuilderDotNet
-        // Product Information: 
-        const string LICENSE_PARAMETERS =
-    @"<EncryptedLicenseParameters>
-	  <ProductName>StateBuilderDotNet</ProductName>
-	  <RSAKeyValue>
-	    <Modulus>t5HZ8Lf0+ZqHC4rbJH/F1j05+03Ex3oRcEYprvCEfw7BmzaDpy8hvNRZ8o74OX0a5XEVZnuT1Li36VlX0vp7bHiHMa5VrhrFlr/xgp8qMX8CM1yLh5eCPdTU7Ob6dZ5ra5bAvveOBVMqF1PKRHstGnI04JpMeu4ouCm/ys8ozRc=</Modulus>
-	    <Exponent>AQAB</Exponent>
-	  </RSAKeyValue>
-	  <DesignSignature>O9R5+uae4uXGE96JpTgujRqnmXj2yZa2LN4EN2HO7vfzdEFbarxT3zi2+oYxre81dvxbTxz4GaVaHogJWTu0/xjuf1picgG70doYEZsL6d6o4eaSsJgRSf0EaF3DMmvtvx17XD3mPPqbUemPm2kUFDUiaPYPYmIz/Y438JxLf8g=</DesignSignature>
-	  <RuntimeSignature>CspGJ6+AfMztLMDkpZcx/xAh/gVod2/i7+uIClZV1oIAKuaz0ej+cOk6XneHY5IiAw6qrl0cSXLAar7tDxldvJ1TC2e0O+YA4veRj3qAqzlYarYyZO6gpdSLplQZrwkNqNraAbvaMsSW09DCELpdi0/yxdvxKt5FPCeCWg4P868=</RuntimeSignature>
-	  <KeyStrength>7</KeyStrength>
-	</EncryptedLicenseParameters>";
+        
 
         private StateBuilder stateBuilder;
         private ReturnCode errorCode = ReturnCode.Ok;
@@ -58,9 +45,9 @@ namespace StateForge
             Error = -7,
         }
 
-        StateBuilderGui(LicenceInfralution licenceInfralution)
+        StateBuilderGui()
         {
-            this.licenceInfralution = licenceInfralution;
+            
             InitializeComponent();
             InitializeMostRecentUsedList();
 
@@ -80,14 +67,9 @@ namespace StateForge
 
             Application.EnableVisualStyles();
 
-            var licenceInfralution = new LicenceInfralution(Application.CompanyName, Application.ProductName, LICENSE_PARAMETERS);
+            
 
-            if (licenceInfralution.processLicence(args) == false)
-            {
-                Environment.Exit((int)ReturnCode.UserQuit);
-            }
-
-            var gui = new StateBuilderGui(licenceInfralution);
+            var gui = new StateBuilderGui();
 
             gui.ParseArgs(args);
 
@@ -238,16 +220,7 @@ namespace StateForge
             aboutForm.Show();
         }
 
-        /// <summary>
-        /// Handle a click on the Install License button
-        /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">The event arguments.</param>
-        public void installLicenseButton_Click(object sender, EventArgs e)
-        {
-            licenceInfralution.installLicenseButton_Click(sender, e);
-            //UpdateLicense();
-        }
+      
 
         private void helpToolStripMenuItem1_Click(object sender, EventArgs e)
         {

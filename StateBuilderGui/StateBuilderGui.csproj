@@ -87,11 +87,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ExternalDlls\SharpDevelop\ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
-    <Reference Include="Infralution.Licensing, Version=4.7.0.0, Culture=neutral, PublicKeyToken=3e7e8e3744a5c13f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ExternalDlls\Infralution\Infralution.Licensing.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -112,7 +107,6 @@
     <Compile Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LicenceInfralution.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -170,7 +164,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LicenseKeyList.txt" />
     <None Include="Resources\Help.ico" />
   </ItemGroup>
   <ItemGroup>

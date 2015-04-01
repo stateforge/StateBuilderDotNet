@@ -38,7 +38,6 @@ namespace StateForge
         {
             this.description = new System.Windows.Forms.Label();
             this.StateForgeWebSite = new System.Windows.Forms.LinkLabel();
-            this.licenceInUse = new System.Windows.Forms.Label();
             this.close = new System.Windows.Forms.Button();
             this.title = new System.Windows.Forms.Label();
             this.copyright = new System.Windows.Forms.Label();
@@ -64,15 +63,6 @@ namespace StateForge
             this.StateForgeWebSite.Text = "www.stateforge.com";
             this.StateForgeWebSite.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.StateForgeWebSite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.StateForgeWebSite_LinkClicked);
-            // 
-            // licenceInUse
-            // 
-            this.licenceInUse.Location = new System.Drawing.Point(12, 158);
-            this.licenceInUse.Name = "licenceInUse";
-            this.licenceInUse.Size = new System.Drawing.Size(344, 27);
-            this.licenceInUse.TabIndex = 2;
-            this.licenceInUse.Text = "License";
-            this.licenceInUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // close
             // 
@@ -103,6 +93,7 @@ namespace StateForge
             this.copyright.TabIndex = 5;
             this.copyright.Text = "Copyright (c) 2010-2012 StateForge";
             this.copyright.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.copyright.Click += new System.EventHandler(this.copyright_Click);
             // 
             // AboutForm
             // 
@@ -112,7 +103,6 @@ namespace StateForge
             this.Controls.Add(this.copyright);
             this.Controls.Add(this.title);
             this.Controls.Add(this.close);
-            this.Controls.Add(this.licenceInUse);
             this.Controls.Add(this.StateForgeWebSite);
             this.Controls.Add(this.description);
             this.Name = "AboutForm";
@@ -127,7 +117,6 @@ namespace StateForge
 
         private System.Windows.Forms.Label description;
         private System.Windows.Forms.LinkLabel StateForgeWebSite;
-        private System.Windows.Forms.Label licenceInUse;
         private System.Windows.Forms.Button close;
         private System.Windows.Forms.Label title;
         private System.Windows.Forms.Label copyright;

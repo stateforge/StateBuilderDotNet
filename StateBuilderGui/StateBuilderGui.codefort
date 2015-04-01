@@ -7,7 +7,7 @@
         <ProjectAssembly z:Id="i3">
             <DoEmbed>true</DoEmbed>
             <DoObfuscate>true</DoObfuscate>
-            <FullName>StateBuilderLib, Version=2.3.0.0, Culture=neutral, PublicKeyToken=null</FullName>
+            <FullName>StateBuilderLib, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</FullName>
         </ProjectAssembly>
         <ProjectAssembly z:Id="i4">
             <DoEmbed>true</DoEmbed>
@@ -19,7 +19,7 @@
         </ProjectAssembly>
         <ProjectAssembly z:Id="i6">
             <DoObfuscate>true</DoObfuscate>
-            <FullName>StateBuilderDotNet, Version=2.3.0.0, Culture=neutral, PublicKeyToken=null</FullName>
+            <FullName>StateBuilderDotNet, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</FullName>
         </ProjectAssembly>
     </Assemblies>
     <FormatVersion>3.00</FormatVersion>

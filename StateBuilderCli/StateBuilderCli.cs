@@ -166,7 +166,7 @@ namespace StateForge
             {
                 var help = new HelpText(StateBuilderCli.headingInfo);
                 help.AdditionalNewLineAfterOption = true;
-                help.Copyright = new CopyrightInfo(companyName, 2010);
+                help.Copyright = new CopyrightInfo(companyName, 2015);
                 //help.AddPreOptionsLine("This is free software. You may redistribute copies of it under the terms of");
                 //help.AddPreOptionsLine("the MIT License <http://www.opensource.org/licenses/mit-license.php>.");
                 help.AddPreOptionsLine("Usage: " + appName + " myFsm.fsmcs");
