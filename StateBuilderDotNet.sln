@@ -98,11 +98,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WashingMachine", "Examples\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WashingMachineTest", "Examples\CS\WashingMachine\Test\WashingMachineTest\WashingMachineTest.csproj", "{D66D6617-4708-42BA-B188-D750298CAA61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmppChat", "Examples\CS\XmppChat\XmppChat.csproj", "{7CEB48BF-45B3-4B03-86C5-0D6C68F7B6B9}"
-	ProjectSection(ProjectDependencies) = postProject
-		{7E5FFE2D-1617-49A2-94F7-A429B9DBA283} = {7E5FFE2D-1617-49A2-94F7-A429B9DBA283}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Led", "Examples\CS\Led\Led.csproj", "{04D9B126-272C-4E28-B32F-8990AC506185}"
 	ProjectSection(ProjectDependencies) = postProject
 		{7E5FFE2D-1617-49A2-94F7-A429B9DBA283} = {7E5FFE2D-1617-49A2-94F7-A429B9DBA283}
